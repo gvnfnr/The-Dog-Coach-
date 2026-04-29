@@ -10,10 +10,7 @@ import {
   Loader2
 } from 'lucide-react';
 import { motion } from 'motion/react';
-import { loadStripe } from '@stripe/stripe-js';
 import { useState } from 'react';
-
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 export default function PricingPage() {
   const navigate = useNavigate();
@@ -30,33 +27,25 @@ export default function PricingPage() {
         body: JSON.stringify({ planId }),
       });
 
-      const session = await response.json();
+      const data = await response.json();
 
-      if (session.error) {
-        console.error('Backend error:', session.error);
-        alert('Stripe error: ' + (session.error || 'Check console'));
+      if (data.error) {
+        console.error('Backend error:', data.error);
+        alert('Stripe error: ' + (data.error || 'Check console'));
         setLoadingPlan(null);
         return;
       }
 
-      const stripeInstance = await stripePromise;
-      if (stripeInstance) {
-        const { error } = await (stripeInstance as any).redirectToCheckout({
-          sessionId: session.id,
-        });
-        if (error) {
-          console.error('Stripe redirect error:', error);
-          alert(error.message);
-        }
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error('No checkout URL received from server');
       }
     } catch (err) {
       console.error('Error in handleCheckout:', err);
-      alert('An unexpected error occurred. Please make sure the Stripe Publishable Key is set.');
+      alert('An unexpected error occurred. Please try again later.');
     } finally {
-      if (loadingPlan === planId) {
-        // Only reset if it's the same plan, but usually the redirect happens
-        // but if it fails we want to allow retry
-      }
+      // Note: redirection will happen if successful, but we reset loading state just in case
       setLoadingPlan(null);
     }
   };

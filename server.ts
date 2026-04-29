@@ -86,7 +86,7 @@ async function startServer() {
         cancel_url: `${process.env.APP_URL || 'http://localhost:3000'}/pricing`,
       });
 
-      res.json({ id: session.id });
+      res.json({ url: session.url });
     } catch (error: any) {
       console.error('Stripe Error:', error);
       res.status(500).json({ error: error.message });
