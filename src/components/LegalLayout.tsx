@@ -8,8 +8,18 @@ const LegalLayout = ({ title, children }: { title: string; children: React.React
     <div className="bg-bg-soft min-h-screen pb-20">
       <nav className="p-6 max-w-7xl mx-auto flex justify-between items-center bg-white/50 backdrop-blur-sm rounded-full mt-4 sticky top-4 z-50">
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
-          <Brain className="w-6 h-6 text-primary-neural" />
-          <span className="font-display font-bold text-xl text-primary-neural">The Dog Coach</span>
+          <div className="bg-primary-neural p-1 rounded-xl flex items-center justify-center overflow-hidden">
+            <img 
+              src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
+              alt="Logo" 
+              className="w-10 h-10 object-contain"
+            />
+          </div>
+          <img 
+            src="https://lh3.googleusercontent.com/d/10cplC5E3eU1xPsmYAqA1usW9-e7dfHMM" 
+            alt="The Dog Coach" 
+            className="h-8 w-auto object-contain"
+          />
         </div>
         <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-sm font-bold text-gray-400 hover:text-primary-neural transition-colors">
           <ArrowLeft className="w-4 h-4" /> Back

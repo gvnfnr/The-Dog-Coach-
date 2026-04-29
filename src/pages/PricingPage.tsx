@@ -6,24 +6,87 @@ import {
   CreditCard, 
   HelpCircle,
   ChevronDown,
-  Star
+  Star,
+  Loader2
 } from 'lucide-react';
 import { motion } from 'motion/react';
+import { loadStripe } from '@stripe/stripe-js';
+import { useState } from 'react';
+
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 export default function PricingPage() {
   const navigate = useNavigate();
+  const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
+
+  const handleCheckout = async (planId: string) => {
+    setLoadingPlan(planId);
+    try {
+      const response = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ planId }),
+      });
+
+      const session = await response.json();
+
+      if (session.error) {
+        console.error('Backend error:', session.error);
+        alert('Stripe error: ' + (session.error || 'Check console'));
+        setLoadingPlan(null);
+        return;
+      }
+
+      const stripeInstance = await stripePromise;
+      if (stripeInstance) {
+        const { error } = await (stripeInstance as any).redirectToCheckout({
+          sessionId: session.id,
+        });
+        if (error) {
+          console.error('Stripe redirect error:', error);
+          alert(error.message);
+        }
+      }
+    } catch (err) {
+      console.error('Error in handleCheckout:', err);
+      alert('An unexpected error occurred. Please make sure the Stripe Publishable Key is set.');
+    } finally {
+      if (loadingPlan === planId) {
+        // Only reset if it's the same plan, but usually the redirect happens
+        // but if it fails we want to allow retry
+      }
+      setLoadingPlan(null);
+    }
+  };
 
   return (
     <div className="bg-bg-soft min-h-screen pb-32">
-      {/* Simple Nav */}
-      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+      <header className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
-            <div className="bg-primary-neural p-1.5 rounded-lg">
-              <Brain className="w-5 h-5 text-white" />
+           <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
+            <div className="bg-primary-neural p-1 rounded-xl flex items-center justify-center overflow-hidden">
+              <img 
+                src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
+                alt="Logo" 
+                className="w-10 h-10 object-contain"
+              />
             </div>
-            <span className="font-display font-bold text-lg md:text-xl text-primary-neural">The Dog Coach</span>
+            <img 
+              src="https://lh3.googleusercontent.com/d/10cplC5E3eU1xPsmYAqA1usW9-e7dfHMM" 
+              alt="The Dog Coach" 
+              className="h-8 md:h-10 w-auto object-contain"
+            />
           </div>
+          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+            <button onClick={() => navigate('/how-it-works')} className="hover:text-primary-neural transition-colors">How it works</button>
+            <button onClick={() => navigate('/results')} className="hover:text-primary-neural transition-colors">Results</button>
+            <button onClick={() => navigate('/pricing')} className="hover:text-primary-neural transition-colors">Pricing</button>
+            <button onClick={() => navigate('/login')} className="bg-primary-neural text-white px-5 py-2 rounded-full hover:bg-opacity-90 transition-all font-semibold">
+              Login
+            </button>
+          </nav>
           <button 
             onClick={() => navigate('/quiz')}
             className="md:hidden bg-primary-neural text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-soft"
@@ -31,7 +94,7 @@ export default function PricingPage() {
             Start
           </button>
         </div>
-      </nav>
+      </header>
 
       <div className="max-w-7xl mx-auto px-4 pt-32 pb-16">
         <div className="text-center space-y-6 max-w-3xl mx-auto mb-16 md:mb-20">
@@ -80,10 +143,11 @@ export default function PricingPage() {
                  ))}
               </ul>
               <button 
-                onClick={() => navigate('/quiz')}
-                className="w-full py-4 rounded-2xl font-bold border-2 border-primary-neural text-primary-neural hover:bg-primary-neural/5 transition-all"
+                onClick={() => handleCheckout('reset')}
+                disabled={loadingPlan !== null}
+                className="w-full py-4 rounded-2xl font-bold border-2 border-primary-neural text-primary-neural hover:bg-primary-neural/5 transition-all flex items-center justify-center gap-2"
               >
-                Select Reset
+                {loadingPlan === 'reset' ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Select Reset'}
               </button>
            </div>
 
@@ -114,10 +178,11 @@ export default function PricingPage() {
                  ))}
               </ul>
               <button 
-                onClick={() => navigate('/quiz')}
-                className="w-full py-5 rounded-2xl font-black bg-accent-coral text-white shadow-xl hover:scale-105 active:scale-95 transition-all text-xl"
+                onClick={() => handleCheckout('full')}
+                disabled={loadingPlan !== null}
+                className="w-full py-5 rounded-2xl font-black bg-accent-coral text-white shadow-xl hover:scale-105 active:scale-95 transition-all text-xl flex items-center justify-center gap-2"
               >
-                Claim This Plan
+                {loadingPlan === 'full' ? <Loader2 className="w-6 h-6 animate-spin" /> : 'Claim This Plan'}
               </button>
               <p className="text-center text-xs opacity-50 font-bold">Cancel anytime • Secure checkout</p>
            </div>
@@ -145,10 +210,11 @@ export default function PricingPage() {
                  ))}
               </ul>
               <button 
-                onClick={() => navigate('/quiz')}
-                className="w-full py-4 rounded-2xl font-bold border-2 border-gray-100 text-gray-400 hover:border-primary-neural hover:text-primary-neural transition-all"
+                onClick={() => handleCheckout('monthly')}
+                disabled={loadingPlan !== null}
+                className="w-full py-4 rounded-2xl font-bold border-2 border-gray-100 text-gray-400 hover:border-primary-neural hover:text-primary-neural transition-all flex items-center justify-center gap-2"
               >
-                Choose Monthly
+                {loadingPlan === 'monthly' ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Choose Monthly'}
               </button>
            </div>
         </div>

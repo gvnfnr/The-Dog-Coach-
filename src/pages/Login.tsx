@@ -27,9 +27,19 @@ export default function Login() {
     <div className="bg-bg-soft min-h-screen flex flex-col">
       {/* Header-minimal */}
       <nav className="p-6 max-w-7xl mx-auto w-full flex justify-between items-center">
-        <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
-          <Brain className="w-6 h-6 text-primary-neural" />
-          <span className="font-display font-bold text-xl text-primary-neural">The Dog Coach</span>
+        <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
+          <div className="bg-primary-neural p-1 rounded-xl flex items-center justify-center overflow-hidden">
+            <img 
+              src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
+              alt="Logo" 
+              className="w-10 h-10 object-contain"
+            />
+          </div>
+          <img 
+            src="https://lh3.googleusercontent.com/d/10cplC5E3eU1xPsmYAqA1usW9-e7dfHMM" 
+            alt="The Dog Coach" 
+            className="h-8 w-auto object-contain"
+          />
         </div>
         <button onClick={() => navigate('/')} className="text-sm font-bold text-gray-400 hover:text-primary-neural flex items-center gap-2">
           <ArrowLeft className="w-4 h-4" /> Back to Home

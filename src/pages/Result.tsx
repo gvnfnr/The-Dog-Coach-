@@ -20,6 +20,7 @@ export default function Result() {
   const [data, setData] = useState<any>(null);
   const [showExitPopup, setShowExitPopup] = useState(false);
   const [breedImage, setBreedImage] = useState<string>("");
+  const [billingCycle, setBillingCycle] = useState<'monthly' | '6month' | 'annual'>('annual');
 
   useEffect(() => {
     const saved = localStorage.getItem('thedogcoach_quiz');
@@ -62,9 +63,19 @@ export default function Result() {
       {/* Header */}
       <div className="bg-white p-4 border-b border-gray-100 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-           <div className="flex items-center gap-2">
-            <Brain className="w-6 h-6 text-primary-neural" />
-            <span className="font-display font-bold text-lg text-primary-neural">The Dog Coach</span>
+           <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
+            <div className="bg-primary-neural p-1 rounded-xl flex items-center justify-center overflow-hidden">
+              <img 
+                src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
+                alt="Logo" 
+                className="w-10 h-10 object-contain"
+              />
+            </div>
+            <img 
+              src="https://lh3.googleusercontent.com/d/10cplC5E3eU1xPsmYAqA1usW9-e7dfHMM" 
+              alt="The Dog Coach" 
+              className="h-8 w-auto object-contain"
+            />
           </div>
           <div className="hidden md:flex items-center gap-6 text-sm font-bold text-secondary-trust">
              <div className="flex items-center gap-1">
@@ -110,11 +121,13 @@ export default function Result() {
                <div className="space-y-4 bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
                   <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-widest text-gray-400">
                      <span>Behavioral Health Score</span>
-                     <span className="text-accent-coral">Urgent Action Required</span>
+                     <span className={`${data.issueSeverity === 'Severe' ? 'text-red-600' : 'text-orange-500'}`}>
+                        {data.issueSeverity === 'Severe' ? 'Urgent Action Required' : 'Action Recommended'}
+                     </span>
                   </div>
                   <div className="grid grid-cols-4 gap-1 h-2">
                      <div className="bg-red-500 rounded-full" />
-                     <div className="bg-orange-400 rounded-full" />
+                     <div className={data.issueSeverity === 'Severe' || data.issueSeverity === 'Moderate' ? 'bg-orange-400 rounded-full' : 'bg-gray-100 rounded-full'} />
                      <div className="bg-gray-100 rounded-full" />
                      <div className="bg-gray-100 rounded-full" />
                   </div>
@@ -135,31 +148,43 @@ export default function Result() {
            
            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {[
-                { phase: "Phase 1: Days 1–4", title: "Foundation & Reset", status: "Unlocked" },
-                { phase: "Phase 2: Days 5–10", title: "Pattern Interruption", status: "Locked" },
-                { phase: "Phase 3: Days 11–14", title: "Reinforcement", status: "Locked" },
+                { 
+                  phase: "Phase 1: Days 1–4", 
+                  title: "Foundation & Reset", 
+                  status: "Unlocked",
+                  items: ["5-min Morning Routine", "Environment Reset", "Mood Tracking"]
+                },
+                { 
+                  phase: "Phase 2: Days 5–10", 
+                  title: "Pattern Interruption", 
+                  status: "Locked",
+                  items: ["Counter-Conditioning Protocol", "Reactive-Trigger Desensitization", "Reward Timing Refinement"]
+                },
+                { 
+                  phase: "Phase 3: Days 11–14", 
+                  title: "Reinforcement", 
+                  status: "Locked",
+                  items: ["Advanced Command Chain", "Public Space Trials", "Boundaries Strengthening"]
+                },
               ].map((p, i) => (
                 <div key={i} className={`p-6 rounded-[24px] bg-white border border-gray-100 shadow-sm relative ${i > 0 ? 'opacity-90' : ''}`}>
                   <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">{p.phase}</p>
                   <h3 className="font-bold text-lg mb-4">{p.title}</h3>
-                  <div className={`space-y-3 ${i > 0 ? 'blurred-text' : ''}`}>
-                    <div className="flex items-center gap-3 text-sm text-gray-600">
-                       <CheckCircle2 className="w-4 h-4 text-secondary-trust" />
-                       5-min Morning Routine
-                    </div>
-                    <div className="flex items-center gap-3 text-sm text-gray-600">
-                       <CheckCircle2 className="w-4 h-4 text-secondary-trust" />
-                       Environment Reset
-                    </div>
-                    <div className="flex items-center gap-3 text-sm text-gray-600">
-                       <CheckCircle2 className="w-4 h-4 text-secondary-trust" />
-                       Mood Tracking
-                    </div>
+                  <div className="space-y-3">
+                    {p.items.map((item, idx) => (
+                      <div key={idx} className={`flex items-center gap-3 text-sm font-medium ${i > 0 ? 'text-gray-300' : 'text-gray-600'}`}>
+                         <CheckCircle2 className={`w-4 h-4 ${i > 0 ? 'text-gray-200' : 'text-secondary-trust'}`} />
+                         <span className={i > 0 ? 'blur-[3px] select-none' : ''}>{item}</span>
+                      </div>
+                    ))}
                   </div>
                   {i > 0 && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-white/20 backdrop-blur-[2px] rounded-[24px]">
+                    <div className="absolute inset-0 flex items-center justify-center bg-white/10 backdrop-blur-[1px] rounded-[24px] cursor-pointer" onClick={() => {
+                        const el = document.getElementById('pricing');
+                        el?.scrollIntoView({ behavior: 'smooth' });
+                    }}>
                        <div className="bg-white p-3 rounded-full shadow-lg border border-gray-100">
-                          <Lock className="w-6 h-6 text-primary-neural" />
+                          <Lock className="w-5 h-5 text-primary-neural" />
                        </div>
                     </div>
                   )}
@@ -195,88 +220,140 @@ export default function Result() {
 
         {/* Pricing */}
         <div className="pt-8" id="pricing">
-           <div className="text-center mb-12">
+           <div className="text-center mb-8">
               <h2 className="text-3xl md:text-5xl font-black mb-4">Give {data.name} the Gift of a Stress-Free Life</h2>
               <p className="text-gray-500 font-medium max-w-2xl mx-auto">Join 50,000+ dog parents who have traded frustration for peace of mind. Costs less than a single bag of high-quality treats per month.</p>
            </div>
 
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+           {/* Billing Toggle */}
+           <div className="flex justify-center mb-12">
+             <div className="bg-white p-1.5 rounded-2xl border border-gray-200 flex items-center shadow-sm">
+               <button 
+                 onClick={() => setBillingCycle('monthly')}
+                 className={`px-6 py-3 rounded-xl font-bold text-sm transition-all ${billingCycle === 'monthly' ? 'bg-primary-neural text-white shadow-md' : 'text-gray-400 hover:text-gray-600'}`}
+               >
+                 Monthly
+               </button>
+               <button 
+                 onClick={() => setBillingCycle('6month')}
+                 className={`px-6 py-3 rounded-xl font-bold text-sm transition-all ${billingCycle === '6month' ? 'bg-primary-neural text-white shadow-md' : 'text-gray-400 hover:text-gray-600'}`}
+               >
+                 6 Months
+               </button>
+               <button 
+                 onClick={() => setBillingCycle('annual')}
+                 className={`px-6 py-3 rounded-xl font-bold text-sm transition-all relative ${billingCycle === 'annual' ? 'bg-primary-neural text-white shadow-md' : 'text-gray-400 hover:text-gray-600'}`}
+               >
+                 Annual
+                 {billingCycle !== 'annual' && (
+                   <span className="absolute -top-3 -right-3 bg-accent-coral text-white text-[8px] px-1.5 py-0.5 rounded-full font-black uppercase tracking-tighter shadow-sm animate-bounce">Save 60%</span>
+                 )}
+               </button>
+             </div>
+           </div>
+
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch max-w-6xl mx-auto">
               {/* Behavioral Reset - 6 Months */}
-              <div className="bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm space-y-6">
-                 <div className="space-y-2">
-                    <h3 className="text-xl font-bold text-gray-400">Behavioral Reset</h3>
-                    <div className="flex items-baseline gap-1">
-                       <span className="text-4xl font-extrabold text-text-slate">€79</span>
-                       <span className="text-gray-400 font-medium">/6mo</span>
+              <div 
+                onClick={() => setBillingCycle('6month')}
+                className={`bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm space-y-6 flex flex-col justify-between cursor-pointer transition-all duration-500 ${billingCycle === '6month' ? 'opacity-100 scale-105 ring-4 ring-primary-neural/10' : 'opacity-40 scale-95'}`}
+              >
+                 <div className="space-y-4">
+                    <div className="space-y-2">
+                       <h3 className="text-xl font-bold text-gray-400">Behavioral Reset</h3>
+                       <div className="flex items-baseline gap-1">
+                          <span className="text-4xl font-extrabold text-text-slate">€79</span>
+                          <span className="text-gray-400 font-medium">/6mo</span>
+                       </div>
+                       <p className="text-[10px] font-bold text-secondary-trust bg-secondary-trust/5 w-fit px-2 py-1 rounded tracking-tight uppercase">
+                          Permanent fix roadmap
+                       </p>
                     </div>
-                    <p className="text-xs text-gray-400 line-through font-bold">Professional Trainer: €600</p>
+                    <ul className="space-y-4 text-sm font-medium">
+                       <li className="flex items-center gap-3">
+                          <CheckCircle2 className="w-4 h-4 text-secondary-trust" /> 6 Months Full Access
+                       </li>
+                       <li className="flex items-center gap-3">
+                          <CheckCircle2 className="w-4 h-4 text-secondary-trust" /> Custom Behavioral Profile
+                       </li>
+                    </ul>
                  </div>
-                 <ul className="space-y-4 text-sm font-medium">
-                    <li className="flex items-center gap-3">
-                       <CheckCircle2 className="w-4 h-4 text-secondary-trust" /> Outcome: Fix Behavior
-                    </li>
-                    <li className="flex items-center gap-3">
-                       <CheckCircle2 className="w-4 h-4 text-secondary-trust" /> 6 Months Access
-                    </li>
-                 </ul>
-                 <button className="w-full py-4 rounded-xl font-bold border-2 border-primary-neural text-primary-neural hover:bg-primary-neural/5 transition-all">
+                 <button 
+                  onClick={(e) => { e.stopPropagation(); navigate('/dashboard'); }}
+                  className="w-full py-4 rounded-xl font-bold border-2 border-primary-neural text-primary-neural hover:bg-primary-neural/5 transition-all mt-4"
+                 >
                     Select Reset
                  </button>
               </div>
 
               {/* Annual - Recommended */}
-              <div className="bg-primary-neural p-8 rounded-[32px] shadow-2xl space-y-6 text-white transform md:scale-110 relative overflow-hidden group">
+              <div 
+                onClick={() => setBillingCycle('annual')}
+                className={`bg-primary-neural p-8 rounded-[32px] shadow-2xl space-y-6 text-white relative overflow-hidden group cursor-pointer transition-all duration-500 flex flex-col justify-between ${billingCycle === 'annual' ? 'opacity-100 scale-110 border-4 border-accent-coral/30 z-10' : 'opacity-40 scale-95'}`}>
                  <div className="absolute top-0 right-0 bg-accent-coral px-4 py-1.5 font-bold text-xs uppercase tracking-widest rounded-bl-xl shadow-lg">
                     Most Successful Plan
                  </div>
-                 <div className="space-y-2">
-                    <h3 className="text-xl font-bold opacity-80 underline decoration-accent-coral decoration-4">Full Access</h3>
-                    <div className="flex items-baseline gap-1">
-                       <span className="text-5xl font-extrabold">€149</span>
-                       <span className="opacity-60 font-medium">/year</span>
+                 <div className="space-y-4">
+                    <div className="space-y-2">
+                       <h3 className="text-xl font-bold opacity-80 underline decoration-accent-coral decoration-4">Full Access Annual</h3>
+                       <div className="flex items-baseline gap-1">
+                          <span className="text-5xl font-extrabold">€149</span>
+                          <span className="opacity-60 font-medium">/year</span>
+                       </div>
+                       <p className="text-[10px] font-black text-accent-coral bg-white/10 w-fit px-2 py-1 rounded tracking-tight uppercase whitespace-nowrap">
+                          Only €0.40 per day — Billed annually
+                       </p>
                     </div>
-                    <p className="text-xs opacity-70 line-through font-bold uppercase tracking-tighter">Professional Trainer: €1,200</p>
-                    <p className="text-[10px] font-black text-accent-coral bg-white/10 w-fit px-2 py-0.5 rounded tracking-tighter uppercase whitespace-nowrap">Saves €199 — only €0.40 per day</p>
+                    <ul className="space-y-4 text-sm font-bold">
+                       <li className="flex items-center gap-3 font-medium">
+                          <CheckCircle2 className="w-4 h-4 text-accent-coral" /> Lifetime Plan Updates
+                       </li>
+                       <li className="flex items-center gap-3 font-medium">
+                          <CheckCircle2 className="w-4 h-4 text-accent-coral" /> Priority AI Chat
+                       </li>
+                       <li className="flex items-center gap-3 font-medium">
+                          <CheckCircle2 className="w-4 h-4 text-accent-coral" /> Exclusive Masterclasses
+                       </li>
+                    </ul>
                  </div>
-                 <ul className="space-y-4 text-sm font-bold">
-                    <li className="flex items-center gap-3 font-medium">
-                       <CheckCircle2 className="w-4 h-4 text-accent-coral" /> Lifetime Plan Updates
-                    </li>
-                    <li className="flex items-center gap-3 font-medium">
-                       <CheckCircle2 className="w-4 h-4 text-accent-coral" /> Priority AI Chat
-                    </li>
-                    <li className="flex items-center gap-3 font-medium">
-                       <CheckCircle2 className="w-4 h-4 text-accent-coral" /> Exclusive Masterclasses
-                    </li>
-                 </ul>
                  <button 
-                  onClick={() => navigate('/dashboard')}
-                  className="w-full py-5 rounded-xl font-extrabold bg-accent-coral text-white shadow-lg hover:scale-105 active:scale-95 transition-all text-lg"
+                  onClick={(e) => { e.stopPropagation(); navigate('/dashboard'); }}
+                  className="w-full py-5 rounded-xl font-extrabold bg-accent-coral text-white shadow-xl hover:scale-[1.02] active:scale-95 transition-all text-xl mt-4"
                  >
-                    Get {data.name}'s Plan Now
+                    Start {data.name}'s Plan
                  </button>
               </div>
 
               {/* Monthly */}
-              <div className="bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm space-y-6">
-                 <div className="space-y-2">
-                    <h3 className="text-xl font-bold text-gray-400">Monthly</h3>
-                    <div className="flex items-baseline gap-1">
-                       <span className="text-4xl font-extrabold text-text-slate">€29</span>
-                       <span className="text-gray-400 font-medium">/mo</span>
+              <div 
+                onClick={() => setBillingCycle('monthly')}
+                className={`bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm space-y-6 flex flex-col justify-between cursor-pointer transition-all duration-500 ${billingCycle === 'monthly' ? 'opacity-100 scale-105 ring-4 ring-primary-neural/10' : 'opacity-40 scale-95'}`}
+              >
+                 <div className="space-y-4">
+                    <div className="space-y-2">
+                       <h3 className="text-xl font-bold text-gray-400">Monthly Kickstart</h3>
+                       <div className="flex items-baseline gap-1">
+                          <span className="text-4xl font-extrabold text-text-slate">€29</span>
+                          <span className="text-gray-400 font-medium">/mo</span>
+                       </div>
+                       <p className="text-[10px] font-bold text-secondary-trust bg-secondary-trust/5 w-fit px-2 py-1 rounded tracking-tight uppercase">
+                          €0.97 per day — Cancel anytime
+                       </p>
                     </div>
-                    <p className="text-xs text-gray-400 font-bold uppercase tracking-tighter">Trial Phase</p>
+                    <ul className="space-y-4 text-sm font-medium">
+                       <li className="flex items-center gap-3">
+                          <CheckCircle2 className="w-4 h-4 text-secondary-trust" /> 14-day Kickstart
+                       </li>
+                       <li className="flex items-center gap-3">
+                          <CheckCircle2 className="w-4 h-4 text-secondary-trust" /> Progress Reports
+                       </li>
+                    </ul>
                  </div>
-                 <ul className="space-y-4 text-sm font-medium">
-                    <li className="flex items-center gap-3">
-                       <CheckCircle2 className="w-4 h-4 text-secondary-trust" /> 14-day Kickstart
-                    </li>
-                    <li className="flex items-center gap-3">
-                       <CheckCircle2 className="w-4 h-4 text-secondary-trust" /> Cancel Anytime
-                    </li>
-                 </ul>
-                 <button className="w-full py-4 rounded-xl font-bold border-2 border-gray-100 text-gray-400 hover:border-primary-neural hover:text-primary-neural transition-all">
-                    Choose Monthly
+                 <button 
+                  onClick={(e) => { e.stopPropagation(); navigate('/dashboard'); }}
+                  className="w-full py-4 rounded-xl font-bold bg-primary-neural text-white shadow-lg hover:bg-opacity-90 transition-all font-bold mt-4"
+                 >
+                    Try for 1 Month
                  </button>
               </div>
            </div>
@@ -349,7 +426,7 @@ export default function Result() {
             }}
             className="flex-1 bg-accent-coral text-white py-4 rounded-xl font-bold text-lg shadow-xl hover:scale-105 transition-all text-center"
            >
-              Unlock {data.name}'s Plan — €149
+              Unlock {data.name}'s Plan →
            </button>
         </div>
       </div>

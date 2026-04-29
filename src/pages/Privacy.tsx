@@ -12,8 +12,6 @@ export default function Privacy() {
         <h2 className="text-2xl font-bold text-text-slate">2. Data Controller</h2>
         <p>
           Discover Group Sàrl<br />
-          Chemin des Champs Blancs 58<br />
-          1279 Chavannes-de-Bogis, Switzerland<br />
           Contact: contact@thedogcoach.co
         </p>
       </section>

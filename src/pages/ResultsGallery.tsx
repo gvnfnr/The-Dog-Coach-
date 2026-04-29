@@ -42,15 +42,40 @@ export default function ResultsGallery() {
 
   return (
     <div className="bg-bg-soft min-h-screen">
-      {/* Simple Nav */}
-      <nav className="p-6 max-w-7xl mx-auto flex justify-between items-center">
-        <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
-          <Brain className="w-6 h-6 text-primary-neural" />
-          <span className="font-display font-bold text-xl text-primary-neural">The Dog Coach</span>
+      <header className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
+            <div className="bg-primary-neural p-1 rounded-xl flex items-center justify-center overflow-hidden">
+              <img 
+                src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
+                alt="Logo" 
+                className="w-10 h-10 object-contain"
+              />
+            </div>
+            <img 
+              src="https://lh3.googleusercontent.com/d/10cplC5E3eU1xPsmYAqA1usW9-e7dfHMM" 
+              alt="The Dog Coach" 
+              className="h-8 md:h-10 w-auto object-contain"
+            />
+          </div>
+          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+            <button onClick={() => navigate('/how-it-works')} className="hover:text-primary-neural transition-colors">How it works</button>
+            <button onClick={() => navigate('/results')} className="hover:text-primary-neural transition-colors">Results</button>
+            <button onClick={() => navigate('/pricing')} className="hover:text-primary-neural transition-colors">Pricing</button>
+            <button onClick={() => navigate('/login')} className="bg-primary-neural text-white px-5 py-2 rounded-full hover:bg-opacity-90 transition-all font-semibold">
+              Login
+            </button>
+          </nav>
+          <button 
+            onClick={() => navigate('/quiz')}
+            className="md:hidden bg-primary-neural text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-soft"
+          >
+            Start
+          </button>
         </div>
-      </nav>
+      </header>
 
-      <div className="max-w-7xl mx-auto px-4 py-16 space-y-24">
+      <div className="max-w-7xl mx-auto px-4 pt-32 pb-16 space-y-24">
         {/* Header */}
         <div className="text-center space-y-6 max-w-3xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-extrabold leading-tight underline decoration-accent-coral decoration-4">
@@ -107,7 +132,7 @@ export default function ResultsGallery() {
            {[
              { label: "Active Users", value: "12,482", icon: <Heart /> },
              { label: "Success Rate", value: "94.2%", icon: <TrendingUp /> },
-             { label: "AI Decision/Sec", value: "24.8k", icon: <Brain /> },
+             { label: "AI Decision/Sec", value: "24.8k", icon: <img src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" alt="AI" className="w-8 h-8 object-contain" /> },
              { label: "Global Rating", value: "4.9/5", icon: <Star /> },
            ].map((stat, i) => (
              <div key={i} className="text-center space-y-2">

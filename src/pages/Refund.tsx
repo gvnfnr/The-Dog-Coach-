@@ -29,7 +29,7 @@ export default function Refund() {
       </section>
 
       <p className="text-sm italic pt-8 border-t border-gray-100">Last updated: April 28, 2026</p>
-      <p className="text-sm text-gray-400">Discover Group Sàrl • Chemin des Champs Blancs 58, 1279 Chavannes-de-Bogis, Switzerland</p>
+      <p className="text-sm text-gray-400">Discover Group Sàrl</p>
     </LegalLayout>
   );
 }

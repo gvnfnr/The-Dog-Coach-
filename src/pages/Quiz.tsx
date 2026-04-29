@@ -37,9 +37,9 @@ export default function Quiz() {
   const [analysisText, setAnalysisText] = useState("");
 
   const question = QUIZ_QUESTIONS[currentStep];
-  const rawProgress = ((currentStep + 1) / QUIZ_QUESTIONS.length) * 100;
-  // Audit fix: "Endowed Progress" - start at 15%
-  const progress = Math.max(15, rawProgress);
+  const stepNumber = currentStep + 1;
+  const totalSteps = QUIZ_QUESTIONS.length;
+  const progress = (stepNumber / totalSteps) * 100;
 
   const handleNext = (val: any) => {
     const newAnswers = { ...answers, [question.id]: val };
@@ -47,7 +47,7 @@ export default function Quiz() {
 
     // Analysis milestones inspired by high-conversion behavior funnels
     if (currentStep === 4) {
-      triggerAnalysis(`Comparing ${newAnswers.name || 'your dog'}'s profile to 10,000+ successful cases...`, 4000, () => setCurrentStep(currentStep + 1));
+      triggerAnalysis(`Comparing ${newAnswers.name || 'your dog'}'s profile to 50,000+ successful cases...`, 4000, () => setCurrentStep(currentStep + 1));
     } else if (currentStep === 8) {
       triggerAnalysis("Analyzing breed-specific neuro-patterns and habit triggers...", 5000, () => setCurrentStep(currentStep + 1));
     } else if (currentStep === QUIZ_QUESTIONS.length - 1) {
@@ -78,11 +78,24 @@ export default function Quiz() {
     return (
       <div className="flex-1 flex flex-col items-center justify-center p-6 bg-primary-neural text-white text-center space-y-8">
         <motion.div 
-          animate={{ scale: [1, 1.1, 1], rotate: [0, 10, -10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="bg-white/20 p-8 rounded-full"
+          animate={{ 
+            scale: [1, 1.05, 1],
+            opacity: [0.8, 1, 0.8] 
+          }}
+          transition={{ 
+            duration: 2, 
+            repeat: Infinity, 
+            ease: "easeInOut" 
+          }}
+          className="relative flex flex-col items-center gap-4"
         >
-          <Brain className="w-16 h-16" />
+          <div className="bg-white/10 p-12 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/20">
+            <img 
+              src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
+              alt="AI Analysis" 
+              className="w-32 h-32 object-contain"
+            />
+          </div>
         </motion.div>
         <div className="space-y-4">
           <h2 className="text-2xl md:text-3xl font-bold">{analysisText}</h2>
@@ -96,7 +109,7 @@ export default function Quiz() {
           </div>
         </div>
         <p className="text-sm opacity-60 max-w-xs uppercase tracking-widest font-bold">
-          Trusted by 12,000+ behavioral sessions
+          Trusted by 50,000+ owners globally
         </p>
       </div>
     );
@@ -118,7 +131,7 @@ export default function Quiz() {
             />
           </div>
         </div>
-        <div className="text-xs font-bold text-gray-400 w-10">{Math.round(progress)}%</div>
+        <div className="text-xs font-bold text-gray-400 w-16">{stepNumber} of {totalSteps}</div>
       </div>
 
       {/* Question Area */}
@@ -249,7 +262,15 @@ export default function Quiz() {
                     >
                       Send My Roadmap →
                     </button>
-                    <p className="text-center text-xs text-gray-400 font-medium">{question.footer}</p>
+                    <div className="flex flex-col items-center gap-2">
+                       <p className="text-center text-xs text-secondary-trust flex items-center justify-center gap-2 font-bold uppercase tracking-wider">
+                          <ShieldCheck className="w-4 h-4" />
+                          🔒 GDPR Compliant & Private
+                       </p>
+                       <p className="text-center text-[10px] text-gray-400 leading-snug">
+                          We'll never share Buddy's profile. Unsubscribe in 1 click.
+                       </p>
+                    </div>
                   </div>
                 )}
 
@@ -264,6 +285,9 @@ export default function Quiz() {
                            onChange={(e) => {
                              const term = e.target.value.toLowerCase();
                              const buttons = document.querySelectorAll('.breed-btn');
+                             const popularSection = document.getElementById('popular-breeds');
+                             if (popularSection) popularSection.style.display = term.length > 0 ? 'none' : 'block';
+                             
                              let visibleCount = 0;
                              buttons.forEach((btn: any) => {
                                const text = btn.innerText.toLowerCase();
@@ -287,6 +311,21 @@ export default function Quiz() {
                            className="w-full pl-12 pr-4 py-4 rounded-xl border-2 border-gray-100 outline-none focus:border-primary-neural transition-all bg-white"
                         />
                       </div>
+                      <div id="popular-breeds" className="space-y-3">
+                         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-1">Most Common</p>
+                         <div className="grid grid-cols-2 gap-2">
+                           {['Labrador', 'French Bulldog', 'Golden Retriever', 'Mixed Breed'].map(b => (
+                             <button 
+                               key={b}
+                               onClick={() => handleNext(b)}
+                               className="p-3 text-left rounded-xl bg-white border border-gray-200 text-xs font-bold hover:border-primary-neural transition-all"
+                             >
+                               {b}
+                             </button>
+                           ))}
+                         </div>
+                      </div>
+
                       <div className="grid grid-cols-1 gap-2 max-h-[300px] overflow-y-auto pr-2">
                         <button 
                           id="custom-breed-btn"
@@ -338,18 +377,18 @@ export default function Quiz() {
       </div>
       
       {/* Quiz Trust Banner */}
-      <div className="bg-white p-4 border-t border-gray-100 hidden md:block">
-        <div className="max-w-xl mx-auto flex items-center justify-between text-[10px] uppercase tracking-widest font-bold text-gray-400">
+      <div className="bg-white p-4 border-t border-gray-100 hidden md:block text-slate-400">
+        <div className="max-w-xl mx-auto flex items-center justify-between text-[10px] uppercase tracking-widest font-bold">
            <div className="flex items-center gap-2">
               <CheckCircle2 className="w-3 h-3 text-secondary-trust" />
-              12,000+ owners coached
+              50,000+ owners coached
            </div>
            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-3 h-3 text-secondary-trust" />
-              Backed by certified trainers
+              <ShieldCheck className="w-3 h-3 text-secondary-trust" />
+              Veterinary endorsed
            </div>
            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-3 h-3 text-secondary-trust" />
+              <Brain className="w-3 h-3 text-secondary-trust" />
               AI Algorithm v4.2
            </div>
         </div>

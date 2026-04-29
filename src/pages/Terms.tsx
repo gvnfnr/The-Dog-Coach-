@@ -17,8 +17,6 @@ export default function Terms() {
         <h2 className="text-2xl font-bold text-text-slate">3. Company Information</h2>
         <p>
           Discover Group Sàrl<br />
-          Chemin des Champs Blancs 58<br />
-          1279 Chavannes-de-Bogis, Switzerland<br />
           Email: contact@thedogcoach.co
         </p>
       </section>
