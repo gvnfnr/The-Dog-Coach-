@@ -31,6 +31,8 @@ import {
 } from 'lucide-react';
 import { getDogImage } from '../lib/dogImages';
 import { PaymentTrustStrip } from '../components/PaymentTrustStrip';
+import logoIcon from '../assets/ICONLOGO.png';
+import logoText from '../assets/THEDOGCOACH.png';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -52,7 +54,7 @@ export default function Home() {
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
             <div className="flex items-center justify-center overflow-hidden">
               <img 
-                src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/assets/ICONLOGO.png" 
+                              src={logoIcon}
                 alt="Logo Icon" 
                 className="w-10 h-10 object-contain"
                 style={{ filter: 'invert(1)' }}
@@ -60,7 +62,7 @@ export default function Home() {
               />
             </div>
             <img 
-              src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/assets/THEDOGCOACH.png" 
+                            src={logoText}
               alt="The Dog Coach" 
               className="h-6 md:h-8 w-auto object-contain"
               referrerPolicy="no-referrer"
@@ -465,7 +467,7 @@ export default function Home() {
               <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
                 <div className="flex items-center justify-center grayscale brightness-200 overflow-hidden">
                   <img 
-                    src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/assets/ICONLOGO.png" 
+                                  src={logoIcon}
                     alt="Logo Icon" 
                     className="w-10 h-10 object-contain"
                     style={{ filter: 'invert(1)' }}
@@ -473,7 +475,7 @@ export default function Home() {
                   />
                 </div>
                 <img 
-                  src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/assets/THEDOGCOACH.png" 
+                                src={logoText}
                   alt="The Dog Coach" 
                   className="h-7 w-auto object-contain brightness-0 invert opacity-80"
                   referrerPolicy="no-referrer"
