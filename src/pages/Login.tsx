@@ -29,11 +29,11 @@ export default function Login() {
       {/* Header-minimal */}
       <nav className="p-6 max-w-7xl mx-auto w-full flex justify-between items-center">
         <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
-          <div className="flex items-center justify-center overflow-hidden bg-primary-neural p-1.5 rounded-xl shadow-sm">
+          <div className="flex items-center justify-center overflow-hidden">
             <img 
               src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
               alt="Logo Icon" 
-              className="w-7 h-7 object-contain"
+              className="w-10 h-10 object-contain"
               style={{ filter: 'invert(1)' }}
               referrerPolicy="no-referrer"
             />
