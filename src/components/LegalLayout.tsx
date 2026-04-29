@@ -13,12 +13,14 @@ const LegalLayout = ({ title, children }: { title: string; children: React.React
               src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
               alt="Logo" 
               className="w-10 h-10 object-contain"
+              referrerPolicy="no-referrer"
             />
           </div>
           <img 
             src="https://lh3.googleusercontent.com/d/10cplC5E3eU1xPsmYAqA1usW9-e7dfHMM" 
             alt="The Dog Coach" 
             className="h-8 w-auto object-contain"
+            referrerPolicy="no-referrer"
           />
         </div>
         <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-sm font-bold text-gray-400 hover:text-primary-neural transition-colors">

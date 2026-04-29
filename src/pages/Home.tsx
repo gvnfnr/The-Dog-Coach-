@@ -54,12 +54,14 @@ export default function Home() {
                 src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
                 alt="Logo" 
                 className="w-10 h-10 object-contain"
+                referrerPolicy="no-referrer"
               />
             </div>
             <img 
               src="https://lh3.googleusercontent.com/d/10cplC5E3eU1xPsmYAqA1usW9-e7dfHMM" 
               alt="The Dog Coach" 
               className="h-8 md:h-10 w-auto object-contain"
+              referrerPolicy="no-referrer"
             />
           </div>
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
@@ -143,6 +145,7 @@ export default function Home() {
                 src="https://lh3.googleusercontent.com/d/1HSy4RnvbUKVfXT5lyeFMGuebm58P0gYg" 
                 alt="Golden Retriever Puppy" 
                 className="w-full h-auto object-cover object-center rounded-3xl"
+                referrerPolicy="no-referrer"
               />
             </motion.div>
           </div>
@@ -463,12 +466,14 @@ export default function Home() {
                     src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
                     alt="Logo" 
                     className="w-10 h-10 object-contain"
+                    referrerPolicy="no-referrer"
                   />
                 </div>
                 <img 
                   src="https://lh3.googleusercontent.com/d/10cplC5E3eU1xPsmYAqA1usW9-e7dfHMM" 
                   alt="The Dog Coach" 
                   className="h-9 w-auto object-contain brightness-0 invert opacity-80"
+                  referrerPolicy="no-referrer"
                 />
               </div>
               <p className="text-sm leading-relaxed">
@@ -506,14 +511,14 @@ export default function Home() {
                 <p className="text-sm">Discover Group Sàrl</p>
                 <a href="mailto:contact@thedogcoach.co" className="text-sm hover:text-white transition-colors cursor-pointer block">contact@thedogcoach.co</a>
                 <div className="pt-4 flex flex-wrap gap-2 items-center grayscale opacity-50">
-                  <img src="https://lh3.googleusercontent.com/d/1oobA6Dhx4a6Dg18iN7oTBs8na-ayteM5" className="h-6 w-auto object-contain" alt="Payment logo 1" />
-                  <img src="https://lh3.googleusercontent.com/d/1D8PWrv7IUtBLZyYhZfjv3G64WxkCDh6o" className="h-6 w-auto object-contain" alt="Payment logo 2" />
-                  <img src="https://lh3.googleusercontent.com/d/18IMpOj2MPPgqq0HTMfUJODjCmL5UGK_J" className="h-6 w-auto object-contain" alt="Payment logo 3" />
-                  <img src="https://lh3.googleusercontent.com/d/1D_mOKVLah5tRIjwYb1R-188lQsq0W-4c" className="h-6 w-auto object-contain" alt="Payment logo 4" />
-                  <img src="https://lh3.googleusercontent.com/d/168cnwzGN5soWTmzGEhz_bOKW6Wla_4Be" className="h-6 w-auto object-contain" alt="Payment logo 5" />
-                  <img src="https://lh3.googleusercontent.com/d/1F8XZQOxPp50QIRDF3CgcBhJ9AwFsBe6Q" className="h-6 w-auto object-contain" alt="Payment logo 6" />
-                  <img src="https://lh3.googleusercontent.com/d/1aH1yhNgGi36w76buMz-l-Gr-3sv1KqR_" className="h-6 w-auto object-contain" alt="Payment logo 7" />
-                  <img src="https://lh3.googleusercontent.com/d/1n14XoHGupIbBSkbtTb-eEfj9NWMRNKe9" className="h-6 w-auto object-contain" alt="Payment logo 8" />
+                  <img src="https://lh3.googleusercontent.com/d/1oobA6Dhx4a6Dg18iN7oTBs8na-ayteM5" className="h-6 w-auto object-contain" alt="Payment logo 1" referrerPolicy="no-referrer" />
+                  <img src="https://lh3.googleusercontent.com/d/1D8PWrv7IUtBLZyYhZfjv3G64WxkCDh6o" className="h-6 w-auto object-contain" alt="Payment logo 2" referrerPolicy="no-referrer" />
+                  <img src="https://lh3.googleusercontent.com/d/18IMpOj2MPPgqq0HTMfUJODjCmL5UGK_J" className="h-6 w-auto object-contain" alt="Payment logo 3" referrerPolicy="no-referrer" />
+                  <img src="https://lh3.googleusercontent.com/d/1D_mOKVLah5tRIjwYb1R-188lQsq0W-4c" className="h-6 w-auto object-contain" alt="Payment logo 4" referrerPolicy="no-referrer" />
+                  <img src="https://lh3.googleusercontent.com/d/168cnwzGN5soWTmzGEhz_bOKW6Wla_4Be" className="h-6 w-auto object-contain" alt="Payment logo 5" referrerPolicy="no-referrer" />
+                  <img src="https://lh3.googleusercontent.com/d/1F8XZQOxPp50QIRDF3CgcBhJ9AwFsBe6Q" className="h-6 w-auto object-contain" alt="Payment logo 6" referrerPolicy="no-referrer" />
+                  <img src="https://lh3.googleusercontent.com/d/1aH1yhNgGi36w76buMz-l-Gr-3sv1KqR_" className="h-6 w-auto object-contain" alt="Payment logo 7" referrerPolicy="no-referrer" />
+                  <img src="https://lh3.googleusercontent.com/d/1n14XoHGupIbBSkbtTb-eEfj9NWMRNKe9" className="h-6 w-auto object-contain" alt="Payment logo 8" referrerPolicy="no-referrer" />
                 </div>
               </div>
             </div>

@@ -60,12 +60,14 @@ export default function PricingPage() {
                 src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
                 alt="Logo" 
                 className="w-10 h-10 object-contain"
+                referrerPolicy="no-referrer"
               />
             </div>
             <img 
               src="https://lh3.googleusercontent.com/d/10cplC5E3eU1xPsmYAqA1usW9-e7dfHMM" 
               alt="The Dog Coach" 
               className="h-8 md:h-10 w-auto object-contain"
+              referrerPolicy="no-referrer"
             />
           </div>
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">

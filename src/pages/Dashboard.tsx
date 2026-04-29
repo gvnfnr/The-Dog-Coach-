@@ -91,6 +91,7 @@ export default function Dashboard() {
               src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
               alt="Logo" 
               className="w-12 h-12 object-contain"
+              referrerPolicy="no-referrer"
             />
         </div>
         <nav className="flex-1 flex justify-around md:flex-col gap-6 md:gap-8 items-center text-gray-400 w-full">
@@ -203,7 +204,7 @@ export default function Dashboard() {
                   <div className="p-4 border-b border-gray-100 bg-primary-neural text-white flex items-center justify-between font-display">
                       <div className="flex items-center gap-3">
                         <div className="bg-white/20 p-1 rounded-xl flex items-center justify-center overflow-hidden">
-                            <img src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" alt="AI" className="w-9 h-9 object-contain" />
+                            <img src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" alt="AI" className="w-9 h-9 object-contain" referrerPolicy="no-referrer" />
                         </div>
                         <div>
                             <p className="text-sm font-bold">The AI Coach</p>

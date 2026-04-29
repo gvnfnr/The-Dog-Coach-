@@ -24,12 +24,14 @@ export default function HowItWorks() {
                 src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
                 alt="Logo" 
                 className="w-10 h-10 object-contain"
+                referrerPolicy="no-referrer"
               />
             </div>
             <img 
               src="https://lh3.googleusercontent.com/d/10cplC5E3eU1xPsmYAqA1usW9-e7dfHMM" 
               alt="The Dog Coach" 
               className="h-8 md:h-10 w-auto object-contain"
+              referrerPolicy="no-referrer"
             />
           </div>
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
@@ -93,7 +95,7 @@ export default function HowItWorks() {
           {[
             {
               step: "01",
-              icon: <img src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" alt="AI" className="w-12 h-12 object-contain" />,
+              icon: <img src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" alt="AI" className="w-12 h-12 object-contain" referrerPolicy="no-referrer" />,
               image: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&q=80&w=400&h=300",
               title: "Deep Analysis",
               desc: "First, our algorithm analyzes your dog's breed, environment, and specific triggers across 18 unique data points."

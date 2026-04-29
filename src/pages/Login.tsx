@@ -33,12 +33,14 @@ export default function Login() {
               src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
               alt="Logo" 
               className="w-10 h-10 object-contain"
+              referrerPolicy="no-referrer"
             />
           </div>
           <img 
             src="https://lh3.googleusercontent.com/d/10cplC5E3eU1xPsmYAqA1usW9-e7dfHMM" 
             alt="The Dog Coach" 
             className="h-8 w-auto object-contain"
+            referrerPolicy="no-referrer"
           />
         </div>
         <button onClick={() => navigate('/')} className="text-sm font-bold text-gray-400 hover:text-primary-neural flex items-center gap-2">

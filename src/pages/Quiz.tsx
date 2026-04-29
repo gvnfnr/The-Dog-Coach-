@@ -94,6 +94,7 @@ export default function Quiz() {
               src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
               alt="AI Analysis" 
               className="w-32 h-32 object-contain"
+              referrerPolicy="no-referrer"
             />
           </div>
         </motion.div>
