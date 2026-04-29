@@ -48,7 +48,7 @@ export default function ResultsGallery() {
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
             <div className="flex items-center justify-center overflow-hidden">
               <img 
-                src="/src/DogCoaching_white500px.png" 
+                src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/DogCoachingwhite500px.png" 
                 alt="Logo Icon" 
                 className="w-10 h-10 object-contain"
                 style={{ filter: 'invert(1)' }}
@@ -56,7 +56,7 @@ export default function ResultsGallery() {
               />
             </div>
             <img 
-              src="/src/DogCoaching_text%20copy.png" 
+              src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/dogcoachtext.png" 
               alt="The Dog Coach" 
               className="h-8 md:h-10 w-auto object-contain"
               referrerPolicy="no-referrer"
@@ -136,7 +136,7 @@ export default function ResultsGallery() {
            {[
              { label: "Active Users", value: "12,482", icon: <Heart /> },
              { label: "Success Rate", value: "94.2%", icon: <TrendingUp /> },
-             { label: "AI Decision/Sec", value: "24.8k", icon: <img src="/src/DogCoaching_white500px.png" alt="AI Icon" className="w-8 h-8 object-contain" style={{ filter: 'invert(1)' }} referrerPolicy="no-referrer" /> },
+             { label: "AI Decision/Sec", value: "24.8k", icon: <img src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/DogCoachingwhite500px.png" alt="AI Icon" className="w-8 h-8 object-contain" style={{ filter: 'invert(1)' }} referrerPolicy="no-referrer" /> },
              { label: "Global Rating", value: "4.9/5", icon: <Star /> },
            ].map((stat, i) => (
              <div key={i} className="text-center space-y-2">

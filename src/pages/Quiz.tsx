@@ -92,7 +92,7 @@ export default function Quiz() {
         >
           <div className="bg-white/10 p-12 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/20">
             <img 
-              src="/src/DogCoaching_white500px.png" 
+              src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/DogCoachingwhite500px.png" 
               alt="AI Analysis" 
               className="w-32 h-32 object-contain"
               style={{ filter: 'invert(1)' }}
