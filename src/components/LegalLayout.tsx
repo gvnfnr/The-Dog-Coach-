@@ -8,16 +8,17 @@ const LegalLayout = ({ title, children }: { title: string; children: React.React
     <div className="bg-bg-soft min-h-screen pb-20">
       <nav className="p-6 max-w-7xl mx-auto flex justify-between items-center bg-white/50 backdrop-blur-sm rounded-full mt-4 sticky top-4 z-50">
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
-          <div className="bg-primary-neural p-1 rounded-xl flex items-center justify-center overflow-hidden">
+          <div className="flex items-center justify-center overflow-hidden">
             <img 
-              src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
-              alt="Logo" 
+              src="/src/DogCoaching_white500px.png" 
+              alt="Logo Icon" 
               className="w-10 h-10 object-contain"
+              style={{ filter: 'invert(1)' }}
               referrerPolicy="no-referrer"
             />
           </div>
           <img 
-            src="https://lh3.googleusercontent.com/d/10cplC5E3eU1xPsmYAqA1usW9-e7dfHMM" 
+            src="/src/DogCoaching_text%20copy.png" 
             alt="The Dog Coach" 
             className="h-8 w-auto object-contain"
             referrerPolicy="no-referrer"

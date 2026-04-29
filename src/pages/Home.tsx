@@ -30,6 +30,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import { getDogImage } from '../lib/dogImages';
+import { PaymentTrustStrip } from '../components/PaymentTrustStrip';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -49,16 +50,17 @@ export default function Home() {
       <header className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
-            <div className="bg-primary-neural p-1 rounded-xl flex items-center justify-center overflow-hidden">
+            <div className="flex items-center justify-center overflow-hidden">
               <img 
-                src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
-                alt="Logo" 
+                src="/src/DogCoaching_white500px.png" 
+                alt="Logo Icon" 
                 className="w-10 h-10 object-contain"
+                style={{ filter: 'invert(1)' }}
                 referrerPolicy="no-referrer"
               />
             </div>
             <img 
-              src="https://lh3.googleusercontent.com/d/10cplC5E3eU1xPsmYAqA1usW9-e7dfHMM" 
+              src="/src/DogCoaching_text%20copy.png" 
               alt="The Dog Coach" 
               className="h-8 md:h-10 w-auto object-contain"
               referrerPolicy="no-referrer"
@@ -460,17 +462,18 @@ export default function Home() {
         <div className="max-w-7xl mx-auto space-y-12">
           <div className="flex flex-col md:flex-row justify-between items-start gap-12">
             <div className="space-y-6 max-w-xs">
-              <div className="flex items-center gap-3">
-                <div className="bg-primary-neural p-1 rounded-xl flex items-center justify-center grayscale brightness-200 overflow-hidden">
+              <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
+                <div className="flex items-center justify-center grayscale brightness-200 overflow-hidden">
                   <img 
-                    src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
-                    alt="Logo" 
+                    src="/src/DogCoaching_white500px.png" 
+                    alt="Logo Icon" 
                     className="w-10 h-10 object-contain"
+                    style={{ filter: 'invert(1)' }}
                     referrerPolicy="no-referrer"
                   />
                 </div>
                 <img 
-                  src="https://lh3.googleusercontent.com/d/10cplC5E3eU1xPsmYAqA1usW9-e7dfHMM" 
+                  src="/src/DogCoaching_text%20copy.png" 
                   alt="The Dog Coach" 
                   className="h-9 w-auto object-contain brightness-0 invert opacity-80"
                   referrerPolicy="no-referrer"
@@ -510,15 +513,8 @@ export default function Home() {
                 <h5 className="text-white font-bold text-sm uppercase tracking-widest">Contact</h5>
                 <p className="text-sm">Discover Group Sàrl</p>
                 <a href="mailto:contact@thedogcoach.co" className="text-sm hover:text-white transition-colors cursor-pointer block">contact@thedogcoach.co</a>
-                <div className="pt-4 flex flex-wrap gap-2 items-center grayscale opacity-50">
-                  <img src="https://lh3.googleusercontent.com/d/1oobA6Dhx4a6Dg18iN7oTBs8na-ayteM5" className="h-6 w-auto object-contain" alt="Payment logo 1" referrerPolicy="no-referrer" />
-                  <img src="https://lh3.googleusercontent.com/d/1D8PWrv7IUtBLZyYhZfjv3G64WxkCDh6o" className="h-6 w-auto object-contain" alt="Payment logo 2" referrerPolicy="no-referrer" />
-                  <img src="https://lh3.googleusercontent.com/d/18IMpOj2MPPgqq0HTMfUJODjCmL5UGK_J" className="h-6 w-auto object-contain" alt="Payment logo 3" referrerPolicy="no-referrer" />
-                  <img src="https://lh3.googleusercontent.com/d/1D_mOKVLah5tRIjwYb1R-188lQsq0W-4c" className="h-6 w-auto object-contain" alt="Payment logo 4" referrerPolicy="no-referrer" />
-                  <img src="https://lh3.googleusercontent.com/d/168cnwzGN5soWTmzGEhz_bOKW6Wla_4Be" className="h-6 w-auto object-contain" alt="Payment logo 5" referrerPolicy="no-referrer" />
-                  <img src="https://lh3.googleusercontent.com/d/1F8XZQOxPp50QIRDF3CgcBhJ9AwFsBe6Q" className="h-6 w-auto object-contain" alt="Payment logo 6" referrerPolicy="no-referrer" />
-                  <img src="https://lh3.googleusercontent.com/d/1aH1yhNgGi36w76buMz-l-Gr-3sv1KqR_" className="h-6 w-auto object-contain" alt="Payment logo 7" referrerPolicy="no-referrer" />
-                  <img src="https://lh3.googleusercontent.com/d/1n14XoHGupIbBSkbtTb-eEfj9NWMRNKe9" className="h-6 w-auto object-contain" alt="Payment logo 8" referrerPolicy="no-referrer" />
+                <div className="pt-4">
+                  <PaymentTrustStrip className="justify-start" />
                 </div>
               </div>
             </div>

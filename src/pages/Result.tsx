@@ -14,6 +14,7 @@ import {
   X
 } from 'lucide-react';
 import { getDogImage } from '../lib/dogImages';
+import { PaymentTrustStrip } from '../components/PaymentTrustStrip';
 
 export default function Result() {
   const navigate = useNavigate();
@@ -64,16 +65,17 @@ export default function Result() {
       <div className="bg-white p-4 border-b border-gray-100 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
            <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
-            <div className="bg-primary-neural p-1 rounded-xl flex items-center justify-center overflow-hidden">
+            <div className="flex items-center justify-center overflow-hidden">
               <img 
-                src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
-                alt="Logo" 
+                src="/src/DogCoaching_white500px.png" 
+                alt="Logo Icon" 
                 className="w-10 h-10 object-contain"
+                style={{ filter: 'invert(1)' }}
                 referrerPolicy="no-referrer"
               />
             </div>
             <img 
-              src="https://lh3.googleusercontent.com/d/10cplC5E3eU1xPsmYAqA1usW9-e7dfHMM" 
+              src="/src/DogCoaching_text%20copy.png" 
               alt="The Dog Coach" 
               className="h-8 w-auto object-contain"
               referrerPolicy="no-referrer"
@@ -324,6 +326,7 @@ export default function Result() {
                  >
                     Start {data.name}'s Plan
                  </button>
+                 <PaymentTrustStrip className="mt-4" />
               </div>
 
               {/* Monthly */}

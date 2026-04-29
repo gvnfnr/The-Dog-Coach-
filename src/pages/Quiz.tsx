@@ -24,6 +24,7 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import { QUIZ_QUESTIONS } from '../constants';
+import { PaymentTrustStrip } from '../components/PaymentTrustStrip';
 
 const icons: Record<string, any> = {
   Volume2, Magnet, Clock, ShieldAlert, MessageCircle, Droplets, Zap, ArrowUpCircle, UserMinus, Lock, Wind, VolumeX, Users, Plane, ShieldCheck
@@ -91,9 +92,10 @@ export default function Quiz() {
         >
           <div className="bg-white/10 p-12 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/20">
             <img 
-              src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
+              src="/src/DogCoaching_white500px.png" 
               alt="AI Analysis" 
               className="w-32 h-32 object-contain"
+              style={{ filter: 'invert(1)' }}
               referrerPolicy="no-referrer"
             />
           </div>
@@ -378,19 +380,22 @@ export default function Quiz() {
       </div>
       
       {/* Quiz Trust Banner */}
-      <div className="bg-white p-4 border-t border-gray-100 hidden md:block text-slate-400">
-        <div className="max-w-xl mx-auto flex items-center justify-between text-[10px] uppercase tracking-widest font-bold">
-           <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-3 h-3 text-secondary-trust" />
-              50,000+ owners coached
-           </div>
-           <div className="flex items-center gap-2">
-              <ShieldCheck className="w-3 h-3 text-secondary-trust" />
-              Veterinary endorsed
-           </div>
-           <div className="flex items-center gap-2">
-              <Brain className="w-3 h-3 text-secondary-trust" />
-              AI Algorithm v4.2
+      <div className="bg-white p-6 border-t border-gray-100 hidden md:block">
+        <div className="max-w-xl mx-auto space-y-4">
+           <PaymentTrustStrip />
+           <div className="flex items-center justify-between text-[10px] uppercase tracking-widest font-bold text-slate-400">
+              <div className="flex items-center gap-2">
+                 <CheckCircle2 className="w-3 h-3 text-secondary-trust" />
+                 50,000+ owners coached
+              </div>
+              <div className="flex items-center gap-2">
+                 <ShieldCheck className="w-3 h-3 text-secondary-trust" />
+                 Veterinary endorsed
+              </div>
+              <div className="flex items-center gap-2">
+                 <Brain className="w-3 h-3 text-secondary-trust" />
+                 AI Algorithm v4.2
+              </div>
            </div>
         </div>
       </div>

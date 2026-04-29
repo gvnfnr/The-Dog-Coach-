@@ -10,6 +10,7 @@ import {
   BarChart3,
   ArrowRight
 } from 'lucide-react';
+import { PaymentTrustStrip } from '../components/PaymentTrustStrip';
 
 export default function HowItWorks() {
   const navigate = useNavigate();
@@ -19,16 +20,17 @@ export default function HowItWorks() {
       <header className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
-            <div className="bg-primary-neural p-1 rounded-xl flex items-center justify-center overflow-hidden">
+            <div className="flex items-center justify-center overflow-hidden">
               <img 
-                src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
-                alt="Logo" 
+                src="/src/DogCoaching_white500px.png" 
+                alt="Logo Icon" 
                 className="w-10 h-10 object-contain"
+                style={{ filter: 'invert(1)' }}
                 referrerPolicy="no-referrer"
               />
             </div>
             <img 
-              src="https://lh3.googleusercontent.com/d/10cplC5E3eU1xPsmYAqA1usW9-e7dfHMM" 
+              src="/src/DogCoaching_text%20copy.png" 
               alt="The Dog Coach" 
               className="h-8 md:h-10 w-auto object-contain"
               referrerPolicy="no-referrer"
@@ -95,7 +97,7 @@ export default function HowItWorks() {
           {[
             {
               step: "01",
-              icon: <img src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" alt="AI" className="w-12 h-12 object-contain" referrerPolicy="no-referrer" />,
+              icon: <img src="/src/DogCoaching_white500px.png" alt="AI Icon" className="w-10 h-10 object-contain" style={{ filter: 'invert(1)' }} referrerPolicy="no-referrer" />,
               image: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&q=80&w=400&h=300",
               title: "Deep Analysis",
               desc: "First, our algorithm analyzes your dog's breed, environment, and specific triggers across 18 unique data points."
@@ -206,6 +208,10 @@ export default function HowItWorks() {
              <ArrowRight className="w-6 h-6" />
            </button>
            <p className="text-sm font-bold text-primary-neural uppercase tracking-widest">14-Day Money Back Guarantee</p>
+        </div>
+        <div className="pt-20 border-t border-gray-100 flex flex-col items-center gap-8">
+           <PaymentTrustStrip />
+           <p className="text-xs font-bold text-gray-400">© 2026 THE DOG COACH CO.</p>
         </div>
       </div>
     </div>

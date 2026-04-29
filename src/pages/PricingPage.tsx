@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useState } from 'react';
+import { PaymentTrustStrip } from '../components/PaymentTrustStrip';
 
 export default function PricingPage() {
   const navigate = useNavigate();
@@ -55,16 +56,17 @@ export default function PricingPage() {
       <header className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
            <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
-            <div className="bg-primary-neural p-1 rounded-xl flex items-center justify-center overflow-hidden">
+            <div className="flex items-center justify-center overflow-hidden">
               <img 
-                src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
-                alt="Logo" 
+                src="/src/DogCoaching_white500px.png" 
+                alt="Logo Icon" 
                 className="w-10 h-10 object-contain"
+                style={{ filter: 'invert(1)' }}
                 referrerPolicy="no-referrer"
               />
             </div>
             <img 
-              src="https://lh3.googleusercontent.com/d/10cplC5E3eU1xPsmYAqA1usW9-e7dfHMM" 
+              src="/src/DogCoaching_text%20copy.png" 
               alt="The Dog Coach" 
               className="h-8 md:h-10 w-auto object-contain"
               referrerPolicy="no-referrer"
@@ -175,6 +177,7 @@ export default function PricingPage() {
               >
                 {loadingPlan === 'full' ? <Loader2 className="w-6 h-6 animate-spin" /> : 'Claim This Plan'}
               </button>
+              <PaymentTrustStrip className="opacity-80" grayscale={false} />
               <p className="text-center text-xs opacity-50 font-bold">Cancel anytime • Secure checkout</p>
            </div>
 

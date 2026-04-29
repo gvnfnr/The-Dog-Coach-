@@ -86,11 +86,12 @@ export default function Dashboard() {
     <div className="flex-1 bg-bg-soft flex flex-col md:flex-row h-screen">
       {/* Sidebar / Bottom Nav for Mobile */}
       <div className="w-full md:w-20 lg:w-64 bg-white border-r border-t md:border-t-0 border-gray-100 flex md:flex-col items-center py-4 md:py-6 px-4 gap-8 order-2 md:order-1">
-        <div className="hidden md:flex bg-primary-neural p-1 rounded-2xl overflow-hidden" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
+        <div className="hidden md:flex p-1 rounded-2xl overflow-hidden" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
            <img 
-              src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
+              src="/src/DogCoaching_white500px.png" 
               alt="Logo" 
               className="w-12 h-12 object-contain"
+              style={{ filter: 'invert(1)' }}
               referrerPolicy="no-referrer"
             />
         </div>
@@ -204,7 +205,12 @@ export default function Dashboard() {
                   <div className="p-4 border-b border-gray-100 bg-primary-neural text-white flex items-center justify-between font-display">
                       <div className="flex items-center gap-3">
                         <div className="bg-white/20 p-1 rounded-xl flex items-center justify-center overflow-hidden">
-                            <img src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" alt="AI" className="w-9 h-9 object-contain" referrerPolicy="no-referrer" />
+                            <img 
+                              src="/src/DogCoaching_white500px.png" 
+                              alt="AI" 
+                              className="w-9 h-9 object-contain grayscale brightness-200" 
+                              referrerPolicy="no-referrer" 
+                            />
                         </div>
                         <div>
                             <p className="text-sm font-bold">The AI Coach</p>

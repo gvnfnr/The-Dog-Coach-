@@ -9,6 +9,7 @@ import {
   ArrowRight,
   ShieldCheck
 } from 'lucide-react';
+import { PaymentTrustStrip } from '../components/PaymentTrustStrip';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -28,16 +29,17 @@ export default function Login() {
       {/* Header-minimal */}
       <nav className="p-6 max-w-7xl mx-auto w-full flex justify-between items-center">
         <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
-          <div className="bg-primary-neural p-1 rounded-xl flex items-center justify-center overflow-hidden">
+          <div className="flex items-center justify-center overflow-hidden">
             <img 
-              src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
-              alt="Logo" 
+              src="/src/DogCoaching_white500px.png" 
+              alt="Logo Icon" 
               className="w-10 h-10 object-contain"
+              style={{ filter: 'invert(1)' }}
               referrerPolicy="no-referrer"
             />
           </div>
           <img 
-            src="https://lh3.googleusercontent.com/d/10cplC5E3eU1xPsmYAqA1usW9-e7dfHMM" 
+            src="/src/DogCoaching_text%20copy.png" 
             alt="The Dog Coach" 
             className="h-8 w-auto object-contain"
             referrerPolicy="no-referrer"
@@ -62,7 +64,7 @@ export default function Login() {
           {/* Social Logins */}
           <div className="space-y-3">
              <button className="w-full py-4 border-2 border-gray-100 rounded-2xl flex items-center justify-center gap-3 font-bold text-sm hover:bg-bg-soft transition-all">
-                <img src="https://www.google.com/favicon.ico" className="w-4 h-4" alt="Google" />
+                <img src="https://www.google.com/favicon.ico" className="w-4 h-4" alt="Google" referrerPolicy="no-referrer" />
                 Continue with Google
              </button>
              <button className="w-full py-4 bg-text-slate text-white rounded-2xl flex items-center justify-center gap-3 font-bold text-sm hover:opacity-90 transition-all">
@@ -143,8 +145,9 @@ export default function Login() {
         </motion.div>
       </div>
 
-      <footer className="p-8 text-center text-gray-400 text-[10px] uppercase tracking-widest font-bold">
-        © 2026 The Dog Coach • Discover Group Sàrl
+      <footer className="p-8 text-center text-gray-400 text-[10px] uppercase tracking-widest font-bold space-y-6">
+        <PaymentTrustStrip />
+        <p>© 2026 The Dog Coach • Discover Group Sàrl</p>
       </footer>
     </div>
   );
