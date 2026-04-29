@@ -1,8 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Brain, ArrowLeft } from 'lucide-react';
-import logoIcon from '../assets/ICONLOGO.png';
-import logoText from '../assets/THEDOGCOACH.png';
 
 const LegalLayout = ({ title, children }: { title: string; children: React.ReactNode }) => {
   const navigate = useNavigate();
@@ -10,17 +8,17 @@ const LegalLayout = ({ title, children }: { title: string; children: React.React
     <div className="bg-bg-soft min-h-screen pb-20">
       <nav className="p-6 max-w-7xl mx-auto flex justify-between items-center bg-white/50 backdrop-blur-sm rounded-full mt-4 sticky top-4 z-50">
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
-          <div className="flex items-center justify-center overflow-hidden">
+          <div className="flex items-center justify-center overflow-hidden bg-primary-neural p-1.5 rounded-xl shadow-sm">
             <img 
-              src={logoIcon} 
+              src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
               alt="Logo Icon" 
-              className="w-10 h-10 object-contain"
+              className="w-7 h-7 object-contain"
               style={{ filter: 'invert(1)' }}
               referrerPolicy="no-referrer"
             />
           </div>
           <img 
-            src={logoText} 
+            src="https://lh3.googleusercontent.com/d/1vN7uB3yL8M2C4z-yv_Y_Z4jT3o7Q5g1R" 
             alt="The Dog Coach" 
             className="h-6 w-auto object-contain"
             referrerPolicy="no-referrer"

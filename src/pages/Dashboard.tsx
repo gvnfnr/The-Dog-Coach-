@@ -17,8 +17,6 @@ import {
 import { chatWithAI } from '../services/geminiService';
 import { getDogImage } from '../lib/dogImages';
 import { PaymentTrustStrip } from '../components/PaymentTrustStrip';
-import logoIcon from '../assets/ICONLOGO.png';
-import logoText from '../assets/THEDOGCOACH.png';
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -89,11 +87,11 @@ export default function Dashboard() {
     <div className="flex-1 bg-bg-soft flex flex-col md:flex-row h-screen">
       {/* Sidebar / Bottom Nav for Mobile */}
       <div className="w-full md:w-20 lg:w-64 bg-white border-r border-t md:border-t-0 border-gray-100 flex md:flex-col items-center py-4 md:py-6 px-4 gap-8 order-2 md:order-1">
-        <div className="hidden md:flex p-1 rounded-2xl overflow-hidden" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
+        <div className="hidden md:flex p-1.5 bg-primary-neural rounded-xl overflow-hidden shadow-sm" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
            <img 
-              src={logoIcon} 
+              src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
               alt="Logo" 
-              className="w-12 h-12 object-contain"
+              className="w-8 h-8 object-contain"
               style={{ filter: 'invert(1)' }}
               referrerPolicy="no-referrer"
             />
@@ -123,6 +121,10 @@ export default function Dashboard() {
         </button>
         <div className="hidden lg:block mt-auto w-full">
            <PaymentTrustStrip className="grayscale opacity-30 mt-4 mb-2 scale-75" />
+           <div className="flex items-center gap-2 justify-center py-2 border-t border-gray-50">
+             <img src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" className="w-5 h-5 opacity-20" style={{ filter: 'invert(1)' }} alt="Logo" />
+             <span className="text-[8px] font-bold text-gray-300 uppercase tracking-widest">Powered by AI</span>
+           </div>
         </div>
       </div>
 
@@ -210,11 +212,11 @@ export default function Dashboard() {
                 >
                   <div className="p-4 border-b border-gray-100 bg-primary-neural text-white flex items-center justify-between font-display">
                       <div className="flex items-center gap-3">
-                        <div className="bg-white/20 p-1 rounded-xl flex items-center justify-center overflow-hidden">
+                        <div className="bg-white/30 p-1.5 rounded-xl flex items-center justify-center overflow-hidden border border-white/20">
                             <img 
-                              src={logoIcon} 
+                              src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
                               alt="AI" 
-                              className="w-9 h-9 object-contain grayscale brightness-200" 
+                              className="w-6 h-6 object-contain grayscale brightness-200" 
                               referrerPolicy="no-referrer" 
                             />
                         </div>

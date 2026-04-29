@@ -10,8 +10,6 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import { PaymentTrustStrip } from '../components/PaymentTrustStrip';
-import logoIcon from '../assets/ICONLOGO.png';
-import logoText from '../assets/THEDOGCOACH.png';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -31,17 +29,17 @@ export default function Login() {
       {/* Header-minimal */}
       <nav className="p-6 max-w-7xl mx-auto w-full flex justify-between items-center">
         <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
-          <div className="flex items-center justify-center overflow-hidden">
+          <div className="flex items-center justify-center overflow-hidden bg-primary-neural p-1.5 rounded-xl shadow-sm">
             <img 
-              src={logoIcon} 
+              src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
               alt="Logo Icon" 
-              className="w-10 h-10 object-contain"
+              className="w-7 h-7 object-contain"
               style={{ filter: 'invert(1)' }}
               referrerPolicy="no-referrer"
             />
           </div>
           <img 
-            src={logoText} 
+            src="https://lh3.googleusercontent.com/d/1vN7uB3yL8M2C4z-yv_Y_Z4jT3o7Q5g1R" 
             alt="The Dog Coach" 
             className="h-6 w-auto object-contain"
             referrerPolicy="no-referrer"

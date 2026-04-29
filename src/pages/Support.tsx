@@ -11,8 +11,6 @@ import {
   CheckCircle2
 } from 'lucide-react';
 import { PaymentTrustStrip } from '../components/PaymentTrustStrip';
-import logoIcon from '../assets/ICONLOGO.png';
-import logoText from '../assets/THEDOGCOACH.png';
 
 export default function Support() {
   const navigate = useNavigate();
@@ -28,17 +26,17 @@ export default function Support() {
       <header className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
-            <div className="flex items-center justify-center overflow-hidden">
+            <div className="flex items-center justify-center overflow-hidden bg-primary-neural p-1.5 rounded-xl shadow-sm">
               <img 
-                src={logoIcon} 
+                src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
                 alt="Logo Icon" 
-                className="w-10 h-10 object-contain"
+                className="w-7 h-7 object-contain"
                 style={{ filter: 'invert(1)' }}
                 referrerPolicy="no-referrer"
               />
             </div>
             <img 
-              src={logoText} 
+              src="https://lh3.googleusercontent.com/d/1vN7uB3yL8M2C4z-yv_Y_Z4jT3o7Q5g1R" 
               alt="The Dog Coach" 
               className="h-6 md:h-8 w-auto object-contain"
               referrerPolicy="no-referrer"
