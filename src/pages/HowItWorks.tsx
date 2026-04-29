@@ -22,7 +22,7 @@ export default function HowItWorks() {
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
             <div className="flex items-center justify-center overflow-hidden">
               <img 
-                src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/DogCoachingwhite500px.png" 
+                src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/DogCoaching_white500px.png" 
                 alt="Logo Icon" 
                 className="w-10 h-10 object-contain"
                 style={{ filter: 'invert(1)' }}
@@ -30,7 +30,7 @@ export default function HowItWorks() {
               />
             </div>
             <img 
-              src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/dogcoachtext.png" 
+              src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/DogCoaching_text%20copy.png" 
               alt="The Dog Coach" 
               className="h-8 md:h-10 w-auto object-contain"
               referrerPolicy="no-referrer"
@@ -97,7 +97,7 @@ export default function HowItWorks() {
           {[
             {
               step: "01",
-              icon: <img src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/DogCoachingwhite500px.png" alt="AI Icon" className="w-10 h-10 object-contain" style={{ filter: 'invert(1)' }} referrerPolicy="no-referrer" />,
+              icon: <img src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/DogCoaching_white500px.png" alt="AI Icon" className="w-10 h-10 object-contain" style={{ filter: 'invert(1)' }} referrerPolicy="no-referrer" />,
               image: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&q=80&w=400&h=300",
               title: "Deep Analysis",
               desc: "First, our algorithm analyzes your dog's breed, environment, and specific triggers across 18 unique data points."

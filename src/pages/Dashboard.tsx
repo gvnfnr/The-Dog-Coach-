@@ -88,7 +88,7 @@ export default function Dashboard() {
       <div className="w-full md:w-20 lg:w-64 bg-white border-r border-t md:border-t-0 border-gray-100 flex md:flex-col items-center py-4 md:py-6 px-4 gap-8 order-2 md:order-1">
         <div className="hidden md:flex p-1 rounded-2xl overflow-hidden" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
            <img 
-              src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/DogCoachingwhite500px.png" 
+              src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/DogCoaching_white500px.png" 
               alt="Logo" 
               className="w-12 h-12 object-contain"
               style={{ filter: 'invert(1)' }}
@@ -206,7 +206,7 @@ export default function Dashboard() {
                       <div className="flex items-center gap-3">
                         <div className="bg-white/20 p-1 rounded-xl flex items-center justify-center overflow-hidden">
                             <img 
-                              src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/DogCoachingwhite500px.png" 
+                              src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/DogCoaching_white500px.png" 
                               alt="AI" 
                               className="w-9 h-9 object-contain grayscale brightness-200" 
                               referrerPolicy="no-referrer" 
