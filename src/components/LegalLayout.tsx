@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Brain, ArrowLeft } from 'lucide-react';
+import logoIcon from '../assets/ICONLOGO.png';
+import logoText from '../assets/THEDOGCOACH.png';
 
 const LegalLayout = ({ title, children }: { title: string; children: React.ReactNode }) => {
   const navigate = useNavigate();
@@ -10,7 +12,7 @@ const LegalLayout = ({ title, children }: { title: string; children: React.React
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
           <div className="flex items-center justify-center overflow-hidden">
             <img 
-              src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/assets/ICONLOGO.png" 
+              src={logoIcon} 
               alt="Logo Icon" 
               className="w-10 h-10 object-contain"
               style={{ filter: 'invert(1)' }}
@@ -18,7 +20,7 @@ const LegalLayout = ({ title, children }: { title: string; children: React.React
             />
           </div>
           <img 
-            src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/assets/THEDOGCOACH.png" 
+            src={logoText} 
             alt="The Dog Coach" 
             className="h-6 w-auto object-contain"
             referrerPolicy="no-referrer"
