@@ -67,7 +67,7 @@ export default function Result() {
            <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
             <div className="flex items-center justify-center overflow-hidden">
               <img 
-                src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/DogCoaching_white500px.png" 
+                src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/assets/ICONLOGO.png" 
                 alt="Logo Icon" 
                 className="w-10 h-10 object-contain"
                 style={{ filter: 'invert(1)' }}
@@ -75,9 +75,9 @@ export default function Result() {
               />
             </div>
             <img 
-              src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/DogCoaching_text%20copy.png" 
+              src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/assets/THEDOGCOACH.png" 
               alt="The Dog Coach" 
-              className="h-8 w-auto object-contain"
+              className="h-6 w-auto object-contain"
               referrerPolicy="no-referrer"
             />
           </div>
@@ -435,6 +435,13 @@ export default function Result() {
            </button>
         </div>
       </div>
+
+      <footer className="mt-20 border-t border-gray-100 py-12 px-4 bg-white">
+        <div className="max-w-4xl mx-auto flex flex-col items-center gap-8">
+           <PaymentTrustStrip />
+           <p className="text-xs font-bold text-gray-400 uppercase tracking-widest text-center">© 2026 THE DOG COACH CO.</p>
+        </div>
+      </footer>
     </div>
   );
 }

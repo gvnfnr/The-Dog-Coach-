@@ -52,7 +52,7 @@ export default function Home() {
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
             <div className="flex items-center justify-center overflow-hidden">
               <img 
-                src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/DogCoaching_white500px.png" 
+                src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/assets/ICONLOGO.png" 
                 alt="Logo Icon" 
                 className="w-10 h-10 object-contain"
                 style={{ filter: 'invert(1)' }}
@@ -60,9 +60,9 @@ export default function Home() {
               />
             </div>
             <img 
-              src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/DogCoaching_text%20copy.png" 
+              src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/assets/THEDOGCOACH.png" 
               alt="The Dog Coach" 
-              className="h-8 md:h-10 w-auto object-contain"
+              className="h-6 md:h-8 w-auto object-contain"
               referrerPolicy="no-referrer"
             />
           </div>
@@ -465,7 +465,7 @@ export default function Home() {
               <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
                 <div className="flex items-center justify-center grayscale brightness-200 overflow-hidden">
                   <img 
-                    src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/DogCoaching_white500px.png" 
+                    src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/assets/ICONLOGO.png" 
                     alt="Logo Icon" 
                     className="w-10 h-10 object-contain"
                     style={{ filter: 'invert(1)' }}
@@ -473,9 +473,9 @@ export default function Home() {
                   />
                 </div>
                 <img 
-                  src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/DogCoaching_text%20copy.png" 
+                  src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/assets/THEDOGCOACH.png" 
                   alt="The Dog Coach" 
-                  className="h-9 w-auto object-contain brightness-0 invert opacity-80"
+                  className="h-7 w-auto object-contain brightness-0 invert opacity-80"
                   referrerPolicy="no-referrer"
                 />
               </div>
@@ -514,15 +514,18 @@ export default function Home() {
                 <p className="text-sm">Discover Group Sàrl</p>
                 <a href="mailto:contact@thedogcoach.co" className="text-sm hover:text-white transition-colors cursor-pointer block">contact@thedogcoach.co</a>
                 <div className="pt-4">
-                  <PaymentTrustStrip className="justify-start" />
+                  {/* PaymentTrustStrip removed from here and moved to bottom */}
                 </div>
               </div>
             </div>
           </div>
           
-          <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between gap-4 text-xs font-bold uppercase tracking-widest">
-            <p>© 2026 THE DOG COACH CO.</p>
-            <p className="text-white/20">TRUSTED BY 50,000+ OWNERS GLOBALLY</p>
+          <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-xs font-bold uppercase tracking-widest">
+            <div className="flex flex-col gap-2">
+              <p>© 2026 THE DOG COACH CO.</p>
+              <p className="text-white/20">TRUSTED BY 50,000+ OWNERS GLOBALLY</p>
+            </div>
+            <PaymentTrustStrip className="md:justify-end" />
           </div>
         </div>
       </footer>

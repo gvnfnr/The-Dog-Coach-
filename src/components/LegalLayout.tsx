@@ -10,7 +10,7 @@ const LegalLayout = ({ title, children }: { title: string; children: React.React
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
           <div className="flex items-center justify-center overflow-hidden">
             <img 
-              src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/DogCoaching_white500px.png" 
+              src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/assets/ICONLOGO.png" 
               alt="Logo Icon" 
               className="w-10 h-10 object-contain"
               style={{ filter: 'invert(1)' }}
@@ -18,9 +18,9 @@ const LegalLayout = ({ title, children }: { title: string; children: React.React
             />
           </div>
           <img 
-            src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/DogCoaching_text%20copy.png" 
+            src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/assets/THEDOGCOACH.png" 
             alt="The Dog Coach" 
-            className="h-8 w-auto object-contain"
+            className="h-6 w-auto object-contain"
             referrerPolicy="no-referrer"
           />
         </div>
@@ -33,9 +33,15 @@ const LegalLayout = ({ title, children }: { title: string; children: React.React
         <div className="prose prose-slate max-w-none bg-white p-8 md:p-12 rounded-[40px] shadow-soft border border-gray-100 text-gray-600 leading-relaxed space-y-6">
           {children}
         </div>
+        <div className="mt-20 border-t border-gray-200 pt-12 flex flex-col items-center gap-8">
+           <PaymentTrustStrip />
+           <p className="text-xs font-bold text-gray-400">© 2026 THE DOG COACH CO.</p>
+        </div>
       </div>
     </div>
   );
 };
+
+import { PaymentTrustStrip } from './PaymentTrustStrip';
 
 export default LegalLayout;

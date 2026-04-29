@@ -58,7 +58,7 @@ export default function PricingPage() {
            <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
             <div className="flex items-center justify-center overflow-hidden">
               <img 
-                src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/DogCoaching_white500px.png" 
+                src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/assets/ICONLOGO.png" 
                 alt="Logo Icon" 
                 className="w-10 h-10 object-contain"
                 style={{ filter: 'invert(1)' }}
@@ -66,9 +66,9 @@ export default function PricingPage() {
               />
             </div>
             <img 
-              src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/DogCoaching_text%20copy.png" 
+              src="https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/assets/THEDOGCOACH.png" 
               alt="The Dog Coach" 
-              className="h-8 md:h-10 w-auto object-contain"
+              className="h-6 md:h-8 w-auto object-contain"
               referrerPolicy="no-referrer"
             />
           </div>
@@ -236,10 +236,9 @@ export default function PricingPage() {
         </div>
 
         {/* Truststrip */}
-        <div className="flex flex-wrap justify-center gap-12 mt-32 opacity-40 grayscale">
-            <div className="flex items-center gap-2 font-display font-black text-xl"><ShieldCheck className="w-6 h-6"/> Guaranteed</div>
-            <div className="flex items-center gap-2 font-display font-black text-xl"><CreditCard className="w-6 h-6"/> Secure</div>
-            <div className="flex items-center gap-2 font-display font-black text-xl"><HelpCircle className="w-6 h-6"/> Support</div>
+        <div className="mt-32 border-t border-gray-100 pt-12 flex flex-col items-center gap-8">
+           <PaymentTrustStrip />
+           <p className="text-xs font-bold text-gray-400">© 2026 THE DOG COACH CO.</p>
         </div>
       </div>
     </div>
