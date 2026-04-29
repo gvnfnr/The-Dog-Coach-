@@ -50,11 +50,11 @@ export default function Home() {
       <header className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
-            <div className="flex items-center justify-center overflow-hidden">
+            <div className="flex items-center justify-center overflow-hidden bg-primary-neural p-1.5 rounded-xl shadow-sm">
               <img 
                 src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
                 alt="Logo Icon" 
-                className="w-10 h-10 object-contain"
+                className="w-7 h-7 object-contain"
                 style={{ filter: 'invert(1)' }}
                 referrerPolicy="no-referrer"
               />
@@ -463,11 +463,11 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-start gap-12">
             <div className="space-y-6 max-w-xs">
               <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
-                <div className="flex items-center justify-center grayscale brightness-200 overflow-hidden">
+                <div className="flex items-center justify-center overflow-hidden bg-primary-neural p-1.5 rounded-xl grayscale brightness-200">
                   <img 
                     src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
                     alt="Logo Icon" 
-                    className="w-10 h-10 object-contain"
+                    className="w-7 h-7 object-contain"
                     style={{ filter: 'invert(1)' }}
                     referrerPolicy="no-referrer"
                   />

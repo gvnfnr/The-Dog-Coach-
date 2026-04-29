@@ -20,11 +20,11 @@ export default function HowItWorks() {
       <header className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
-            <div className="flex items-center justify-center overflow-hidden">
+            <div className="flex items-center justify-center overflow-hidden bg-primary-neural p-1.5 rounded-xl shadow-sm">
               <img 
                 src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
                 alt="Logo Icon" 
-                className="w-10 h-10 object-contain"
+                className="w-7 h-7 object-contain"
                 style={{ filter: 'invert(1)' }}
                 referrerPolicy="no-referrer"
               />
@@ -97,7 +97,7 @@ export default function HowItWorks() {
           {[
             {
               step: "01",
-              icon: <img src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" alt="AI Icon" className="w-10 h-10 object-contain" style={{ filter: 'invert(1)' }} referrerPolicy="no-referrer" />,
+              icon: <div className="bg-primary-neural p-2 rounded-xl"><img src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" alt="AI Icon" className="w-8 h-8 object-contain" style={{ filter: 'invert(1)' }} referrerPolicy="no-referrer" /></div>,
               image: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&q=80&w=400&h=300",
               title: "Deep Analysis",
               desc: "First, our algorithm analyzes your dog's breed, environment, and specific triggers across 18 unique data points."

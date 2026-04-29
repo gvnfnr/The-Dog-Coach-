@@ -90,11 +90,11 @@ export default function Quiz() {
           }}
           className="relative flex flex-col items-center gap-4"
         >
-          <div className="bg-white/10 p-12 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/20">
+          <div className="bg-primary-neural p-12 rounded-full flex items-center justify-center shadow-[0_0_50px_rgba(45,90,74,0.3)] border border-white/20">
             <img 
               src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
               alt="AI Analysis" 
-              className="w-32 h-32 object-contain"
+              className="w-24 h-24 object-contain"
               style={{ filter: 'invert(1)' }}
               referrerPolicy="no-referrer"
             />
