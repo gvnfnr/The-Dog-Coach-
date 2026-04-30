@@ -1,35 +1,33 @@
 import React from 'react';
 
 interface PaymentTrustStripProps {
-  className?: string;
-  grayscale?: boolean;
+    className?: string;
+    grayscale?: boolean;
 }
 
 export const PaymentTrustStrip: React.FC<PaymentTrustStripProps> = ({ className, grayscale = true }) => {
-  // Payment icon URLs provided by user
-  const icons = [
-    'https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/assets/VISA.png',
-    'https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/assets/MASTERCARD.png',
-    'https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/assets/MAESTRO.png',
-    'https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/assets/PAYPAL.png',
-    'https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/assets/WORLDPAY.png',
-    'https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/assets/DINERSCLUB.png',
-    'https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/assets/AMERCIANEXPRESS.png',
-    'https://raw.githubusercontent.com/gvnfnr/The-Dog-Coach-/main/src/assets/APPLEPAY.png'
-  ];
-  
-  return (
-    <div className={`flex flex-wrap gap-2 items-center justify-center ${className}`}>
-      {icons.map((url, i) => (
-        <img 
-          key={i}
-          src={url}
-          alt="Secure Payment Provider"
-          className="h-[25px] w-auto object-contain transition-all duration-300 opacity-80"
-          style={{ margin: '5px' }}
-          referrerPolicy="no-referrer"
-        />
-      ))}
-    </div>
-  );
+    const icons = [
+      { src: '/assets/VISA.png', alt: 'Visa' },
+      { src: '/assets/MASTERCARD.png', alt: 'Mastercard' },
+      { src: '/assets/MAESTRO.png', alt: 'Maestro' },
+      { src: '/assets/PAYPAL.png', alt: 'PayPal' },
+      { src: '/assets/WORLDPAY.png', alt: 'WorldPay' },
+      { src: '/assets/DINERSCLUB.png', alt: 'Diners Club' },
+      { src: '/assets/AMERICANEXPRESS.png', alt: 'American Express' },
+      { src: '/assets/APPLEPAY.png', alt: 'Apple Pay' },
+        ];
+
+    return (
+          <div className={`flex flex-wrap gap-2 items-center justify-center ${className}`}>
+            {icons.map((icon, i) => (
+                    <img
+                                key={i}
+                                src={icon.src}
+                                alt={icon.alt}
+                                className="h-[25px] w-auto object-contain transition-all duration-300 opacity-80"
+                                style={{ margin: '5px' }}
+                              />
+                  ))}
+          </div>
+            );
 };
