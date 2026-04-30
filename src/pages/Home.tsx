@@ -50,21 +50,11 @@ export default function Home() {
       <header className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
-            <div className="flex items-center justify-center overflow-hidden bg-primary-neural p-1.5 rounded-xl shadow-sm">
-              <img 
-                src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
-                alt="Logo Icon" 
-                className="w-7 h-7 object-contain"
-                style={{ filter: 'invert(1)' }}
-                referrerPolicy="no-referrer"
-              />
-            </div>
-            <img 
-              src="https://lh3.googleusercontent.com/d/1vN7uB3yL8M2C4z-yv_Y_Z4jT3o7Q5g1R" 
-              alt="The Dog Coach" 
-              className="h-6 md:h-8 w-auto object-contain"
-              referrerPolicy="no-referrer"
-            />
+            <img
+            src="/assets/LOGOFULL.png"
+            alt="The Dog Coach"
+            className="h-10 w-auto object-contain"
+          />
           </div>
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
             <button onClick={() => navigate('/how-it-works')} className="hover:text-primary-neural transition-colors">How it works</button>
@@ -110,7 +100,7 @@ export default function Home() {
                 onClick={() => navigate('/quiz')}
                 className="w-full sm:w-auto bg-[#E67E22] text-white px-10 py-5 rounded-2xl text-xl font-black shadow-[0_20px_40px_-10px_rgba(230,126,34,0.3)] hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-3"
               >
-                Start My Dog's Transformation →
+                Start My Dog's Transformation â
               </motion.button>
               <div className="flex items-center gap-3 text-gray-500 font-bold text-sm">
                 <div className="flex -space-x-3">
@@ -205,7 +195,7 @@ export default function Home() {
                 name: "David K.",
                 dog: "Rocky, GSD",
                 result: "Walks are finally peaceful",
-                text: "Rocky used to pull so hard my shoulder hurt. The custom desensitization protocol for city noises changed everything. Best €149 I've spent on him.",
+                text: "Rocky used to pull so hard my shoulder hurt. The custom desensitization protocol for city noises changed everything. Best â¬149 I've spent on him.",
                 img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200"
               },
               {
@@ -384,7 +374,7 @@ export default function Home() {
                </thead>
                <tbody className="divide-y divide-gray-100">
                  {[
-                                       ["Investment", "€1,200+ per course", "Less than €1 / day"],
+                                       ["Investment", "â¬1,200+ per course", "Less than â¬1 / day"],
                                        ["Response Time", "2-3 Days", "Instant / 24/7"],
                                        ["Personalization", "Standardized lessons", "Adaptive AI Profile"],
                    ["Breed Knowledge", "Varies by experience", "Trained on 50k+ dogs"],
@@ -463,21 +453,11 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-start gap-12">
             <div className="space-y-6 max-w-xs">
               <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
-                <div className="flex items-center justify-center overflow-hidden bg-primary-neural p-1.5 rounded-xl grayscale brightness-200">
-                  <img 
-                    src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
-                    alt="Logo Icon" 
-                    className="w-7 h-7 object-contain"
-                    style={{ filter: 'invert(1)' }}
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-                <img 
-                  src="https://lh3.googleusercontent.com/d/1vN7uB3yL8M2C4z-yv_Y_Z4jT3o7Q5g1R" 
-                  alt="The Dog Coach" 
-                  className="h-7 w-auto object-contain brightness-0 invert opacity-80"
-                  referrerPolicy="no-referrer"
-                />
+                <img
+            src="/assets/LOGOFULL.png"
+            alt="The Dog Coach"
+            className="h-10 w-auto object-contain"
+          />
               </div>
               <p className="text-sm leading-relaxed">
                 AI behavioral coaching that turns problem dogs into great companions. Built with certified canine behaviorists.
@@ -511,7 +491,7 @@ export default function Home() {
               </div>
               <div className="space-y-4">
                 <h5 className="text-white font-bold text-sm uppercase tracking-widest">Contact</h5>
-                <p className="text-sm">Discover Group Sàrl</p>
+                <p className="text-sm">Discover Group SÃ rl</p>
                 <a href="mailto:contact@thedogcoach.co" className="text-sm hover:text-white transition-colors cursor-pointer block">contact@thedogcoach.co</a>
                 <div className="pt-4">
                   {/* PaymentTrustStrip removed from here and moved to bottom */}
@@ -522,7 +502,7 @@ export default function Home() {
           
           <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-xs font-bold uppercase tracking-widest">
             <div className="flex flex-col gap-2">
-              <p>© 2026 THE DOG COACH CO.</p>
+              <p>Â© 2026 THE DOG COACH CO.</p>
               <p className="text-white/20">TRUSTED BY 50,000+ OWNERS GLOBALLY</p>
             </div>
             <PaymentTrustStrip className="md:justify-end" />
