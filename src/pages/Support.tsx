@@ -26,21 +26,11 @@ export default function Support() {
       <header className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
-            <div className="flex items-center justify-center overflow-hidden bg-primary-neural p-1.5 rounded-xl shadow-sm">
-              <img 
-                src="https://lh3.googleusercontent.com/d/1PUbju6RYTE2CN5m_n55Xc7AKIo0ubcuF" 
-                alt="Logo Icon" 
-                className="w-7 h-7 object-contain"
-                style={{ filter: 'invert(1)' }}
-                referrerPolicy="no-referrer"
-              />
-            </div>
-            <img 
-              src="https://lh3.googleusercontent.com/d/1vN7uB3yL8M2C4z-yv_Y_Z4jT3o7Q5g1R" 
-              alt="The Dog Coach" 
-              className="h-6 md:h-8 w-auto object-contain"
-              referrerPolicy="no-referrer"
-            />
+            <img
+            src="/assets/LOGOFULL.png"
+            alt="The Dog Coach"
+            className="h-10 w-auto object-contain"
+          />
           </div>
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
             <button onClick={() => navigate('/how-it-works')} className="hover:text-primary-neural transition-colors">How it works</button>
@@ -96,7 +86,7 @@ export default function Support() {
           <div className="pt-8 space-y-4">
             <h3 className="font-bold text-gray-400 uppercase tracking-widest text-xs">Our Office</h3>
             <p className="text-gray-500 font-medium">
-              Discover Group Sàrl
+              Discover Group SÃ rl
             </p>
           </div>
         </div>
@@ -199,7 +189,7 @@ export default function Support() {
       </div>
       <div className="max-w-7xl mx-auto px-4 pt-20 border-t border-gray-100 flex flex-col items-center gap-8">
          <PaymentTrustStrip />
-         <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">© 2026 THE DOG COACH CO.</p>
+         <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Â© 2026 THE DOG COACH CO.</p>
       </div>
     </div>
   );
