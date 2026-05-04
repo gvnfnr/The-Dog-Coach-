@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>The Dog Coach — Fix Your Dog's Behavior in 14 Days</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ─── */
+:root{
+  --bg:#FAF7F2;--green:#2D5A4A;--gp:rgba(45,90,74,.09);
+  --orange:#E8743C;--text:#1A1A1A;--muted:#6B7280;
+  --border:#E5E0D8;--white:#fff;
+  --sh:0 2px 12px rgba(0,0,0,.06);--shl:0 8px 32px rgba(0,0,0,.11);
+  --fh:'Sora',system-ui,sans-serif;
+  --fb:system-ui,-apple-system,'Segoe UI',sans-serif;
+  --r:20px;--r2:28px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ─── SCREEN MANAGER ─── */
+.screen{display:none}
+#landing.on,#result.on{display:block}
+#quiz.on{display:flex;flex-direction:column}
+#pause.on{display:flex;flex-direction:column;align-items:center;justify-content:center}
+#quiz.on,#pause.on{min-height:100svh}
+
+/* ─── SHARED BUTTON ─── */
+.btn{display:block;width:100%;padding:17px 24px;border:none;border-radius:99px;font-family:var(--fh);font-size:16px;font-weight:700;cursor:pointer;transition:transform .15s,box-shadow .15s;text-align:center}
+.btn:active{transform:scale(.98)}
+.btn-orange{background:var(--orange);color:#fff;box-shadow:0 6px 22px rgba(232,116,60,.38)}
+.btn-orange:disabled{opacity:.38;box-shadow:none;cursor:not-allowed}
+.btn-green{background:var(--green);color:#fff;box-shadow:0 6px 22px rgba(45,90,74,.32)}
+.btn-outline{background:transparent;color:var(--green);border:2px solid rgba(45,90,74,.28);box-shadow:none}
+.btn-pale{background:var(--gp);color:var(--green);border:none;box-shadow:none}
+
+/* ════════════════════════════
+   LANDING PAGE
+════════════════════════════ */
+#landing{background:var(--bg)}
+
+.land-wrap{max-width:980px;margin:0 auto;padding:0 20px}
+
+/* Top bar */
+.land-nav{padding:18px 0;display:flex;align-items:center;justify-content:space-between}
+.land-logo{font-family:var(--fh);font-size:15px;font-weight:800;color:var(--green);display:flex;align-items:center;gap:6px}
+.land-nav-trust{font-size:12px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:4px}
+
+/* Hero section */
+.land-hero{padding:28px 0 24px;text-align:center}
+@media(min-width:768px){
+  .land-hero{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:48px;text-align:left;padding:48px 0 40px}
+  .land-hero-right{order:2}
+  .land-hero-left{order:1}
+}
+
+.land-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--gp);border:1px solid rgba(45,90,74,.15);
+  color:var(--green);font-size:12px;font-weight:700;
+  padding:6px 14px;border-radius:99px;margin-bottom:18px;
+}
+.badge-stars{color:#F59E0B;font-size:11px}
+
+.land-h1{font-family:var(--fh);font-size:clamp(28px,5vw,46px);font-weight:800;line-height:1.18;color:var(--text);margin-bottom:14px;letter-spacing:-.02em}
+.land-h1 em{font-style:normal;color:var(--orange)}
+.land-sub{font-size:clamp(15px,2vw,18px);color:var(--muted);line-height:1.6;margin-bottom:28px;max-width:460px}
+@media(max-width:767px){.land-sub{max-width:100%}}
+
+/* Dog visual */
+.dog-visual{
+  width:clamp(180px,40vw,320px);height:clamp(180px,40vw,320px);
+  border-radius:50%;background:linear-gradient(135deg,#d4edda,#a8d5b5);
+  display:flex;align-items:center;justify-content:center;
+  font-size:clamp(80px,18vw,140px);
+  margin:0 auto 28px;
+  box-shadow:0 20px 60px rgba(45,90,74,.18);
+  position:relative;
+}
+@media(min-width:768px){.dog-visual{margin:0 auto}}
+.dog-visual::after{
+  content:'';position:absolute;inset:-8px;border-radius:50%;
+  border:3px solid rgba(45,90,74,.12);
+}
+.pulse-ring{
+  position:absolute;inset:-16px;border-radius:50%;
+  border:2px solid rgba(45,90,74,.1);
+  animation:pr 3s ease infinite;
+}
+@keyframes pr{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.06);opacity:0}}
+
+/* CTA block */
+.land-cta-wrap{max-width:400px}
+@media(max-width:767px){.land-cta-wrap{max-width:100%}}
+.land-trust-row{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:12px;flex-wrap:wrap}
+@media(min-width:768px){.land-trust-row{justify-content:flex-start}}
+.trust-chip{font-size:12px;color:var(--muted);font-weight:500;display:flex;align-items:center;gap:4px}
+
+/* Benefits */
+.land-benefits{
+  display:grid;grid-template-columns:1fr;gap:12px;
+  padding:24px 0;border-top:1px solid var(--border);margin-top:8px;
+}
+@media(min-width:480px){.land-benefits{grid-template-columns:repeat(3,1fr)}}
+.benefit{display:flex;align-items:flex-start;gap:12px;padding:14px;background:var(--white);border-radius:var(--r);box-shadow:var(--sh);border:1px solid var(--border)}
+@media(min-width:480px){.benefit{flex-direction:column;align-items:center;text-align:center}}
+.benefit-ico{font-size:24px;flex-shrink:0}
+.benefit-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px}
+.benefit-sub{font-size:12px;color:var(--muted);line-height:1.4}
+
+/* Social proof bar */
+.land-proof{
+  background:var(--green);color:#fff;
+  padding:18px 0;margin-top:0;
+}
+.land-proof-inner{
+  max-width:980px;margin:0 auto;padding:0 20px;
+  display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;
+}
+.proof-stat{text-align:center}
+.proof-num{font-family:var(--fh);font-size:20px;font-weight:800}
+.proof-lbl{font-size:11px;opacity:.75;margin-top:1px}
+.proof-div{width:1px;height:32px;background:rgba(255,255,255,.2)}
+
+/* Bottom CTA strip */
+.land-bottom{padding:32px 0 40px;text-align:center}
+@media(min-width:768px){.land-bottom{display:none}}
+
+/* ════════════════════════════
+   QUIZ
+════════════════════════════ */
+.quiz-max{max-width:520px;margin:0 auto;width:100%}
+
+/* Quiz header */
+.qh{
+  padding:14px 20px 10px;background:var(--bg);
+  border-bottom:1px solid var(--border);flex-shrink:0;
+}
+.qh-inner{max-width:520px;margin:0 auto}
+.qh-row{display:flex;align-items:center;gap:12px;margin-bottom:9px}
+.back-btn{width:36px;height:36px;border:none;background:var(--white);border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--sh);font-size:18px;flex-shrink:0;color:var(--text);font-family:var(--fb)}
+.back-btn:active{transform:scale(.92)}
+.prog-track{flex:1;height:6px;background:var(--border);border-radius:99px;overflow:hidden}
+.prog-fill{height:100%;background:var(--green);border-radius:99px;transition:width .4s ease;will-change:width}
+.step-lbl{font-size:13px;font-weight:600;color:var(--muted);flex-shrink:0;font-variant-numeric:tabular-nums}
+.quiz-brand{text-align:center;font-family:var(--fh);font-size:13px;font-weight:700;color:var(--green)}
+
+/* Question scroll area */
+#q-area{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.q-pad{padding:22px 20px 12px;max-width:520px;margin:0 auto}
+
+/* CTA bar — outside scroll */
+#quiz-cta-bar{flex-shrink:0;padding:12px 20px 28px;background:linear-gradient(to top,var(--bg) 66%,transparent)}
+#quiz-cta-bar .quiz-max{max-width:520px}
+
+/* Question content */
+.q-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:8px}
+.q-title{font-family:var(--fh);font-size:clamp(20px,4vw,24px);font-weight:800;line-height:1.3;margin-bottom:6px}
+.q-sub{font-size:14px;color:var(--muted);margin-bottom:20px;line-height:1.5}
+.q-slide{animation:qin .25s cubic-bezier(.22,1,.36,1)}
+@keyframes qin{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+
+/* Text input */
+.txt-inp{width:100%;padding:17px 18px;font-size:20px;font-family:var(--fh);font-weight:700;border:2px solid var(--border);border-radius:var(--r);background:var(--white);color:var(--text);outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none}
+.txt-inp:focus{border-color:var(--green)}
+.txt-inp::placeholder{color:#CCC;font-weight:400}
+
+/* Select cards */
+.sel-list{display:flex;flex-direction:column;gap:9px}
+.sel-card{display:flex;align-items:center;gap:14px;padding:13px 14px;background:var(--white);border:2px solid var(--border);border-radius:var(--r);cursor:pointer;transition:border-color .15s,background .15s;box-shadow:var(--sh)}
+.sel-card:active{transform:scale(.99)}
+.sel-card.picked{border-color:var(--green);background:var(--gp)}
+.s-icon{width:42px;height:42px;border-radius:12px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.s-text{flex:1}
+.s-lbl{font-weight:600;font-size:15px}
+.s-desc{font-size:12px;color:var(--muted);margin-top:1px}
+.s-chk{width:24px;height:24px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;transition:all .15s}
+.sel-card.picked .s-chk{background:var(--green);border-color:var(--green)}
+
+/* Grid */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.gc{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:18px 10px;background:var(--white);border:2px solid var(--border);border-radius:var(--r);cursor:pointer;text-align:center;transition:border-color .15s,background .15s;box-shadow:var(--sh)}
+.gc:active{transform:scale(.97)}
+.gc.picked{border-color:var(--green);background:var(--gp)}
+.gc-ico{font-size:26px}
+.gc-lbl{font-size:13px;font-weight:600;line-height:1.3}
+
+/* Multi-select */
+.multi-note{font-size:12px;color:var(--muted);margin-bottom:12px;text-align:center;font-weight:500}
+
+/* Breed search */
+.srch-box{width:100%;padding:14px 16px 14px 44px;font-size:15px;border:2px solid var(--border);border-radius:var(--r);background:var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E") no-repeat 13px center;color:var(--text);outline:none;margin-bottom:12px;transition:border-color .2s;-webkit-appearance:none}
+.srch-box:focus{border-color:var(--green)}
+.pop-sec{margin-bottom:12px}
+.pop-lbl{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{padding:8px 14px;background:var(--white);border:2px solid var(--border);border-radius:99px;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s}
+.chip.picked{background:var(--green);border-color:var(--green);color:#fff}
+.breed-scroll{max-height:240px;overflow-y:auto;background:var(--white);border:2px solid var(--border);border-radius:var(--r)}
+.b-item{padding:13px 16px;font-size:14px;cursor:pointer;border-bottom:1px solid var(--border);color:var(--text)}
+.b-item:last-child{border-bottom:none}
+.b-item:active{background:var(--bg)}
+.b-item.picked{background:var(--gp);font-weight:600;color:var(--green)}
+
+/* Email step */
+.email-box{width:100%;padding:17px 18px;font-size:16px;border:2px solid var(--border);border-radius:var(--r);background:var(--white);color:var(--text);outline:none;transition:border-color .2s;margin-bottom:12px;-webkit-appearance:none}
+.email-box:focus{border-color:var(--green)}
+.lock-pill{display:inline-flex;align-items:center;gap:5px;background:var(--gp);color:var(--green);font-size:12px;font-weight:600;padding:6px 12px;border-radius:99px}
+.soc-strip{display:flex;align-items:center;gap:10px;background:var(--gp);border:1px solid rgba(45,90,74,.15);border-radius:var(--r);padding:12px 14px;margin-top:14px}
+.avs{display:flex}
+.av{width:30px;height:30px;border-radius:50%;border:2.5px solid var(--bg);margin-right:-10px;font-size:15px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#d4edda,#a8d5b5)}
+.soc-txt{font-size:12px}
+.soc-stars{color:#F59E0B;font-size:12px}
+
+/* ════════════════════════════
+   PAUSE SCREEN
+════════════════════════════ */
+#pause{background:var(--green);padding:40px 28px;text-align:center}
+.p-orb{width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:52px;margin-bottom:30px;animation:orb 2.2s ease infinite;will-change:box-shadow}
+@keyframes orb{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.22)}50%{box-shadow:0 0 0 20px rgba(255,255,255,0)}}
+.p-tit{font-family:var(--fh);font-size:22px;font-weight:800;color:#fff;margin-bottom:10px;line-height:1.35;max-width:320px}
+.p-sub{font-size:14px;color:rgba(255,255,255,.6);margin-bottom:34px}
+.p-track{width:280px;max-width:90vw;height:6px;background:rgba(255,255,255,.2);border-radius:99px;overflow:hidden;margin-bottom:30px}
+.p-fill{height:100%;background:#fff;border-radius:99px;width:0;will-change:width}
+.p-steps{width:100%;max-width:300px;display:flex;flex-direction:column;gap:14px}
+.p-step{display:flex;align-items:center;gap:12px;opacity:.3;transition:opacity .4s}
+.p-step.on{opacity:1}
+.p-dot{width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.3);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff}
+.p-step.on .p-dot{background:rgba(255,255,255,.2);border-color:#fff}
+.p-stxt{font-size:13px;color:rgba(255,255,255,.85);text-align:left;font-weight:500}
+.p-foot{color:rgba(255,255,255,.4);font-size:12px;margin-top:36px}
+
+/* ════════════════════════════
+   RESULT PAGE
+════════════════════════════ */
+.res-hdr{
+  position:sticky;top:0;z-index:100;
+  background:rgba(250,247,242,.97);
+  padding:13px 20px;display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--border);
+}
+.r-logo{font-family:var(--fh);font-size:15px;font-weight:800;color:var(--green)}
+.r-pills{display:flex;gap:6px}
+.r-pill{font-size:11px;font-weight:600;color:var(--green);background:var(--gp);padding:5px 10px;border-radius:99px}
+
+.r-body{max-width:600px;margin:0 auto;padding:20px 18px 140px}
+
+/* Profile card */
+.prof{background:var(--white);border-radius:var(--r2);padding:22px;box-shadow:var(--shl);margin-bottom:14px}
+.prof-top{display:flex;gap:16px;margin-bottom:18px}
+.dog-em{width:88px;height:88px;border-radius:20px;background:linear-gradient(135deg,#d4edda,#a8d5b5);display:flex;align-items:center;justify-content:center;font-size:46px;border:3px solid var(--green);flex-shrink:0;position:relative}
+.dog-badge{position:absolute;bottom:-6px;right:-6px;width:26px;height:26px;background:var(--orange);border-radius:50%;border:2px solid var(--bg);display:flex;align-items:center;justify-content:center;font-size:12px}
+.prof-info{flex:1}
+.prof-name{font-family:var(--fh);font-size:20px;font-weight:800;margin-bottom:3px}
+.prof-sub{font-size:12px;color:var(--muted);margin-bottom:10px}
+.prof-tags{display:flex;flex-wrap:wrap;gap:5px}
+.ptag{font-size:11px;font-weight:600;padding:4px 9px;border-radius:99px;background:var(--bg);border:1px solid var(--border);color:var(--muted)}
+.ptag.g{background:var(--gp);border-color:rgba(45,90,74,.2);color:var(--green)}
+
+/* Health score */
+.hs-blk{background:var(--bg);border-radius:14px;padding:14px 16px}
+.hs-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.hs-lbl{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.hs-badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:99px}
+.hs-red{background:rgba(239,68,68,.12);color:#DC2626}
+.hs-org{background:rgba(245,158,11,.12);color:#D97706}
+.hs-bar{display:flex;gap:4px}
+.hb{flex:1;height:10px;border-radius:99px}
+.hb-r{background:#EF4444}.hb-o{background:#F59E0B}.hb-g{background:var(--border)}
+
+/* Diagnosis */
+.diag{font-size:14px;font-style:italic;color:var(--muted);line-height:1.75;padding:16px 18px;background:var(--white);border-radius:var(--r);border-left:3px solid var(--green);margin-bottom:20px;box-shadow:var(--sh)}
+
+/* Sections */
+.sec-h{font-family:var(--fh);font-size:18px;font-weight:800;margin-bottom:5px}
+.sec-s{font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.5}
+
+/* Roadmap */
+.phase-box{background:var(--white);border-radius:var(--r);border:1.5px solid var(--border);overflow:hidden;box-shadow:var(--sh)}
+.ph-head{display:flex;align-items:center;gap:11px;padding:15px 16px}
+.ph-badge{background:var(--green);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:99px;white-space:nowrap}
+.ph-badge.lk{background:var(--border);color:var(--muted)}
+.ph-title{font-weight:700;font-size:15px;flex:1}
+.ph-items{padding:0 16px 14px;display:flex;flex-direction:column;gap:7px}
+.ph-item{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--muted)}
+.ph-chk{width:20px;height:20px;border-radius:50%;background:var(--gp);color:var(--green);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+/* Locked overlay */
+.phase-wrap{position:relative;margin-bottom:9px}
+.lock-lay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(250,247,242,.3),rgba(250,247,242,.92));display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:var(--r)}
+.lock-chip{display:flex;align-items:center;gap:8px;background:var(--white);border:2px solid var(--border);padding:9px 16px;border-radius:99px;font-size:13px;font-weight:700;color:var(--text);box-shadow:var(--shl)}
+
+/* Anchor grid */
+.anc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px}
+.anc-c{background:var(--white);border-radius:var(--r);padding:15px;border:1.5px solid var(--border);box-shadow:var(--sh)}
+.anc-c.g{background:var(--gp);border-color:rgba(45,90,74,.18)}
+.anc-title{font-size:12px;font-weight:700;margin-bottom:9px;line-height:1.4}
+.anc-item{font-size:12px;color:var(--muted);margin-bottom:5px;line-height:1.4}
+
+/* ── PRICING ── */
+.px-sec{margin-bottom:22px}
+.px-h{font-family:var(--fh);font-size:22px;font-weight:800;text-align:center;margin-bottom:6px;line-height:1.3}
+.px-s{font-size:13px;color:var(--muted);text-align:center;margin-bottom:20px;line-height:1.55}
+
+/* Toggle: 2 options only */
+.bill-tog{display:flex;background:var(--white);border:2px solid var(--border);border-radius:99px;padding:4px;gap:3px;margin-bottom:20px}
+.tog-btn{flex:1;padding:11px 8px;border:none;background:transparent;border-radius:99px;font-family:var(--fh);font-size:14px;font-weight:700;cursor:pointer;color:var(--muted);position:relative;transition:color .2s}
+.tog-btn.on{background:var(--green);color:#fff}
+.save-tag{position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap;animation:boing .9s ease infinite}
+@keyframes boing{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-2px)}}
+
+/* Plan cards — 2 plans, side-by-side on desktop */
+.plan-cards{display:flex;flex-direction:column;gap:12px}
+@media(min-width:580px){.plan-cards{flex-direction:row;gap:14px}}
+.plan-card{flex:1;background:var(--white);border:2px solid var(--border);border-radius:var(--r2);padding:20px;transition:all .25s;box-shadow:var(--sh);position:relative;overflow:hidden;cursor:pointer}
+.plan-card.feat{background:var(--green);border-color:var(--green);transform:scale(1.02);box-shadow:0 10px 36px rgba(45,90,74,.28)}
+.plan-card.dim{opacity:.58;transform:scale(.98)}
+.plan-rib{position:absolute;top:14px;right:-30px;background:var(--orange);color:#fff;font-size:10px;font-weight:700;padding:5px 36px;transform:rotate(45deg);letter-spacing:.05em}
+.plan-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
+.plan-name{font-family:var(--fh);font-size:16px;font-weight:700;margin-bottom:3px;color:var(--text)}
+.plan-card.feat .plan-name{color:#fff}
+.plan-tag{font-size:11px;color:var(--muted)}
+.plan-card.feat .plan-tag{color:rgba(255,255,255,.65)}
+.plan-price{text-align:right}
+.plan-amt{font-family:var(--fh);font-size:28px;font-weight:800;color:var(--text)}
+.plan-card.feat .plan-amt{color:#fff}
+.plan-per{font-size:11px;color:var(--muted)}
+.plan-card.feat .plan-per{color:rgba(255,255,255,.6)}
+.plan-div{height:1px;background:var(--border);margin:12px 0}
+.plan-card.feat .plan-div{background:rgba(255,255,255,.2)}
+.plan-buls{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.plan-bul{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.plan-card.feat .plan-bul{color:rgba(255,255,255,.85)}
+.bck{width:18px;height:18px;border-radius:50%;background:var(--gp);color:var(--green);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.plan-card.feat .bck{background:rgba(255,255,255,.2);color:#fff}
+.plan-btn{width:100%;padding:15px;border:none;border-radius:99px;font-family:var(--fh);font-size:15px;font-weight:700;cursor:pointer;transition:all .2s}
+.pb-o{background:var(--orange);color:#fff;box-shadow:0 4px 18px rgba(232,116,60,.35)}
+.pb-ol{background:transparent;color:var(--green);border:2px solid rgba(45,90,74,.25)}
+.pay-row{display:flex;gap:5px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.pay-ic{background:rgba(255,255,255,.15);border-radius:6px;padding:3px 9px;font-size:10px;font-weight:700;color:rgba(255,255,255,.75);letter-spacing:.04em}
+
+/* Trust row */
+.tr-row{display:flex;justify-content:center;gap:18px;margin:16px 0 22px;flex-wrap:wrap}
+.tr-it{display:flex;flex-direction:column;align-items:center;gap:4px}
+.tr-ic{font-size:22px}
+.tr-tx{font-size:11px;font-weight:600;color:var(--muted);text-align:center;max-width:72px;line-height:1.3}
+
+/* Social proof strip on result */
+.soc-proof{display:flex;align-items:center;gap:10px;background:var(--gp);border:1px solid rgba(45,90,74,.15);border-radius:var(--r);padding:12px 14px;margin-bottom:18px}
+
+/* ── STICKY RESULT CTA (mobile) ── */
+#res-cta-bar{display:none;position:fixed;bottom:0;left:0;right:0;padding:14px 18px 28px;background:linear-gradient(to top,var(--bg) 74%,transparent);z-index:200}
+@media(max-width:639px){#res-cta-bar.on{display:block}}
+
+/* ── EXIT MODAL ── */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1000;display:flex;align-items:flex-end;justify-content:center}
+.overlay.off{display:none}
+.modal{background:var(--white);border-radius:28px 28px 0 0;padding:24px 22px 40px;width:100%;max-width:480px;animation:sup .3s cubic-bezier(.22,1,.36,1)}
+@keyframes sup{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.m-close{float:right;background:var(--bg);border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;color:var(--muted)}
+.m-icon{width:56px;height:56px;background:rgba(232,116,60,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:27px;margin:0 auto 14px}
+.m-title{font-family:var(--fh);font-size:21px;font-weight:800;text-align:center;margin-bottom:9px}
+.m-body{font-size:14px;color:var(--muted);text-align:center;margin-bottom:18px;line-height:1.6}
+.m-timer{font-size:13px;font-weight:700;color:var(--orange);text-align:center;margin-bottom:14px}
+.coupon{border:2px dashed var(--orange);border-radius:14px;padding:13px 16px;text-align:center;margin-bottom:18px;background:rgba(232,116,60,.05)}
+.coup-lbl{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--orange);text-transform:uppercase;margin-bottom:3px}
+.coup-code{font-family:var(--fh);font-size:26px;font-weight:800;letter-spacing:.12em}
+
+/* Footer */
+.pg-ft{text-align:center;padding:20px;font-size:11px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;border-top:1px solid var(--border)}
+.pay-ft{display:flex;gap:7px;justify-content:center;margin-bottom:10px;flex-wrap:wrap}
+.pft-ic{background:var(--border);border-radius:6px;padding:3px 10px;font-size:11px;font-weight:700;color:var(--muted)}
+
+.fade-up{animation:fu .45s ease both}
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+
+<!-- ════ LANDING ════ -->
+<div id="landing" class="screen on">
+
+  <div class="land-wrap">
+    <nav class="land-nav">
+      <div class="land-logo">🐾 THE DOG COACH</div>
+      <div class="land-nav-trust"><span style="color:#F59E0B">★★★★★</span> 50,000+ owners</div>
+    </nav>
+  </div>
+
+  <div class="land-wrap">
+    <div class="land-hero">
+      <div class="land-hero-left">
+        <div class="land-badge"><span class="badge-stars">★★★★★</span> Trusted by 50,000+ dog parents</div>
+        <h1 class="land-h1">Find Out Why Your Dog <em>Misbehaves</em> — and Fix It in 14 Days</h1>
+        <p class="land-sub">Our AI analyzes your dog's unique behavioral profile and builds a personalized training plan — in under 60 seconds.</p>
+        <div class="land-cta-wrap">
+          <button class="btn btn-orange" id="start-btn">Analyze My Dog's Behavior →</button>
+          <div class="land-trust-row">
+            <span class="trust-chip">✓ Free analysis</span>
+            <span class="trust-chip">⏱ 60 seconds</span>
+            <span class="trust-chip">🔒 No credit card</span>
+          </div>
+        </div>
+      </div>
+      <div class="land-hero-right">
+        <div class="dog-visual">🐕<div class="pulse-ring"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="land-proof">
+    <div class="land-proof-inner">
+      <div class="proof-stat"><div class="proof-num">50,000+</div><div class="proof-lbl">Dogs Trained</div></div>
+      <div class="proof-div"></div>
+      <div class="proof-stat"><div class="proof-num">94%</div><div class="proof-lbl">Success Rate</div></div>
+      <div class="proof-div"></div>
+      <div class="proof-stat"><div class="proof-num">14 Days</div><div class="proof-lbl">Average Fix Time</div></div>
+      <div class="proof-div"></div>
+      <div class="proof-stat"><div class="proof-num">4.9★</div><div class="proof-lbl">App Rating</div></div>
+    </div>
+  </div>
+
+  <div class="land-wrap">
+    <div class="land-benefits">
+      <div class="benefit">
+        <div class="benefit-ico">🧠</div>
+        <div><div class="benefit-title">AI Behavioral Analysis</div><div class="benefit-sub">Trained on 50,000+ successful cases across 150+ breeds</div></div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-ico">📋</div>
+        <div><div class="benefit-title">Personalized 14-Day Plan</div><div class="benefit-sub">Built specifically for your dog's breed, age & core issue</div></div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-ico">✅</div>
+        <div><div class="benefit-title">Vet-Endorsed Methods</div><div class="benefit-sub">Safe, science-backed protocols from certified behaviorists</div></div>
+      </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div style="padding:24px 0 8px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px">
+        <div style="background:var(--white);border-radius:var(--r);padding:16px;box-shadow:var(--sh);border:1px solid var(--border)">
+          <div style="color:#F59E0B;font-size:13px;margin-bottom:8px">★★★★★</div>
+          <p style="font-size:13px;color:var(--text);line-height:1.6;margin-bottom:10px">"Max stopped pulling on the leash after just 5 days. I was skeptical but the personalized plan was exactly what we needed."</p>
+          <div style="font-size:12px;font-weight:600;color:var(--muted)">— Sarah K., Golden Retriever owner</div>
+        </div>
+        <div style="background:var(--white);border-radius:var(--r);padding:16px;box-shadow:var(--sh);border:1px solid var(--border)">
+          <div style="color:#F59E0B;font-size:13px;margin-bottom:8px">★★★★★</div>
+          <p style="font-size:13px;color:var(--text);line-height:1.6;margin-bottom:10px">"Bella's separation anxiety was destroying my apartment. The Dog Coach plan changed everything in 2 weeks."</p>
+          <div style="font-size:12px;font-weight:600;color:var(--muted)">— James R., French Bulldog owner</div>
+        </div>
+        <div style="background:var(--white);border-radius:var(--r);padding:16px;box-shadow:var(--sh);border:1px solid var(--border)">
+          <div style="color:#F59E0B;font-size:13px;margin-bottom:8px">★★★★★</div>
+          <p style="font-size:13px;color:var(--text);line-height:1.6;margin-bottom:10px">"Worth every cent. My German Shepherd was aggressive with strangers and now he's calm and friendly."</p>
+          <div style="font-size:12px;font-weight:600;color:var(--muted)">— Maria L., German Shepherd owner</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="land-bottom">
+      <button class="btn btn-orange" id="start-btn-2" style="margin-bottom:10px">Start Free Analysis →</button>
+      <div style="font-size:12px;color:var(--muted)">Free · 60 seconds · No credit card required</div>
+    </div>
+  </div>
+
+  <!-- Sticky CTA for mobile on landing -->
+  <div style="position:fixed;bottom:0;left:0;right:0;padding:12px 18px 26px;background:linear-gradient(to top,var(--bg) 72%,transparent);z-index:100;display:none" id="land-sticky">
+    <button class="btn btn-orange" id="start-btn-sticky">Start Free Analysis →</button>
+  </div>
+</div>
+
+<!-- ════ QUIZ ════ -->
+<div id="quiz" class="screen">
+  <div class="qh">
+    <div class="qh-inner">
+      <div class="qh-row">
+        <button class="back-btn" id="back-btn">←</button>
+        <div class="prog-track"><div class="prog-fill" id="prog-fill"></div></div>
+        <span class="step-lbl" id="step-lbl">1 of 15</span>
+      </div>
+      <div class="quiz-brand">🐾 THE DOG COACH</div>
+    </div>
+  </div>
+  <div id="q-area"></div>
+  <div id="quiz-cta-bar">
+    <div class="quiz-max">
+      <button class="btn btn-orange" id="cta-btn" disabled>Continue →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ PAUSE ════ -->
+<div id="pause" class="screen">
+  <div class="p-orb">🧠</div>
+  <p class="p-tit" id="p-tit">Analyzing…</p>
+  <p class="p-sub">This usually takes a few seconds</p>
+  <div class="p-track"><div class="p-fill" id="p-bar"></div></div>
+  <div class="p-steps" id="p-steps"></div>
+  <p class="p-foot">Trusted by 50,000+ owners globally 🌍</p>
+</div>
+
+<!-- ════ RESULT ════ -->
+<div id="result" class="screen">
+  <div class="res-hdr">
+    <div class="r-logo">🐾 THE DOG COACH</div>
+    <div class="r-pills"><span class="r-pill">🛡 Guaranteed</span><span class="r-pill">💳 Secure</span></div>
+  </div>
+  <div class="r-body" id="r-body"></div>
+  <div class="pg-ft">
+    <div class="pay-ft"><span class="pft-ic">VISA</span><span class="pft-ic">MASTERCARD</span><span class="pft-ic">AMEX</span><span class="pft-ic">PAYPAL</span></div>
+    © 2026 THE DOG COACH CO.
+  </div>
+</div>
+
+<!-- Sticky result CTA (mobile) -->
+<div id="res-cta-bar">
+  <button class="btn btn-orange" id="res-cta-btn">Unlock Plan →</button>
+</div>
+
+<!-- Exit modal -->
+<div class="overlay off" id="ex-overlay">
+  <div class="modal">
+    <button class="m-close" id="m-close-btn" style="display:flex">✕</button>
+    <div style="clear:both"></div>
+    <div class="m-icon">⏰</div>
+    <h2 class="m-title" id="m-tit">Wait — still needs you!</h2>
+    <p class="m-body" id="m-bod">Don't let problem behaviors worsen. Get 20% off right now.</p>
+    <div class="m-timer" id="m-timer">⏱ Offer expires in <strong>10:00</strong></div>
+    <div class="coupon">
+      <div class="coup-lbl">Coupon Auto-Applied</div>
+      <div class="coup-code">COACH20</div>
+    </div>
+    <button class="btn btn-orange" id="m-claim-btn">Claim My 20% Discount →</button>
+  </div>
+</div>
+
+<script>
+/* ─────────────────────────────────────────
+   DATA
+───────────────────────────────────────── */
+var BREEDS=['Afghan Hound','Airedale Terrier','Akita','Alaskan Malamute','American Bulldog','American Pit Bull Terrier','Australian Cattle Dog','Australian Shepherd','Basenji','Basset Hound','Beagle','Belgian Malinois','Bernese Mountain Dog','Bichon Frise','Border Collie','Border Terrier','Boston Terrier','Boxer','Bulldog','Bullmastiff','Cairn Terrier','Cane Corso','Cavalier King Charles Spaniel','Chihuahua','Chow Chow','Cocker Spaniel','Dachshund','Dalmatian','Doberman Pinscher','English Setter','English Springer Spaniel','French Bulldog','German Shepherd','German Shorthaired Pointer','Golden Retriever','Great Dane','Greyhound','Havanese','Irish Setter','Italian Greyhound','Jack Russell Terrier','Labrador Retriever','Lhasa Apso','Maltese','Miniature Pinscher','Miniature Schnauzer','Mixed Breed','Newfoundland','Old English Sheepdog','Papillon','Pekingese','Pembroke Welsh Corgi','Pomeranian','Poodle (Mini)','Poodle (Standard)','Poodle (Toy)','Portuguese Water Dog','Pug','Rhodesian Ridgeback','Rottweiler','Saint Bernard','Samoyed','Scottish Terrier','Shetland Sheepdog','Shiba Inu','Shih Tzu','Siberian Husky','Staffordshire Bull Terrier','Vizsla','Weimaraner','West Highland Terrier','Whippet','Yorkshire Terrier','Other'];
+
+var EMOJIS={'Labrador Retriever':'🦮','French Bulldog':'🐾','Golden Retriever':'🐕‍🦺','German Shepherd':'🐕','Bulldog':'🐶','Poodle (Standard)':'🐩','Poodle (Mini)':'🐩','Beagle':'🐕','Pug':'🐶','Chihuahua':'🐾','Siberian Husky':'🐺','Shih Tzu':'🐶','Mixed Breed':'🐶','Rottweiler':'🐕','Yorkshire Terrier':'🐩','Maltese':'🐩','Shiba Inu':'🦊','Boxer':'🐕'};
+
+var QS=[
+  {id:'name',    type:'text',   label:'First things first 🐶',title:"What's your dog's name?",            ph:'e.g. Buddy'},
+  {id:'gender',  type:'select', label:'About your dog',        title:"What's [N]'s gender?",              opts:[{l:'Boy',i:'♂️',d:'Male dog'},{l:'Girl',i:'♀️',d:'Female dog'}]},
+  {id:'breed',   type:'breed',  label:'About your dog',        title:"What's [N]'s breed?",               sub:'Search or pick a popular breed'},
+  {id:'age',     type:'select', label:'About your dog',        title:'How old is [N]?',                   opts:[{l:'Puppy',i:'🐣',d:'0–6 months'},{l:'Junior',i:'🐾',d:'6–18 months'},{l:'Adult',i:'🐶',d:'2–7 years'},{l:'Senior',i:'🦮',d:'8+ years'}]},
+  {id:'env',     type:'select', label:'Living situation',      title:'Where do you live with [N]?',       opts:[{l:'Apartment',i:'🏢',d:'Urban'},{l:'Small yard',i:'🏡',d:'Suburban'},{l:'Big yard',i:'🌳',d:'Spacious'},{l:'Farm / Rural',i:'🌾',d:'Open spaces'}]},
+  {id:'issue',   type:'grid',   label:'Main challenge 🎯',    title:"What's the #1 behavior to fix?",    opts:[{l:'Barking',i:'📢'},{l:'Leash Pulling',i:'🦮'},{l:'Separation Anxiety',i:'😰'},{l:'Aggression',i:'⚡'},{l:'Recall',i:'📣'},{l:'Potty Training',i:'🚿'},{l:'Destruction',i:'💥'},{l:'Jumping',i:'🦘'},{l:'Fear / Anxiety',i:'😨'},{l:'Resource Guarding',i:'🦴'}]},
+  {id:'serious', type:'select', label:'Severity',              title:"How serious is [N]'s behavior?",    opts:[{l:'Mild',i:'😤',d:'Annoying but manageable'},{l:'Moderate',i:'😟',d:'Disrupting daily life'},{l:'Severe',i:'🚨',d:'Dangerous or very stressful'}]},
+  {id:'duration',type:'select', label:'Timeline',              title:'How long has this been happening?', opts:[{l:'Less than a month',i:'📅',d:'Just started'},{l:'1–6 months',i:'🗓',d:'A few months'},{l:'6–12 months',i:'⏳',d:'About a year'},{l:'Years',i:'📆',d:'Long-standing'}]},
+  {id:'energy',  type:'select', label:'Energy profile',        title:"[N]'s energy level?",               opts:[{l:'Low',i:'😴',d:'Loves napping'},{l:'Medium',i:'🐕',d:'Balanced'},{l:'High',i:'🏃',d:'Always active'},{l:'Extreme',i:'🚀',d:'Never tires'}]},
+  {id:'tried',   type:'multi',  label:"What you've tried",     title:"What have you tried with [N]?",     sub:'Select all that apply', opts:[{l:'Group classes',i:'👥'},{l:'Private trainer',i:'🎓'},{l:'YouTube tutorials',i:'📺'},{l:'Books / Guides',i:'📚'},{l:'Nothing yet',i:'🤷'}]},
+  {id:'exp',     type:'select', label:'Your experience',       title:'How experienced are you with dogs?', opts:[{l:'First-time owner',i:'🌱',d:'New to this'},{l:'Had 1–2 dogs',i:'🐾',d:'Some experience'},{l:'Experienced owner',i:'⭐',d:'3+ dogs'},{l:'Expert / Pro',i:'🏆',d:'I train others'}]},
+  {id:'commit',  type:'select', label:'Daily time',            title:'How much time can you commit daily?', opts:[{l:'5–10 min',i:'⚡',d:'Quick & efficient'},{l:'15–30 min',i:'⏱',d:'Sweet spot'},{l:'1 hour+',i:'🕐',d:'All in'},{l:'Whatever it takes',i:'💪',d:'No limit'}]},
+  {id:'outcome', type:'grid',   label:'Your goal 🏆',         title:"#1 outcome you want with [N]?",     opts:[{l:'Peaceful Walks',i:'🚶'},{l:'Off-Leash Freedom',i:'🏞'},{l:'Quiet Home',i:'🏠'},{l:'Guest Friendly',i:'🤝'},{l:'Stress-Free Travel',i:'✈️'},{l:'Safe Socializing',i:'🐕‍🦺'}]},
+  {id:'vision',  type:'select', label:'Your vision',           title:"How would life change if [N]'s problem was solved?", opts:[{l:'More confident',i:'💪',d:'Proud every day'},{l:'More adventures',i:'🏕',d:'Explore together'},{l:'Less stress',i:'🏡',d:'Peace & harmony'},{l:'Proud in public',i:'🌟',d:'Impress everyone'}]},
+  {id:'email',   type:'email',  label:'Your plan is ready ✅', title:"[N]'s Behavioral Profile is Ready.", sub:"Where should we send [N]'s custom 14-day transformation roadmap?"}
+];
+
+var PAUSES={
+  5: {title:"Comparing [N]'s profile to 50,000+ successful cases…",      steps:['Analyzing breed characteristics','Mapping behavioral patterns','Identifying root causes'],           dur:3500},
+  9: {title:"Analyzing breed-specific neuro-patterns and habit triggers…", steps:['Processing energy signature','Cross-referencing behavior triggers','Building custom protocol'],        dur:4000},
+  15:{title:"[N]'s Behavioral Analysis is Ready.",                          steps:['Finalizing your 14-day roadmap','Preparing behavior protocols','Generating your personalized profile'],dur:5000}
+};
+
+/* ─────────────────────────────────────────
+   STATE
+───────────────────────────────────────── */
+var A={}, cur=0, ms={}, ctaFn=null, exitShown=false, timerInt=null;
+
+/* ─────────────────────────────────────────
+   HELPERS
+───────────────────────────────────────── */
+function dn(){return A.name||'your dog'}
+function tok(s){return s.replace(/\[N\]/g,dn())}
+function ge(id){return document.getElementById(id)}
+function isEmail(v){return v&&v.indexOf('@')>0&&v.lastIndexOf('.')>v.indexOf('@')}
+function show(id){['landing','quiz','pause','result'].forEach(function(s){ge(s).classList.remove('on')});ge(id).classList.add('on')}
+
+/* ─────────────────────────────────────────
+   LANDING
+───────────────────────────────────────── */
+function startQuiz(){
+  A={};cur=0;ms={};
+  show('quiz');
+  renderQ(0);
+}
+
+ge('start-btn').addEventListener('click',startQuiz);
+ge('start-btn-2').addEventListener('click',startQuiz);
+ge('start-btn-sticky').addEventListener('click',startQuiz);
+
+// Show sticky CTA on landing after scroll
+window.addEventListener('scroll',function(){
+  var ls=ge('land-sticky');
+  if(ls&&ge('landing').classList.contains('on')){
+    ls.style.display=window.scrollY>200?'block':'none';
+  }
+},{passive:true});
+
+/* ─────────────────────────────────────────
+   QUIZ NAVIGATION
+───────────────────────────────────────── */
+ge('back-btn').addEventListener('click',function(){
+  if(cur===0){show('landing');}
+  else{renderQ(cur-1);}
+});
+
+ge('cta-btn').addEventListener('click',function(){if(ctaFn)ctaFn();});
+
+/* ─────────────────────────────────────────
+   RENDER QUESTION
+───────────────────────────────────────── */
+function renderQ(idx){
+  cur=idx;
+  var q=QS[idx];
+  var pct=((idx+1)/QS.length)*100;
+  ge('prog-fill').style.width=pct+'%';
+  ge('step-lbl').textContent=(idx+1)+' of '+QS.length;
+
+  ctaFn=null;
+  var ctaBar=ge('quiz-cta-bar'),ctaBtn=ge('cta-btn');
+  ctaBar.style.display='none';
+
+  var area=ge('q-area');
+  var html='<div class="q-pad"><div class="q-slide">';
+  html+='<p class="q-label">'+q.label+'</p>';
+  html+='<h1 class="q-title">'+tok(q.title)+'</h1>';
+  if(q.sub)html+='<p class="q-sub">'+tok(q.sub)+'</p>';
+
+  /* TEXT */
+  if(q.type==='text'){
+    var v=A[q.id]||'';
+    html+='<input class="txt-inp" id="mi" type="text" placeholder="'+q.ph+'" value="'+v.replace(/"/g,'&quot;')+'" autocomplete="off">';
+    html+='</div></div>';
+    area.innerHTML=html;
+    var inp=ge('mi');
+    ctaBar.style.display='block';
+    ctaBtn.disabled=!v.trim();
+    ctaBtn.textContent='Continue →';
+    ctaFn=function(){var val=inp.value.trim();if(!val)return;A[q.id]=val;doAdv(idx);};
+    inp.addEventListener('input',function(){ctaBtn.disabled=!inp.value.trim();});
+    inp.addEventListener('keydown',function(e){if(e.key==='Enter'&&ctaFn)ctaFn();});
+    setTimeout(function(){inp.focus();},80);
+  }
+
+  /* SELECT */
+  else if(q.type==='select'){
+    html+='<div class="sel-list">';
+    q.opts.forEach(function(o){
+      var p=A[q.id]===o.l?' picked':'';
+      html+='<div class="sel-card'+p+'" data-val="'+o.l.replace(/"/g,'&quot;')+'">';
+      html+='<div class="s-icon">'+o.i+'</div>';
+      html+='<div class="s-text"><div class="s-lbl">'+o.l+'</div>'+(o.d?'<div class="s-desc">'+o.d+'</div>':'')+'</div>';
+      html+='<div class="s-chk">'+(A[q.id]===o.l?'✓':'')+'</div></div>';
+    });
+    html+='</div></div></div>';
+    area.innerHTML=html;
+    area.querySelectorAll('.sel-card').forEach(function(c){
+      c.addEventListener('click',function(){
+        area.querySelectorAll('.sel-card').forEach(function(x){x.classList.remove('picked');x.querySelector('.s-chk').textContent='';});
+        c.classList.add('picked');c.querySelector('.s-chk').textContent='✓';
+        A[q.id]=c.getAttribute('data-val');
+        setTimeout(function(){doAdv(idx);},190);
+      });
+    });
+  }
+
+  /* GRID */
+  else if(q.type==='grid'){
+    html+='<div class="grid-2">';
+    q.opts.forEach(function(o){
+      var p=A[q.id]===o.l?' picked':'';
+      html+='<div class="gc'+p+'" data-val="'+o.l.replace(/"/g,'&quot;')+'"><div class="gc-ico">'+o.i+'</div><div class="gc-lbl">'+o.l+'</div></div>';
+    });
+    html+='</div></div></div>';
+    area.innerHTML=html;
+    area.querySelectorAll('.gc').forEach(function(c){
+      c.addEventListener('click',function(){
+        area.querySelectorAll('.gc').forEach(function(x){x.classList.remove('picked');});
+        c.classList.add('picked');A[q.id]=c.getAttribute('data-val');
+        setTimeout(function(){doAdv(idx);},190);
+      });
+    });
+  }
+
+  /* MULTI */
+  else if(q.type==='multi'){
+    if(!ms[q.id])ms[q.id]=(A[q.id]?A[q.id].slice():[]);
+    html+='<p class="multi-note">Tap all that apply</p><div class="sel-list">';
+    q.opts.forEach(function(o){
+      var p=ms[q.id].indexOf(o.l)>=0?' picked':'';
+      html+='<div class="sel-card'+p+'" data-val="'+o.l.replace(/"/g,'&quot;')+'"><div class="s-icon">'+o.i+'</div>';
+      html+='<div class="s-text"><div class="s-lbl">'+o.l+'</div></div>';
+      html+='<div class="s-chk">'+(ms[q.id].indexOf(o.l)>=0?'✓':'')+'</div></div>';
+    });
+    html+='</div></div></div>';
+    area.innerHTML=html;
+    ctaBar.style.display='block';ctaBtn.disabled=ms[q.id].length===0;ctaBtn.textContent='Continue →';
+    ctaFn=function(){if(!ms[q.id].length)return;A[q.id]=ms[q.id].slice();doAdv(idx);};
+    area.querySelectorAll('.sel-card').forEach(function(c){
+      c.addEventListener('click',function(){
+        var v=c.getAttribute('data-val'),pos=ms[q.id].indexOf(v);
+        if(pos>=0){ms[q.id].splice(pos,1);c.classList.remove('picked');c.querySelector('.s-chk').textContent='';}
+        else{ms[q.id].push(v);c.classList.add('picked');c.querySelector('.s-chk').textContent='✓';}
+        ctaBtn.disabled=ms[q.id].length===0;
+      });
+    });
+  }
+
+  /* BREED */
+  else if(q.type==='breed'){
+    html+='<input class="srch-box" id="bs" type="text" placeholder="Search breed…" autocomplete="off">';
+    html+='<div class="pop-sec" id="pop-sec"><div class="pop-lbl">Most Common</div><div class="chips">';
+    ['Labrador Retriever','French Bulldog','Golden Retriever','Mixed Breed'].forEach(function(b){
+      html+='<div class="chip'+(A.breed===b?' picked':'')+'" data-breed="'+b+'">'+b+'</div>';
+    });
+    html+='</div></div><div class="breed-scroll" id="bl">'+buildBL(BREEDS,'')+'</div>';
+    html+='</div></div>';
+    area.innerHTML=html;
+    wireBL(idx);
+    area.querySelectorAll('.chip').forEach(function(c){c.addEventListener('click',function(){A.breed=c.getAttribute('data-breed');doAdv(idx);});});
+    ge('bs').addEventListener('input',function(){
+      var v=this.value.trim();
+      ge('pop-sec').style.display=v?'none':'';
+      ge('bl').innerHTML=buildBL(BREEDS,v);
+      wireBL(idx);
+    });
+  }
+
+  /* EMAIL */
+  else if(q.type==='email'){
+    var ev=A.email||'';
+    html+='<input class="email-box" id="ei" type="email" placeholder="your@email.com" value="'+ev.replace(/"/g,'&quot;')+'" autocomplete="email">';
+    html+='<div style="text-align:center;margin-bottom:12px"><span class="lock-pill">🔒 GDPR Compliant & Private</span></div>';
+    html+='<p style="font-size:11px;color:var(--muted);text-align:center;margin-bottom:14px">We\'ll never share '+dn()+'\'s profile. Unsubscribe in 1 click.</p>';
+    html+='<div class="soc-strip"><div class="avs"><div class="av">🧑</div><div class="av">👩</div><div class="av">🧔</div></div>';
+    html+='<div class="soc-txt"><div class="soc-stars">★★★★★</div><strong>50,000+ owners</strong> transformed their dogs</div></div>';
+    html+='</div></div>';
+    area.innerHTML=html;
+    var einp=ge('ei');
+    ctaBar.style.display='block';ctaBtn.disabled=!isEmail(ev);ctaBtn.textContent='Send My Roadmap →';
+    ctaFn=function(){var v=einp.value.trim();if(!isEmail(v))return;A.email=v;doAdv(idx);};
+    einp.addEventListener('input',function(){ctaBtn.disabled=!isEmail(einp.value);});
+    einp.addEventListener('keydown',function(e){if(e.key==='Enter'&&ctaFn)ctaFn();});
+    setTimeout(function(){einp.focus();},80);
+  }
+
+  area.scrollTop=0;
+}
+
+function buildBL(list,q){
+  var f=q?list.filter(function(b){return b.toLowerCase().indexOf(q.toLowerCase())>=0;}):list;
+  var h=f.map(function(b){return'<div class="b-item'+(A.breed===b?' picked':'')+'" data-breed="'+b.replace(/"/g,'&quot;')+'">'+b+'</div>';}).join('');
+  if(q&&!list.some(function(b){return b.toLowerCase()===q.toLowerCase();}))h+='<div class="b-item" data-breed="'+q.replace(/"/g,'&quot;')+'">Use: "'+q+'"</div>';
+  if(q&&!f.length)h='<div class="b-item" data-breed="'+q.replace(/"/g,'&quot;')+'">No match — use "'+q+'"</div>';
+  return h;
+}
+function wireBL(idx){var bl=ge('bl');if(!bl)return;bl.querySelectorAll('.b-item').forEach(function(item){item.addEventListener('click',function(){A.breed=item.getAttribute('data-breed');doAdv(idx);});});}
+
+/* ─────────────────────────────────────────
+   ADVANCE + PAUSE
+───────────────────────────────────────── */
+function doAdv(from){
+  var next=from+1;
+  if(PAUSES[next]){playPause(next,next===15);}
+  else if(next>=QS.length){buildAndShowResult();}
+  else{renderQ(next);}
+}
+
+function playPause(afterQ,isLast){
+  var p=PAUSES[afterQ];
+  show('pause');
+  ge('p-tit').textContent=tok(p.title);
+  ge('p-steps').innerHTML=p.steps.map(function(s,i){return'<div class="p-step" id="ps'+i+'"><div class="p-dot">'+(i+1)+'</div><div class="p-stxt">'+s+'</div></div>';}).join('');
+  var bar=ge('p-bar');
+  bar.style.transition='none';bar.style.width='0%';
+  requestAnimationFrame(function(){requestAnimationFrame(function(){
+    bar.style.transition='width '+p.dur+'ms linear';bar.style.width='100%';
+  });});
+  p.steps.forEach(function(_,i){setTimeout(function(){var el=ge('ps'+i);if(el)el.classList.add('on');},(p.dur/(p.steps.length+1))*(i+1));});
+  setTimeout(function(){if(isLast){buildAndShowResult();}else{show('quiz');renderQ(afterQ);}},p.dur+150);
+}
+
+/* ─────────────────────────────────────────
+   RESULT
+───────────────────────────────────────── */
+function buildAndShowResult(){
+  show('result');
+  buildResult();
+  var rc=ge('res-cta-bar');rc.classList.add('on');
+  ge('res-cta-btn').textContent='Unlock '+dn()+'\'s Plan →';
+  ge('res-cta-btn').addEventListener('click',toPricing);
+  document.addEventListener('mouseleave',function(e){if(e.clientY<=0&&!exitShown){exitShown=true;openModal();}});
+}
+
+function buildResult(){
+  var n=dn();
+  var sev=(A.serious||'').toLowerCase().indexOf('severe')>=0;
+  var mod=(A.serious||'').toLowerCase().indexOf('moderate')>=0;
+  var em=EMOJIS[A.breed]||'🐶';
+  var bTxt=sev?'Urgent Action Required':'Action Recommended';
+  var bCls=sev?'hs-red':'hs-org';
+  var s2=(sev||mod)?'hb-o':'hb-g';
+  var b=A.breed||'Your dog',en=(A.energy||'high').toLowerCase(),iss=(A.issue||'behavior').toLowerCase(),ev=A.env||'Apartment';
+  var why=(ev==='Apartment'||ev==='Small yard')?'spatial frustration and limited environmental stimulation':'sensory overload from high-stimulus environments';
+  var diag='Based on '+b+' tendencies and '+n+'\'s '+en+' energy profile, we\'ve identified that the '+iss+' behavior is most likely rooted in '+why+'. '+b+'s like '+n+' specifically need structured leadership and consistent reinforcement — both of which can be transformed in as little as 15 minutes per day.';
+
+  var h='';
+  h+='<div class="soc-proof fade-up"><div class="avs"><div class="av">🧑</div><div class="av">👩</div><div class="av">🧔</div></div>';
+  h+='<div class="soc-txt"><div class="soc-stars">★★★★★ 4.9</div><strong>50,000+ dog parents</strong> transformed their dogs</div></div>';
+
+  h+='<div class="prof fade-up"><div class="prof-top"><div class="dog-em">'+em+'<div class="dog-badge">⚡</div></div>';
+  h+='<div class="prof-info"><div class="prof-name">'+n+'\'s Roadmap</div><div class="prof-sub">Behavioral Transformation Plan</div>';
+  h+='<div class="prof-tags">'+(A.breed?'<span class="ptag">'+A.breed+'</span>':'')+(A.age?'<span class="ptag">'+A.age+'</span>':'')+(A.outcome?'<span class="ptag g">'+A.outcome+'</span>':'')+'</div></div></div>';
+  h+='<div class="hs-blk"><div class="hs-row"><span class="hs-lbl">Behavioral Health Score</span><span class="hs-badge '+bCls+'">'+bTxt+'</span></div>';
+  h+='<div class="hs-bar"><div class="hb hb-r"></div><div class="hb '+s2+'"></div><div class="hb hb-g"></div><div class="hb hb-g"></div></div></div></div>';
+
+  h+='<p class="diag fade-up">"'+diag+'"</p>';
+  h+='<h2 class="sec-h fade-up">Expert-Validated 14-Day Roadmap</h2>';
+  h+='<p class="sec-s fade-up">Structured by certified behaviorists for '+n+'\'s success</p>';
+
+  h+='<div class="phase-box fade-up" style="margin-bottom:9px"><div class="ph-head"><span class="ph-badge">Days 1–4</span><span class="ph-title">Foundation & Reset</span></div>';
+  h+='<div class="ph-items"><div class="ph-item"><div class="ph-chk">✓</div>5-min Morning Routine</div><div class="ph-item"><div class="ph-chk">✓</div>Environment Reset Protocol</div><div class="ph-item"><div class="ph-chk">✓</div>Behavioral Mood Tracking</div></div></div>';
+
+  h+='<div class="phase-wrap fade-up"><div class="phase-box"><div class="ph-head"><span class="ph-badge lk">Days 5–10</span><span class="ph-title">Pattern Interruption</span></div>';
+  h+='<div class="ph-items"><div class="ph-item"><div class="ph-chk">✓</div>Counter-Conditioning Protocol</div><div class="ph-item"><div class="ph-chk">✓</div>Reactive-Trigger Desensitization</div><div class="ph-item"><div class="ph-chk">✓</div>Reward Timing Refinement</div></div></div>';
+  h+='<div class="lock-lay" id="lk1"><div class="lock-chip">🔒 Unlock Full Plan</div></div></div>';
+
+  h+='<div class="phase-wrap fade-up" style="margin-bottom:22px"><div class="phase-box"><div class="ph-head"><span class="ph-badge lk">Days 11–14</span><span class="ph-title">Reinforcement & Mastery</span></div>';
+  h+='<div class="ph-items"><div class="ph-item"><div class="ph-chk">✓</div>Advanced Command Chain</div><div class="ph-item"><div class="ph-chk">✓</div>Public Space Trials</div><div class="ph-item"><div class="ph-chk">✓</div>Boundaries Strengthening</div></div></div>';
+  h+='<div class="lock-lay" id="lk2"><div class="lock-chip">🔒 Unlock Full Plan</div></div></div>';
+
+  h+='<div class="anc-grid fade-up"><div class="anc-c"><div class="anc-title">💸 The Price of Inaction</div>';
+  h+='<div class="anc-item">❌ Human Trainer: <strong>€1,200/yr avg</strong></div>';
+  h+='<div class="anc-item" style="margin-top:6px">✅ The Dog Coach: <strong style="color:var(--green)">€149/yr</strong></div>';
+  h+='<div style="font-size:11px;color:var(--muted);margin-top:6px;font-style:italic">Save €1,051 this year</div></div>';
+  h+='<div class="anc-c g" style="text-align:center"><div style="font-size:28px;margin-bottom:8px">🛡</div>';
+  h+='<div class="anc-title" style="text-align:center">14-Day "Good Boy" Guarantee</div>';
+  h+='<div style="font-size:12px;color:var(--muted);line-height:1.6">If '+n+' isn\'t better in 14 days, we refund every cent. No questions asked.</div></div></div>';
+
+  h+='<div id="pricing" class="px-sec fade-up">';
+  h+='<h2 class="px-h">Give '+n+' the Gift of<br>a Stress-Free Life</h2>';
+  h+='<p class="px-s">Join 50,000+ dog parents who traded frustration for peace of mind.</p>';
+  h+='<div class="bill-tog"><button class="tog-btn" id="t-6mo">6 Months</button><button class="tog-btn on" id="t-yr">Annual<span class="save-tag">Save 60%</span></button></div>';
+  h+='<div class="plan-cards" id="plan-cards"></div></div>';
+
+  h+='<div class="tr-row fade-up"><div class="tr-it"><div class="tr-ic">🔄</div><div class="tr-tx">14-Day Money Back</div></div>';
+  h+='<div class="tr-it"><div class="tr-ic">🔒</div><div class="tr-tx">Secure Payments</div></div>';
+  h+='<div class="tr-it"><div class="tr-ic">📈</div><div class="tr-tx">Trackable Progress</div></div></div>';
+
+  ge('r-body').innerHTML=h;
+
+  ge('lk1').addEventListener('click',toPricing);
+  ge('lk2').addEventListener('click',toPricing);
+  ge('t-6mo').addEventListener('click',function(){setBill('6mo');});
+  ge('t-yr').addEventListener('click',function(){setBill('yr');});
+  setBill('yr');
+}
+
+/* ─────────────────────────────────────────
+   PRICING (2 plans only)
+───────────────────────────────────────── */
+function setBill(b){
+  ['6mo','yr'].forEach(function(t){var el=ge('t-'+t);if(el)el.classList.remove('on');});
+  var a=ge('t-'+b);if(a)a.classList.add('on');
+  var n=dn();
+  var plans={
+    '6mo':[
+      {name:'Behavioral Reset',   amt:'€79', per:'/6 months', tag:'Permanent fix roadmap · €0.44/day', buls:['6 Months Full Access','Custom Behavioral Profile','AI Chat Support','Progress Tracking'],     cta:'Start '+n+'\'s Reset →', bc:'pb-ol',feat:false},
+      {name:'Full Access Annual', amt:'€149',per:'/year',      tag:'Best value · Only €0.40/day',       buls:['Everything in Reset','Lifetime Plan Updates','Priority AI Chat','Exclusive Masterclasses'],   cta:'Start '+n+'\'s Annual Plan →', bc:'pb-o', feat:true,rib:'Best Value'}
+    ],
+    yr:[
+      {name:'Behavioral Reset',   amt:'€79', per:'/6 months', tag:'Permanent fix roadmap · €0.44/day', buls:['6 Months Full Access','Custom Behavioral Profile','AI Chat Support','Progress Tracking'],     cta:'Start '+n+'\'s Reset →', bc:'pb-ol',feat:false,dim:true},
+      {name:'Full Access Annual', amt:'€149',per:'/year',      tag:'Only €0.40/day — Billed annually',  buls:['Complete 14-Day Roadmap','Lifetime Plan Updates','Priority AI Chat','Exclusive Masterclasses'],cta:'Start '+n+'\'s Plan →', bc:'pb-o', feat:true,rib:'Most Popular'}
+    ]
+  };
+  var list=plans[b]||plans.yr;
+  var html=list.map(function(p){
+    var cls='plan-card'+(p.feat?' feat':'')+(p.dim?' dim':'');
+    var s='<div class="'+cls+'">';
+    if(p.rib)s+='<div class="plan-rib">'+p.rib+'</div>';
+    s+='<div class="plan-header"><div><div class="plan-name">'+p.name+'</div><div class="plan-tag">'+p.tag+'</div></div>';
+    s+='<div class="plan-price"><div class="plan-amt">'+p.amt+'</div><div class="plan-per">'+p.per+'</div></div></div>';
+    s+='<div class="plan-div"></div><div class="plan-buls">';
+    p.buls.forEach(function(bl){s+='<div class="plan-bul"><div class="bck">✓</div>'+bl+'</div>';});
+    s+='</div><button class="plan-btn '+p.bc+'">'+p.cta+'</button>';
+    if(p.feat)s+='<div class="pay-row"><span class="pay-ic">VISA</span><span class="pay-ic">MC</span><span class="pay-ic">AMEX</span><span class="pay-ic">PAYPAL</span></div>';
+    s+='</div>';
+    return s;
+  }).join('');
+  var c=ge('plan-cards');if(!c)return;
+  c.innerHTML=html;
+  c.querySelectorAll('.plan-card').forEach(function(card){
+    card.addEventListener('click',function(){
+      c.querySelectorAll('.plan-card').forEach(function(x){x.classList.remove('feat');x.classList.add('dim');});
+      card.classList.remove('dim');card.classList.add('feat');
+    });
+  });
+}
+
+function toPricing(){var el=ge('pricing');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
+
+/* ─────────────────────────────────────────
+   EXIT MODAL
+───────────────────────────────────────── */
+function openModal(){
+  var n=dn();
+  ge('m-tit').textContent='Wait — '+n+' still needs you!';
+  ge('m-bod').textContent='Don\'t let '+n+'\'s behaviors worsen. Get 20% off if you start in the next 10 minutes.';
+  ge('ex-overlay').classList.remove('off');
+  startTimer(600);
+}
+ge('m-close-btn').addEventListener('click',closeModal);
+ge('m-claim-btn').addEventListener('click',function(){closeModal();toPricing();});
+function closeModal(){ge('ex-overlay').classList.add('off');clearInterval(timerInt);}
+function startTimer(s){
+  clearInterval(timerInt);
+  function tick(){
+    var el=ge('m-timer');if(!el){clearInterval(timerInt);return;}
+    var m=Math.floor(s/60),sc=s%60;
+    el.innerHTML='⏱ Offer expires in <strong>'+m+':'+(sc<10?'0':'')+sc+'</strong>';
+    if(s<=0){clearInterval(timerInt);closeModal();}s--;
+  }
+  tick();timerInt=setInterval(tick,1000);
+}
+</script>
+</body>
+</html>
