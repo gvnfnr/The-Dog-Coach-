@@ -1,23 +1,18 @@
 {
-        "version": 2,
-        "builds": [
-                    {
-                                    "src": "index.html",
-                                    "use": "@vercel/static"
-                    },
-                    {
-                                    "src": "huncher.jpg",
-                                    "use": "@vercel/static"
-                    }
-        ],
-        "routes": [
-                    {
-                                    "src": "/huncher.jpg",
-                                    "dest": "/huncher.jpg"
-                    },
-                    {
-                                    "src": "/(.*)",
-                                    "dest": "/index.html"
-                    }
-        ]
+          "version": 2,
+          "builds": [
+                      { "src": "*.html", "use": "@vercel/static" },
+                      { "src": "*.jpg", "use": "@vercel/static" }
+          ],
+          "routes": [
+                      { "src": "/huncher.jpg", "dest": "/huncher.jpg" },
+                      { "src": "/how-it-works", "dest": "/how-it-works.html" },
+                      { "src": "/results-gallery", "dest": "/results-gallery.html" },
+                      { "src": "/pricing", "dest": "/pricing.html" },
+                      { "src": "/terms-of-service", "dest": "/terms-of-service.html" },
+                      { "src": "/privacy-policy", "dest": "/privacy-policy.html" },
+                      { "src": "/refund-policy", "dest": "/refund-policy.html" },
+                      { "src": "/(.*)\\.html", "dest": "/$1.html" },
+                      { "src": "/(.*)", "dest": "/index.html" }
+          ]
 }
