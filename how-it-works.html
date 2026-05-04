@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How It Works — The Dog Coach</title>
+<meta name="description" content="Learn how our 3-step AI coaching system transforms problem dogs into great companions in 14 days.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAF7F2;--green:#2D5A4A;--gp:rgba(45,90,74,.09);--orange:#E8743C;--text:#1A1A1A;--muted:#6B7280;--border:#E5E0D8;--white:#fff;--sh:0 2px 12px rgba(0,0,0,.06);--shl:0 8px 32px rgba(0,0,0,.11);--fh:'Sora',system-ui,sans-serif;--fb:system-ui,-apple-system,'Segoe UI',sans-serif;--r:20px;--r2:28px}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.wrap{max-width:980px;margin:0 auto;padding:0 24px}
+.site-nav{padding:18px 0;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:50}
+.site-logo{font-family:var(--fh);font-size:14px;font-weight:800;letter-spacing:.5px;color:var(--text);text-decoration:none}
+.site-nav-links{display:flex;align-items:center;gap:24px}
+.site-nav-links a{font-size:13px;color:var(--muted);text-decoration:none;font-weight:500;transition:color .15s}
+.site-nav-links a:hover,.site-nav-links a.active{color:var(--text)}
+.site-nav-cta{background:var(--orange);color:#fff;border:none;border-radius:99px;padding:9px 20px;font-family:var(--fh);font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+.site-nav-cta:hover{opacity:.9}
+@media(max-width:680px){.site-nav-links{display:none}}
+.page-hero{padding:64px 0 48px;text-align:center}
+.page-h1{font-family:var(--fh);font-size:clamp(28px,5vw,52px);font-weight:800;line-height:1.1;letter-spacing:-.5px;margin-bottom:16px}
+.page-h1 span{color:var(--orange)}
+.page-sub{font-size:18px;color:var(--muted);max-width:600px;margin:0 auto;line-height:1.6}
+.section{padding:64px 0}
+.section-h2{font-family:var(--fh);font-size:clamp(22px,3vw,32px);font-weight:800;margin-bottom:12px;letter-spacing:-.3px}
+.section-sub{font-size:15px;color:var(--muted);line-height:1.6;margin-bottom:32px}
+.card{background:var(--white);border-radius:var(--r2);padding:32px;box-shadow:var(--sh);border:1px solid var(--border)}
+.badge{display:inline-block;padding:4px 12px;border-radius:99px;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px}
+.badge-green{background:rgba(45,90,74,.1);color:var(--green)}
+.badge-orange{background:rgba(232,116,60,.12);color:var(--orange)}
+.btn-cta{display:inline-block;background:var(--orange);color:#fff;padding:16px 36px;border-radius:99px;font-family:var(--fh);font-size:16px;font-weight:700;text-decoration:none;box-shadow:rgba(232,116,60,.38) 0 6px 22px;transition:transform .15s,box-shadow .15s;border:none;cursor:pointer}
+.btn-cta:hover{transform:translateY(-1px)}
+.site-footer{background:#1a1a18;color:#fff;padding:64px 0 0}
+.footer-inner{max-width:980px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:48px}
+@media(max-width:900px){.footer-inner{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.footer-inner{grid-template-columns:1fr}}
+.footer-brand-logo{font-family:var(--fh);font-size:13px;font-weight:800;letter-spacing:.5px;color:#fff;margin-bottom:14px}
+.footer-tagline{font-size:13px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:20px}
+.footer-social{display:flex;gap:12px}
+.footer-social a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none}
+.footer-col h4{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:10px}
+.footer-col ul a{font-size:13px;color:rgba(255,255,255,.7);text-decoration:none;transition:color .15s}
+.footer-col ul a:hover{color:#fff}
+.footer-col p{font-size:13px;color:rgba(255,255,255,.7);line-height:1.6}
+.footer-contact-email{color:var(--orange)!important;font-weight:600}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:48px;padding:20px;text-align:center;font-size:12px;color:rgba(255,255,255,.3)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="site-nav">
+  <a href="index.html" class="site-logo">🐾 THE DOG COACH</a>
+  <div class="site-nav-links">
+    <a href="how-it-works.html" class="active">How It Works</a>
+    <a href="results-gallery.html">Results</a>
+    <a href="pricing.html">Pricing</a>
+  </div>
+  <a href="index.html#quiz" class="site-nav-cta">Start Free →</a>
+</nav>
+</div>
+<main>
+  <div class="wrap">
+    <div class="page-hero">
+      <h1 class="page-h1">From Problem Dog to <span>Proud Owner</span> in 14 Days</h1>
+      <p class="page-sub">Our 3-step system is built on behavioral science, not generic commands.</p>
+    </div>
+
+    <section class="section" style="padding-top:0">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <div class="card" style="display:grid;grid-template-columns:80px 1fr;gap:28px;align-items:flex-start">
+          <div style="width:80px;height:80px;border-radius:20px;background:var(--gp);display:flex;align-items:center;justify-content:center;font-size:36px;flex-shrink:0">📋</div>
+          <div>
+            <div class="badge badge-green">Step 1</div>
+            <h2 class="section-h2">60-Second Quiz</h2>
+            <p class="section-sub" style="margin-bottom:0">Tell us about your dog's breed, age, energy level, and the specific behaviors you want to fix. Our AI maps your unique challenge — including breed-specific tendencies, common triggers, and the root causes most likely behind the behavior. It's the same behavioral intake a certified trainer would use, completed in under a minute.</p>
+          </div>
+        </div>
+        <div class="card" style="display:grid;grid-template-columns:80px 1fr;gap:28px;align-items:flex-start">
+          <div style="width:80px;height:80px;border-radius:20px;background:var(--gp);display:flex;align-items:center;justify-content:center;font-size:36px;flex-shrink:0">🗺️</div>
+          <div>
+            <div class="badge badge-green">Step 2</div>
+            <h2 class="section-h2">Your Custom 14-Day Roadmap</h2>
+            <p class="section-sub" style="margin-bottom:0">You receive a personalized plan: daily missions, training sequences, and behavioral triggers explained in plain language. No generic "sit, stay, heel" commands — every mission is built around your dog's specific profile, your lifestyle, and the exact behavior you're trying to change. The roadmap adapts weekly based on your dog's progress.</p>
+          </div>
+        </div>
+        <div class="card" style="display:grid;grid-template-columns:80px 1fr;gap:28px;align-items:flex-start">
+          <div style="width:80px;height:80px;border-radius:20px;background:var(--gp);display:flex;align-items:center;justify-content:center;font-size:36px;flex-shrink:0">⚡</div>
+          <div>
+            <div class="badge badge-green">Step 3</div>
+            <h2 class="section-h2">Daily 5–15 Min Sessions</h2>
+            <p class="section-sub" style="margin-bottom:0">Follow bite-sized video missions designed for real life — no dog park, no equipment, no trainer required. The AI coach adjusts difficulty based on your dog's progress. Check in daily. See results weekly. Most owners report noticeable behavioral improvement within the first 5–7 days of consistent practice.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background:var(--white);border-radius:var(--r2);padding:48px;margin-bottom:48px">
+      <h2 class="section-h2">The Science Behind It</h2>
+      <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:20px">The Dog Coach is built on the gold standard of modern canine behavioral science: positive reinforcement combined with systematic desensitization. Unlike traditional obedience training that focuses on commands, we address the root cause of problem behaviors — which are almost always rooted in anxiety, unmet needs, or miscommunication between dog and owner.</p>
+      <p style="font-size:15px;line-height:1.8;color:var(--text);margin-bottom:20px">Our protocols are developed in collaboration with certified canine behaviorists and reviewed against peer-reviewed research in applied animal behavior. Every training sequence is force-free, meaning we never recommend punishment, corrections, or aversive tools. The science is clear: dogs trained with positive reinforcement learn faster, retain behaviors longer, and have a stronger bond with their owners.</p>
+      <p style="font-size:15px;line-height:1.8;color:var(--text)">The AI layer allows us to personalize at a scale that no single trainer could achieve. By analyzing behavioral patterns across 50,000+ successful cases, our model can predict which intervention will work best for your specific dog — and adjust the approach in real time based on your daily check-ins.</p>
+    </section>
+
+    <div style="text-align:center;padding:48px 0">
+      <a href="index.html#quiz" class="btn-cta">Start Your Dog's Transformation →</a>
+      <p style="margin-top:16px;font-size:13px;color:var(--muted)">Free · 60 seconds · No credit card required</p>
+    </div>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand-logo">🐾 THE DOG COACH</div>
+      <p class="footer-tagline">AI behavioral coaching that turns problem dogs into great companions. Built with certified canine behaviorists.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Platform</h4>
+      <ul>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="results-gallery.html">Results Gallery</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="terms-of-service.html">Terms of Service</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="refund-policy.html">Refund Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>Discover Group Sàrl<br><br><a href="mailto:contact@thedogcoach.co" class="footer-contact-email">contact@thedogcoach.co</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 The Dog Coach. All rights reserved.</div>
+</footer>
+</body>
+</html>
