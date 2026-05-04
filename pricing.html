@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pricing — The Dog Coach</title>
+<meta name="description" content="Simple, transparent pricing. Less than a single session with a traditional trainer. Start with a free 7-day trial.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAF7F2;--green:#2D5A4A;--gp:rgba(45,90,74,.09);--orange:#E8743C;--text:#1A1A1A;--muted:#6B7280;--border:#E5E0D8;--white:#fff;--sh:0 2px 12px rgba(0,0,0,.06);--shl:0 8px 32px rgba(0,0,0,.11);--fh:'Sora',system-ui,sans-serif;--fb:system-ui,-apple-system,'Segoe UI',sans-serif;--r:20px;--r2:28px}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.wrap{max-width:980px;margin:0 auto;padding:0 24px}
+.site-nav{padding:18px 0;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:50}
+.site-logo{font-family:var(--fh);font-size:14px;font-weight:800;letter-spacing:.5px;color:var(--text);text-decoration:none}
+.site-nav-links{display:flex;align-items:center;gap:24px}
+.site-nav-links a{font-size:13px;color:var(--muted);text-decoration:none;font-weight:500;transition:color .15s}
+.site-nav-links a:hover,.site-nav-links a.active{color:var(--text)}
+.site-nav-cta{background:var(--orange);color:#fff;border:none;border-radius:99px;padding:9px 20px;font-family:var(--fh);font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+.site-nav-cta:hover{opacity:.9}
+@media(max-width:680px){.site-nav-links{display:none}}
+.page-hero{padding:64px 0 48px;text-align:center}
+.page-h1{font-family:var(--fh);font-size:clamp(28px,5vw,52px);font-weight:800;line-height:1.1;letter-spacing:-.5px;margin-bottom:16px}
+.page-h1 span{color:var(--orange)}
+.page-sub{font-size:18px;color:var(--muted);max-width:600px;margin:0 auto;line-height:1.6}
+.section{padding:64px 0}
+.section-h2{font-family:var(--fh);font-size:clamp(22px,3vw,32px);font-weight:800;margin-bottom:12px;letter-spacing:-.3px}
+.section-sub{font-size:15px;color:var(--muted);line-height:1.6;margin-bottom:32px}
+.card{background:var(--white);border-radius:var(--r2);padding:32px;box-shadow:var(--sh);border:1px solid var(--border)}
+.badge{display:inline-block;padding:4px 12px;border-radius:99px;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px}
+.badge-green{background:rgba(45,90,74,.1);color:var(--green)}
+.badge-orange{background:rgba(232,116,60,.12);color:var(--orange)}
+.btn-cta{display:inline-block;background:var(--orange);color:#fff;padding:16px 36px;border-radius:99px;font-family:var(--fh);font-size:16px;font-weight:700;text-decoration:none;box-shadow:rgba(232,116,60,.38) 0 6px 22px;transition:transform .15s,box-shadow .15s;border:none;cursor:pointer}
+.btn-cta:hover{transform:translateY(-1px)}
+.site-footer{background:#1a1a18;color:#fff;padding:64px 0 0}
+.footer-inner{max-width:980px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:48px}
+@media(max-width:900px){.footer-inner{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.footer-inner{grid-template-columns:1fr}}
+.footer-brand-logo{font-family:var(--fh);font-size:13px;font-weight:800;letter-spacing:.5px;color:#fff;margin-bottom:14px}
+.footer-tagline{font-size:13px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:20px}
+.footer-social{display:flex;gap:12px}
+.footer-social a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none}
+.footer-col h4{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:10px}
+.footer-col ul a{font-size:13px;color:rgba(255,255,255,.7);text-decoration:none;transition:color .15s}
+.footer-col ul a:hover{color:#fff}
+.footer-col p{font-size:13px;color:rgba(255,255,255,.7);line-height:1.6}
+.footer-contact-email{color:var(--orange)!important;font-weight:600}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:48px;padding:20px;text-align:center;font-size:12px;color:rgba(255,255,255,.3)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="site-nav">
+  <a href="index.html" class="site-logo">🐾 THE DOG COACH</a>
+  <div class="site-nav-links">
+    <a href="how-it-works.html">How It Works</a>
+    <a href="results-gallery.html">Results</a>
+    <a href="pricing.html" class="active">Pricing</a>
+  </div>
+  <a href="index.html#quiz" class="site-nav-cta">Start Free →</a>
+</nav>
+</div>
+<style>
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:760px;margin:0 auto}
+@media(max-width:680px){.pricing-grid{grid-template-columns:1fr}}
+.pricing-card{background:var(--white);border-radius:var(--r2);padding:32px;border:2px solid var(--border);position:relative}
+.pricing-card.featured{border-color:var(--green);box-shadow:var(--shl)}
+.pricing-rib{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;padding:4px 16px;border-radius:99px;font-size:11px;font-weight:700;letter-spacing:.5px;white-space:nowrap}
+.pricing-name{font-family:var(--fh);font-size:16px;font-weight:800;margin-bottom:4px}
+.pricing-tag{font-size:12px;color:var(--muted);margin-bottom:20px}
+.pricing-price{font-family:var(--fh);font-size:48px;font-weight:800;line-height:1;margin-bottom:4px}
+.pricing-per{font-size:13px;color:var(--muted);margin-bottom:24px}
+.pricing-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.pricing-features li{font-size:14px;display:flex;gap:8px;align-items:flex-start}
+.pricing-features li::before{content:"✓";color:var(--green);font-weight:700;flex-shrink:0}
+.pricing-btn{display:block;width:100%;padding:14px;border-radius:99px;font-family:var(--fh);font-size:15px;font-weight:700;text-align:center;text-decoration:none;border:none;cursor:pointer;transition:transform .15s}
+.pricing-btn-outline{background:transparent;color:var(--green);border:2px solid rgba(45,90,74,.28)}
+.pricing-btn-filled{background:var(--orange);color:#fff;box-shadow:rgba(232,116,60,.38) 0 6px 22px}
+.pricing-btn:hover{transform:translateY(-1px)}
+.faq-price{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:4px}
+.faq-item{border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.faq-item summary{padding:18px 22px;font-weight:700;font-size:14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;list-style:none;color:var(--text)}
+.faq-item summary:hover{background:var(--bg)}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:'+';font-size:18px;font-weight:400;color:var(--muted);transition:transform .25s;margin-left:12px;flex-shrink:0}
+.faq-item[open] summary::after{transform:rotate(45deg);color:var(--orange)}
+.faq-body{padding:0 22px 18px;font-size:14px;color:var(--muted);line-height:1.7}
+</style>
+<main>
+  <div class="wrap">
+    <div class="page-hero">
+      <h1 class="page-h1">One Dog. <span>One Coach.</span> One Price.</h1>
+      <p class="page-sub">Less than a single session with a traditional trainer.</p>
+    </div>
+
+    <section class="section" style="padding-top:0">
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-name">Monthly Plan</div>
+          <div class="pricing-tag">Most flexible · Cancel anytime</div>
+          <div class="pricing-price">€29</div>
+          <div class="pricing-per">/month</div>
+          <ul class="pricing-features">
+            <li>Personalized 14-day roadmap</li>
+            <li>Daily AI-coached missions</li>
+            <li>Real-time behavioral chat</li>
+            <li>Progress analytics dashboard</li>
+            <li>Breed-specific protocols</li>
+            <li>Access to full video library</li>
+            <li>30-day money-back guarantee</li>
+          </ul>
+          <a href="index.html#quiz" class="pricing-btn pricing-btn-outline">Start 7-Day Free Trial →</a>
+        </div>
+        <div class="pricing-card featured">
+          <div class="pricing-rib">MOST POPULAR</div>
+          <div class="pricing-name">Annual Plan</div>
+          <div class="pricing-tag">€12.40/month · Save 57%</div>
+          <div class="pricing-price">€149</div>
+          <div class="pricing-per">/year · Billed annually</div>
+          <ul class="pricing-features">
+            <li>Personalized 14-day roadmap</li>
+            <li>Daily AI-coached missions</li>
+            <li>Real-time behavioral chat</li>
+            <li>Progress analytics dashboard</li>
+            <li>Breed-specific protocols</li>
+            <li>Access to full video library</li>
+            <li>30-day money-back guarantee</li>
+            <li><strong>Priority AI response</strong></li>
+          </ul>
+          <a href="index.html#quiz" class="pricing-btn pricing-btn-filled">Start 7-Day Free Trial →</a>
+        </div>
+      </div>
+      <p style="text-align:center;margin-top:16px;font-size:13px;color:var(--muted)">No credit card required for trial · Cancel anytime</p>
+
+      <div style="max-width:760px;margin:64px auto 0">
+        <h2 class="section-h2" style="text-align:center;margin-bottom:32px">Pricing FAQ</h2>
+        <div class="faq-price">
+          <details class="faq-item">
+            <summary>When do I get charged?</summary>
+            <div class="faq-body">Your 7-day free trial starts immediately, no credit card required. You'll only be asked for payment information if you decide to continue after the trial. If you choose the annual plan, you're billed once per year. Monthly plans are billed on the same date each month.</div>
+          </details>
+          <details class="faq-item">
+            <summary>How do refunds work?</summary>
+            <div class="faq-body">All paid plans include a 30-day money-back guarantee. If you're not satisfied within 30 days of your first payment, email us at contact@thedogcoach.co with the subject "Refund Request" and we'll refund 100% — no questions asked. See our <a href="refund-policy.html" style="color:var(--green)">Refund Policy</a> for details.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Can I switch from monthly to annual?</summary>
+            <div class="faq-body">Yes. You can upgrade from monthly to annual at any time from your account dashboard. We'll credit your unused monthly days toward the annual plan, so you never pay twice for the same period.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand-logo">🐾 THE DOG COACH</div>
+      <p class="footer-tagline">AI behavioral coaching that turns problem dogs into great companions. Built with certified canine behaviorists.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Platform</h4>
+      <ul>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="results-gallery.html">Results Gallery</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="terms-of-service.html">Terms of Service</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="refund-policy.html">Refund Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>Discover Group Sàrl<br><br><a href="mailto:contact@thedogcoach.co" class="footer-contact-email">contact@thedogcoach.co</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 The Dog Coach. All rights reserved.</div>
+</footer>
+</body>
+</html>
