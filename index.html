@@ -4,10 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>The Dog Coach — Fix Your Dog's Behavior in 14 Days</title>
+<meta name="description" content="AI-powered dog behavior coaching. Get a personalized 14-day training plan tailored to your dog's breed, age, and problem. Trusted by 50,000+ owners.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap" rel="stylesheet">
 <style>
+
 /* ─── TOKENS ─── */
 :root{
   --bg:#FAF7F2;--green:#2D5A4A;--gp:rgba(45,90,74,.09);
@@ -378,13 +380,97 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
 
 .fade-up{animation:fu .45s ease both}
 @keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+
+/* ─── NEW SECTIONS ─── */
+/* Section: Problems */
+.sec-problems{padding:80px 0;background:var(--white);text-align:center}
+.sec-h2{font-family:var(--fh);font-size:clamp(26px,3.5vw,38px);font-weight:800;color:var(--text);margin-bottom:12px;letter-spacing:-.3px}
+.sec-sub{font-size:16px;color:var(--muted);max-width:520px;margin:0 auto 48px;line-height:1.6}
+.prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:900px){.prob-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.prob-grid{grid-template-columns:1fr}}
+.prob-card{background:#f4f2ee;border-radius:16px;padding:28px 24px;text-align:left;box-shadow:0 2px 8px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s}
+.prob-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.08)}
+.prob-icon{width:44px;height:44px;border-radius:12px;background:#e8e4dd;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px}
+.prob-title{font-weight:700;font-size:15px;color:var(--text);margin-bottom:4px}
+.prob-sub{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:16px}
+.prob-pill{display:inline-flex;align-items:center;gap:5px;background:#ede8f5;color:#7c3aed;border-radius:99px;padding:5px 12px;font-size:11px;font-weight:700;text-decoration:none;letter-spacing:.3px}
+.prob-pill:hover{background:#ddd5f0}
+.sec-studio{background:#1a3a2e;padding:80px 0;overflow:hidden}
+.studio-inner{max-width:980px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+@media(max-width:768px){.studio-inner{grid-template-columns:1fr;gap:40px}}
+.studio-steps{display:flex;align-items:center;gap:8px;margin-bottom:28px;flex-wrap:wrap}
+.studio-step{font-size:11px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:.3px}
+.studio-arrow{color:rgba(255,255,255,.3);font-size:10px}
+.studio-h2{font-family:var(--fh);font-size:clamp(28px,4vw,42px);font-weight:800;color:#fff;line-height:1.15;margin-bottom:36px;letter-spacing:-.3px}
+.studio-h2 em{font-style:italic;color:rgba(255,255,255,.7)}
+.studio-feat{display:flex;flex-direction:column;gap:24px}
+.studio-feat-item{display:flex;gap:16px;align-items:flex-start}
+.studio-feat-ico{font-size:22px;margin-top:2px;flex-shrink:0}
+.studio-feat-title{font-weight:700;font-size:15px;color:#fff;margin-bottom:4px}
+.studio-feat-sub{font-size:13px;color:rgba(255,255,255,.65);line-height:1.5}
+.phone-wrap{display:flex;justify-content:center;align-items:center}
+.phone-frame{width:220px;height:440px;background:#111;border-radius:36px;border:6px solid #333;box-shadow:0 20px 60px rgba(0,0,0,.5),inset 0 0 0 1px #444;overflow:hidden;position:relative}
+.phone-frame img{width:100%;height:100%;object-fit:cover}
+.phone-badge{position:absolute;bottom:16px;left:10px;right:10px;background:rgba(0,0,0,.85);border-radius:12px;padding:10px 12px;backdrop-filter:blur(10px)}
+.phone-badge-top{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.phone-badge-dot{width:8px;height:8px;background:#22c55e;border-radius:50%;animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+.phone-badge-label{font-size:10px;font-weight:700;color:#22c55e;letter-spacing:.5px}
+.phone-badge-text{font-size:11px;color:rgba(255,255,255,.85)}
+.phone-badge-bar{height:4px;background:rgba(255,255,255,.15);border-radius:99px;margin-top:6px;overflow:hidden}
+.phone-badge-fill{height:100%;width:72%;background:#22c55e;border-radius:99px}
+.sec-testi{background:var(--bg);padding:80px 0}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+@media(max-width:900px){.testi-grid{grid-template-columns:1fr}}
+.testi-card{background:var(--white);border-radius:var(--r2);padding:28px;box-shadow:var(--shl);border:1px solid var(--border)}
+.testi-head{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.testi-avatar{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--border)}
+.testi-name{font-weight:700;font-size:15px;color:var(--text)}
+.testi-dog{font-size:12px;color:var(--muted)}
+.testi-label{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.5px;color:var(--orange);text-transform:uppercase;margin-bottom:12px;padding:4px 10px;background:rgba(232,116,60,.1);border-radius:99px}
+.testi-quote{font-size:14px;line-height:1.7;color:var(--text);font-style:italic}
+.sec-faq{background:var(--white);padding:80px 0}
+.faq-list{max-width:680px;margin:48px auto 0;display:flex;flex-direction:column;gap:4px}
+.faq-item{border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.faq-item summary{padding:20px 24px;font-weight:700;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;list-style:none;color:var(--text);transition:background .15s}
+.faq-item summary:hover{background:var(--bg)}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:'+';font-size:20px;font-weight:400;color:var(--muted);transition:transform .25s,color .15s;flex-shrink:0;margin-left:12px}
+.faq-item[open] summary::after{transform:rotate(45deg);color:var(--orange)}
+.faq-body{padding:0 24px 20px;font-size:14px;color:var(--muted);line-height:1.7}
+.site-footer{background:#1a1a18;color:#fff;padding:64px 0 0}
+.footer-inner{max-width:980px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:48px}
+@media(max-width:900px){.footer-inner{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.footer-inner{grid-template-columns:1fr}}
+.footer-brand-logo{font-family:var(--fh);font-size:13px;font-weight:800;letter-spacing:.5px;color:#fff;margin-bottom:14px}
+.footer-tagline{font-size:13px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:20px}
+.footer-social{display:flex;gap:12px}
+.footer-social a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;transition:background .15s}
+.footer-social a:hover{background:rgba(255,255,255,.2)}
+.footer-col h4{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:10px}
+.footer-col ul a{font-size:13px;color:rgba(255,255,255,.7);text-decoration:none;transition:color .15s}
+.footer-col ul a:hover{color:#fff}
+.footer-col p{font-size:13px;color:rgba(255,255,255,.7);line-height:1.6}
+.footer-contact-email{color:var(--orange)!important;font-weight:600}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:48px;padding:20px;text-align:center;font-size:12px;color:rgba(255,255,255,.3)}
+.land-reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:8px 0 24px}
+@media(max-width:768px){.land-reviews{grid-template-columns:1fr}}
+.review-card{background:var(--white);border-radius:var(--r);padding:20px;box-shadow:var(--sh);border:1px solid var(--border)}
+.review-stars{color:#F59E0B;font-size:13px;margin-bottom:8px}
+.review-text{font-size:13px;line-height:1.6;color:var(--text);font-style:italic;margin-bottom:12px}
+.review-author{font-size:12px;font-weight:600;color:var(--muted)}
 </style>
 </head>
 <body>
 
-<!-- ════ LANDING ════ -->
+<!-- ════════════ LANDING ════════════ -->
 <div id="landing" class="screen on">
 
+  <!-- NAV -->
   <div class="land-wrap">
     <nav class="land-nav">
       <div class="land-logo">🐾 THE DOG COACH</div>
@@ -392,27 +478,32 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
     </nav>
   </div>
 
+  <!-- HERO -->
   <div class="land-wrap">
     <div class="land-hero">
       <div class="land-hero-left">
         <div class="land-badge"><span class="badge-stars">★★★★★</span> Trusted by 50,000+ dog parents</div>
-        <h1 class="land-h1">Find Out Why Your Dog <em>Misbehaves</em> — and Fix It in 14 Days</h1>
+        <h1 class="land-h1">Find Out Why Your Dog <span>Misbehaves</span> — and Fix It in 14 Days</h1>
         <p class="land-sub">Our AI analyzes your dog's unique behavioral profile and builds a personalized training plan — in under 60 seconds.</p>
         <div class="land-cta-wrap">
-          <button class="btn btn-orange" id="start-btn">Analyze My Dog's Behavior →</button>
-          <div class="land-trust-row">
-            <span class="trust-chip">✓ Free analysis</span>
-            <span class="trust-chip">⏱ 60 seconds</span>
-            <span class="trust-chip">🔒 No credit card</span>
-          </div>
+          <button id="start-btn" class="btn btn-orange">Analyze My Dog's Behavior →</button>
+        </div>
+        <div class="land-trust-row">
+          <span class="trust-chip">✓ Free analysis</span>
+          <span class="trust-chip">⏱ 60 seconds</span>
+          <span class="trust-chip">🔒 No credit card</span>
         </div>
       </div>
       <div class="land-hero-right">
-        <div class="dog-visual"><img src="huncher.jpg" alt="Dog" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"><div class="pulse-ring"></div></div>
+        <div class="dog-visual">
+          <img src="huncher.jpg" alt="Dog" loading="lazy">
+          <div class="pulse-ring"></div>
+        </div>
       </div>
     </div>
   </div>
 
+  <!-- STATS BAR -->
   <div class="land-proof">
     <div class="land-proof-inner">
       <div class="proof-stat"><div class="proof-num">50,000+</div><div class="proof-lbl">Dogs Trained</div></div>
@@ -425,56 +516,149 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
     </div>
   </div>
 
+  <!-- BENEFITS + QUICK REVIEWS -->
   <div class="land-wrap">
     <div class="land-benefits">
-      <div class="benefit">
-        <div class="benefit-ico">🧠</div>
-        <div><div class="benefit-title">AI Behavioral Analysis</div><div class="benefit-sub">Trained on 50,000+ successful cases across 150+ breeds</div></div>
-      </div>
-      <div class="benefit">
-        <div class="benefit-ico">📋</div>
-        <div><div class="benefit-title">Personalized 14-Day Plan</div><div class="benefit-sub">Built specifically for your dog's breed, age & core issue</div></div>
-      </div>
-      <div class="benefit">
-        <div class="benefit-ico">✅</div>
-        <div><div class="benefit-title">Vet-Endorsed Methods</div><div class="benefit-sub">Safe, science-backed protocols from certified behaviorists</div></div>
-      </div>
+      <div class="benefit"><div class="benefit-ico">🧠</div><div class="benefit-title">AI Behavioral Analysis</div><div class="benefit-sub">Trained on 50,000+ successful cases across 150+ breeds</div></div>
+      <div class="benefit"><div class="benefit-ico">📋</div><div class="benefit-title">Personalized 14-Day Plan</div><div class="benefit-sub">Built specifically for your dog's breed, age &amp; core issue</div></div>
+      <div class="benefit"><div class="benefit-ico">✅</div><div class="benefit-title">Vet-Endorsed Methods</div><div class="benefit-sub">Safe, science-backed protocols from certified behaviorists</div></div>
     </div>
-
-    <!-- Testimonials -->
-    <div style="padding:24px 0 8px">
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px">
-        <div style="background:var(--white);border-radius:var(--r);padding:16px;box-shadow:var(--sh);border:1px solid var(--border)">
-          <div style="color:#F59E0B;font-size:13px;margin-bottom:8px">★★★★★</div>
-          <p style="font-size:13px;color:var(--text);line-height:1.6;margin-bottom:10px">"Max stopped pulling on the leash after just 5 days. I was skeptical but the personalized plan was exactly what we needed."</p>
-          <div style="font-size:12px;font-weight:600;color:var(--muted)">— Sarah K., Golden Retriever owner</div>
-        </div>
-        <div style="background:var(--white);border-radius:var(--r);padding:16px;box-shadow:var(--sh);border:1px solid var(--border)">
-          <div style="color:#F59E0B;font-size:13px;margin-bottom:8px">★★★★★</div>
-          <p style="font-size:13px;color:var(--text);line-height:1.6;margin-bottom:10px">"Bella's separation anxiety was destroying my apartment. The Dog Coach plan changed everything in 2 weeks."</p>
-          <div style="font-size:12px;font-weight:600;color:var(--muted)">— James R., French Bulldog owner</div>
-        </div>
-        <div style="background:var(--white);border-radius:var(--r);padding:16px;box-shadow:var(--sh);border:1px solid var(--border)">
-          <div style="color:#F59E0B;font-size:13px;margin-bottom:8px">★★★★★</div>
-          <p style="font-size:13px;color:var(--text);line-height:1.6;margin-bottom:10px">"Worth every cent. My German Shepherd was aggressive with strangers and now he's calm and friendly."</p>
-          <div style="font-size:12px;font-weight:600;color:var(--muted)">— Maria L., German Shepherd owner</div>
-        </div>
-      </div>
+    <div class="land-reviews">
+      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Max stopped pulling on the leash after just 5 days. I was skeptical but the personalized plan was exactly what we needed."</p><div class="review-author">— Sarah K., Golden Retriever owner</div></div>
+      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Bella's separation anxiety was destroying my apartment. The Dog Coach plan changed everything in 2 weeks."</p><div class="review-author">— James R., French Bulldog owner</div></div>
+      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Worth every cent. My German Shepherd was aggressive with strangers and now he's calm and friendly."</p><div class="review-author">— Maria L., German Shepherd owner</div></div>
     </div>
-
     <div class="land-bottom">
-      <button class="btn btn-orange" id="start-btn-2" style="margin-bottom:10px">Start Free Analysis →</button>
-      <div style="font-size:12px;color:var(--muted)">Free · 60 seconds · No credit card required</div>
+      <button id="start-btn-2" class="btn btn-orange" style="max-width:360px;margin:0 auto">Start Free Analysis →</button>
+      <p style="margin-top:12px;font-size:13px;color:var(--muted)">Free · 60 seconds · No credit card required</p>
     </div>
   </div>
 
-  <!-- Sticky CTA for mobile on landing -->
-  <div style="position:fixed;bottom:0;left:0;right:0;padding:12px 18px 26px;background:linear-gradient(to top,var(--bg) 72%,transparent);z-index:100;display:none" id="land-sticky">
-    <button class="btn btn-orange" id="start-btn-sticky">Start Free Analysis →</button>
-  </div>
-</div>
+  <!-- ── SECTION A: PROBLEM GRID ── -->
+  <section class="sec-problems" id="problems">
+    <div class="land-wrap">
+      <h2 class="sec-h2">Does this sound familiar?</h2>
+      <p class="sec-sub">Problem behaviors shouldn't ruin your relationship with your dog.</p>
+      <div class="prob-grid">
+        <div class="prob-card"><div class="prob-icon">📢</div><div class="prob-title">Constant Barking</div><div class="prob-sub">Wakes the neighbors and ruins peace.</div><a href="#quiz" class="prob-pill"><span>⊙</span> FIX ROADMAP</a></div>
+        <div class="prob-card"><div class="prob-icon">😰</div><div class="prob-title">Anxiety</div><div class="prob-sub">Chewed boots and howling when you leave.</div><a href="#quiz" class="prob-pill"><span>⊙</span> FIX ROADMAP</a></div>
+        <div class="prob-card"><div class="prob-icon">🦮</div><div class="prob-title">Aggressive Pulling</div><div class="prob-sub">A wrestling match you never win.</div><a href="#quiz" class="prob-pill"><span>⊙</span> FIX ROADMAP</a></div>
+        <div class="prob-card"><div class="prob-icon">⚡</div><div class="prob-title">Reactivity</div><div class="prob-sub">Lunging at guests or other dogs.</div><a href="#quiz" class="prob-pill"><span>⊙</span> FIX ROADMAP</a></div>
+        <div class="prob-card"><div class="prob-icon">💥</div><div class="prob-title">Destruction</div><div class="prob-sub">Endless digging and furniture chewing.</div><a href="#quiz" class="prob-pill"><span>⊙</span> FIX ROADMAP</a></div>
+        <div class="prob-card"><div class="prob-icon">🦘</div><div class="prob-title">Jumping</div><div class="prob-sub">Embarrassing greets with muddy paws.</div><a href="#quiz" class="prob-pill"><span>⊙</span> FIX ROADMAP</a></div>
+      </div>
+    </div>
+  </section>
 
-<!-- ════ QUIZ ════ -->
+  <!-- ── SECTION B: STUDIO ── -->
+  <section class="sec-studio">
+    <div class="studio-inner">
+      <div class="studio-left">
+        <div class="studio-steps">
+          <span class="studio-step">01 60-sec Quiz</span>
+          <span class="studio-arrow">→</span>
+          <span class="studio-step">02 Custom Plan</span>
+          <span class="studio-arrow">→</span>
+          <span class="studio-step">03 15-min Training</span>
+        </div>
+        <h2 class="studio-h2">A complete training studio,<br><em>in your pocket.</em></h2>
+        <div class="studio-feat">
+          <div class="studio-feat-item"><div class="studio-feat-ico">💬</div><div><div class="studio-feat-title">Real-time AI Chat</div><div class="studio-feat-sub">Get answers to "Why is he doing this?" in seconds.</div></div></div>
+          <div class="studio-feat-item"><div class="studio-feat-ico">📊</div><div><div class="studio-feat-title">Progress Analytics</div><div class="studio-feat-sub">Watch your dog's obedience score climb weekly.</div></div></div>
+          <div class="studio-feat-item"><div class="studio-feat-ico">📱</div><div><div class="studio-feat-title">5-Min Missions</div><div class="studio-feat-sub">Bite-sized video lessons for busy owners.</div></div></div>
+        </div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone-frame">
+          <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=400" alt="French Bulldog in yellow hoodie" loading="lazy">
+          <div class="phone-badge">
+            <div class="phone-badge-top"><div class="phone-badge-dot"></div><div class="phone-badge-label">LIVE AI ANALYSIS</div></div>
+            <div class="phone-badge-text">Treat-seeking behavior detected</div>
+            <div class="phone-badge-bar"><div class="phone-badge-fill"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION C: TESTIMONIALS ── -->
+  <section class="sec-testi">
+    <div class="land-wrap">
+      <h2 class="sec-h2" style="text-align:center">Real owners, real changes.</h2>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-head"><img class="testi-avatar" src="https://i.pravatar.cc/60?img=47" alt="Sarah M." loading="lazy"><div><div class="testi-name">Sarah M.</div><div class="testi-dog">Lola, Golden Retriever</div></div></div>
+          <div class="testi-label">LOLA STOPPED BARKING BY WEEK 2</div>
+          <p class="testi-quote">"Before The Dog Coach, we couldn't have guests over. The 15-minute daily missions were easy to follow and the AI chat was active whenever I had a 'why is she doing this' moment."</p>
+        </div>
+        <div class="testi-card">
+          <div class="testi-head"><img class="testi-avatar" src="https://i.pravatar.cc/60?img=33" alt="David K." loading="lazy"><div><div class="testi-name">David K.</div><div class="testi-dog">Rocky, GSD</div></div></div>
+          <div class="testi-label">WALKS ARE FINALLY PEACEFUL</div>
+          <p class="testi-quote">"Rocky used to pull so hard my shoulder hurt. The custom desensitization protocol for city noises changed everything. Best €149 I've spent on him."</p>
+        </div>
+        <div class="testi-card">
+          <div class="testi-head"><img class="testi-avatar" src="https://i.pravatar.cc/60?img=25" alt="Elena G." loading="lazy"><div><div class="testi-name">Elena G.</div><div class="testi-dog">Bear, Mixed Breed</div></div></div>
+          <div class="testi-label">SEPARATION ANXIETY FIXED</div>
+          <p class="testi-quote">"Highly personalized. It felt like having a pro trainer in my pocket. Bear no longer destroys the house when I'm at work. The progress analytics are addictive!"</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION D: FAQ ── -->
+  <section class="sec-faq" id="faq">
+    <div class="land-wrap">
+      <h2 class="sec-h2" style="text-align:center">Questions? We have answers.</h2>
+      <p class="sec-sub">Everything you need to know before starting your pup's transformation.</p>
+      <div class="faq-list">
+        <details class="faq-item"><summary>Will this work for my specific breed and age?</summary><div class="faq-body">Yes. Our AI coaching is tailored by breed, age, and specific problem. Whether you have an 8-week-old Labrador puppy or a 7-year-old rescue Husky, the program adapts to your dog's learning style and energy level.</div></details>
+        <details class="faq-item"><summary>What if it doesn't work for my dog?</summary><div class="faq-body">We offer a full 30-day money-back guarantee. If you follow the daily missions consistently for 30 days and don't see measurable improvement, we'll refund 100% — no questions asked.</div></details>
+        <details class="faq-item"><summary>Is this an app or a website?</summary><div class="faq-body">It's a web app accessible on any device — no download required. It works perfectly on your phone's browser. A native iOS/Android app is coming in Q3 2026.</div></details>
+        <details class="faq-item"><summary>How much time does it really take?</summary><div class="faq-body">Just 5–15 minutes per day. Our missions are designed for busy owners. You don't need to dedicate an hour — consistency matters far more than duration. Most owners complete sessions during their dog's morning walk.</div></details>
+        <details class="faq-item"><summary>Can I cancel my subscription anytime?</summary><div class="faq-body">Absolutely. Cancel with one click from your dashboard — no phone calls, no emails required. Monthly subscribers can cancel before their next billing date. Annual subscribers can cancel future renewals at any time.</div></details>
+        <details class="faq-item"><summary>Is this safe for reactive or aggressive dogs?</summary><div class="faq-body">Yes. Our protocols for reactivity and aggression are built by certified canine behaviorists using force-free, science-based methods (positive reinforcement + desensitization). We never recommend punishment-based techniques.</div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <div class="footer-brand-logo">🐾 THE DOG COACH</div>
+        <p class="footer-tagline">AI behavioral coaching that turns problem dogs into great companions. Built with certified canine behaviorists.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="results-gallery.html">Results Gallery</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="terms-of-service.html">Terms of Service</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="refund-policy.html">Refund Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>Discover Group Sàrl<br><br><a href="mailto:contact@thedogcoach.co" class="footer-contact-email">contact@thedogcoach.co</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 The Dog Coach. All rights reserved.</div>
+  </footer>
+
+</div><!-- /#landing -->
+
+<!-- ════════════ QUIZ SCREEN ════════════ -->
 <div id="quiz" class="screen">
   <div class="qh">
     <div class="qh-inner">
@@ -494,7 +678,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
   </div>
 </div>
 
-<!-- ════ PAUSE ════ -->
+<!-- ════════════ PAUSE SCREEN ════════════ -->
 <div id="pause" class="screen">
   <div class="p-orb">🧠</div>
   <p class="p-tit" id="p-tit">Analyzing…</p>
@@ -504,7 +688,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
   <p class="p-foot">Trusted by 50,000+ owners globally 🌍</p>
 </div>
 
-<!-- ════ RESULT ════ -->
+<!-- ════════════ RESULT SCREEN ════════════ -->
 <div id="result" class="screen">
   <div class="res-hdr">
     <div class="r-logo">🐾 THE DOG COACH</div>
@@ -517,12 +701,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
   </div>
 </div>
 
-<!-- Sticky result CTA (mobile) -->
-<div id="res-cta-bar">
-  <button class="btn btn-orange" id="res-cta-btn">Unlock Plan →</button>
-</div>
-
-<!-- Exit modal -->
+<!-- EXIT INTENT OVERLAY -->
 <div class="overlay off" id="ex-overlay">
   <div class="modal">
     <button class="m-close" id="m-close-btn" style="display:flex">✕</button>
@@ -531,15 +710,18 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
     <h2 class="m-title" id="m-tit">Wait — still needs you!</h2>
     <p class="m-body" id="m-bod">Don't let problem behaviors worsen. Get 20% off right now.</p>
     <div class="m-timer" id="m-timer">⏱ Offer expires in <strong>10:00</strong></div>
-    <div class="coupon">
-      <div class="coup-lbl">Coupon Auto-Applied</div>
-      <div class="coup-code">COACH20</div>
-    </div>
+    <div class="coupon"><div class="coup-lbl">Coupon Auto-Applied</div><div class="coup-code">COACH20</div></div>
     <button class="btn btn-orange" id="m-claim-btn">Claim My 20% Discount →</button>
   </div>
 </div>
 
+<!-- STICKY CTA -->
+<div id="land-sticky" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);padding:12px 20px;z-index:100;box-shadow:0 -4px 20px rgba(0,0,0,.08)">
+  <button id="start-btn-sticky" class="btn btn-orange" style="max-width:480px;margin:0 auto">Start Free Analysis →</button>
+</div>
+
 <script>
+
 /* ─────────────────────────────────────────
    DATA
 ───────────────────────────────────────── */
@@ -932,6 +1114,7 @@ function startTimer(s){
   }
   tick();timerInt=setInterval(tick,1000);
 }
+
 </script>
 </body>
 </html>
