@@ -432,6 +432,18 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
 .testi-dog{font-size:12px;color:var(--muted)}
 .testi-label{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.5px;color:var(--orange);text-transform:uppercase;margin-bottom:12px;padding:4px 10px;background:rgba(232,116,60,.1);border-radius:99px}
 .testi-quote{font-size:14px;line-height:1.7;color:var(--text);font-style:italic}
+/* Science section */
+.sec-science{background:var(--white);padding:80px 0;text-align:center}
+.science-inner{max-width:1100px;margin:0 auto;padding:0 24px}
+.science-title{font-family:var(--fh);font-size:clamp(28px,4vw,44px);font-weight:800;color:var(--text);margin-bottom:48px;line-height:1.2}
+.science-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+@media(max-width:767px){.science-grid{grid-template-columns:repeat(2,1fr)}}
+.science-card{border-radius:20px;overflow:hidden;aspect-ratio:1/1;background:#f0f0f0}
+.science-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
+.science-card:hover img{transform:scale(1.05)}
+/* Logo image styling */
+.land-logo img,.quiz-brand img,.r-logo img{display:inline-block}
+
 .sec-faq{background:var(--white);padding:80px 0}
 .faq-list{max-width:680px;margin:48px auto 0;display:flex;flex-direction:column;gap:4px}
 .faq-item{border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
@@ -474,7 +486,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
   <!-- NAV -->
   <div class="land-wrap">
     <nav class="land-nav">
-      <div class="land-logo">🐾 THE DOG COACH</div>
+      <div class="land-logo"><img src="LOGOFULL.png" alt="The Dog Coach" style="height:32px;width:auto;vertical-align:middle;"></div>
       <div class="land-nav-trust"><span style="color:#F59E0B">★★★★★</span> 50,000+ owners</div>
     </nav>
   </div>
@@ -571,7 +583,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
       </div>
       <div class="phone-wrap">
         <div class="phone-frame">
-          <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=400" alt="French Bulldog in yellow hoodie" loading="lazy">
+          <img src="bulldog-hoodie.jpg" alt="French Bulldog in yellow hoodie" loading="lazy">
           <div class="phone-badge">
             <div class="phone-badge-top"><div class="phone-badge-dot"></div><div class="phone-badge-label">LIVE AI ANALYSIS</div></div>
             <div class="phone-badge-text">Treat-seeking behavior detected</div>
@@ -607,6 +619,22 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
   </section>
 
   <!-- ── SECTION D: FAQ ── -->
+
+  <!-- ── SCIENCE SECTION ── -->
+  <section class="sec-science">
+    <div class="science-inner">
+      <h2 class="science-title">The Science of a Happier,<br>Harmonious Life with Your Dog</h2>
+      <div class="science-grid">
+        <div class="science-card"><img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=300" alt="Happy dog" loading="lazy"></div>
+        <div class="science-card"><img src="bulldog-hoodie.jpg" alt="French bulldog in yellow hoodie" loading="lazy"></div>
+        <div class="science-card"><img src="https://images.unsplash.com/photo-1544568100-847a948585b9?w=300" alt="Dog with sunglasses" loading="lazy"></div>
+        <div class="science-card"><img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?w=300" alt="White fluffy dog running" loading="lazy"></div>
+        <div class="science-card"><img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=300" alt="Black pug" loading="lazy"></div>
+        <div class="science-card"><img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=300" alt="Dog and cat friends" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
   <section class="sec-faq" id="faq">
     <div class="land-wrap">
       <h2 class="sec-h2" style="text-align:center">Questions? We have answers.</h2>
@@ -626,7 +654,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-col">
-        <div class="footer-brand-logo">🐾 THE DOG COACH</div>
+        <div class="footer-brand-logo"><img src="LOGOFULL.png" alt="The Dog Coach" style="height:36px;width:auto;vertical-align:middle;filter:brightness(0) invert(1);"></div>
         <p class="footer-tagline">AI behavioral coaching that turns problem dogs into great companions. Built with certified canine behaviorists.</p>
         <div class="footer-social">
           <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
@@ -668,7 +696,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
         <div class="prog-track"><div class="prog-fill" id="prog-fill"></div></div>
         <span class="step-lbl" id="step-lbl">1 of 15</span>
       </div>
-      <div class="quiz-brand">🐾 THE DOG COACH</div>
+      <div class="quiz-brand"><img src="LOGOFULL.png" alt="The Dog Coach" style="height:28px;width:auto;vertical-align:middle;"></div>
     </div>
   </div>
   <div id="q-area"></div>
@@ -692,7 +720,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
 <!-- ════════════ RESULT SCREEN ════════════ -->
 <div id="result" class="screen">
   <div class="res-hdr">
-    <div class="r-logo">🐾 THE DOG COACH</div>
+    <div class="r-logo"><img src="LOGOFULL.png" alt="The Dog Coach" style="height:28px;width:auto;vertical-align:middle;"></div>
     <div class="r-pills"><span class="r-pill">🛡 Guaranteed</span><span class="r-pill">💳 Secure</span></div>
   </div>
   <div class="r-body" id="r-body"></div>
