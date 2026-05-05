@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Terms of Service â The Dog Coach</title>
-<meta name="description" content="Terms of Service for The Dog Coach â AI-powered dog behavior coaching by Discover Group SÃ rl.">
+<title>Terms of Service — The Dog Coach</title>
+<meta name="description" content="Terms of Service for The Dog Coach — AI-powered dog behavior coaching by Discover Group Sàrl.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap" rel="stylesheet">
@@ -15,35 +15,72 @@
 html{scroll-behavior:smooth}
 body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 .wrap{max-width:980px;margin:0 auto;padding:0 24px}
-.site-nav{padding:18px 0;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:50}
-.site-logo{font-family:var(--fh);font-size:14px;font-weight:800;letter-spacing:.5px;color:var(--text);text-decoration:none}
+
+/* Nav */
+.site-nav{padding:18px 0;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:rgba(250,247,242,.92);backdrop-filter:saturate(140%) blur(8px);position:sticky;top:0;z-index:50}
+.site-logo{font-family:var(--fh);font-size:14px;font-weight:800;letter-spacing:.5px;color:var(--text);text-decoration:none;display:inline-flex;align-items:center}
 .site-nav-links{display:flex;align-items:center;gap:24px}
-.site-nav-links a{font-size:13px;color:var(--muted);text-decoration:none;font-weight:500;transition:color .15s}
-.site-nav-links a:hover,.site-nav-links a.active{color:var(--text)}
-.site-nav-cta{background:var(--orange);color:#fff;border:none;border-radius:99px;padding:9px 20px;font-family:var(--fh);font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
-.site-nav-cta:hover{opacity:.9}
+.site-nav-links a{font-size:13px;color:var(--muted);text-decoration:none;font-weight:600;transition:color .15s}
+.site-nav-links a:hover,.site-nav-links a.active{color:var(--green)}
+.site-nav-cta{background:var(--orange);color:#fff;border:none;border-radius:99px;padding:10px 22px;font-family:var(--fh);font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;box-shadow:0 4px 14px rgba(232,116,60,.32);transition:transform .15s}
+.site-nav-cta:hover{transform:translateY(-1px)}
 @media(max-width:680px){.site-nav-links{display:none}}
-.page-hero{padding:64px 0 48px;text-align:center}
-.page-h1{font-family:var(--fh);font-size:clamp(28px,5vw,52px);font-weight:800;line-height:1.1;letter-spacing:-.5px;margin-bottom:16px}
+
+/* Hero */
+.page-hero{padding:64px 0 32px;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--gp);border:1px solid rgba(45,90,74,.15);color:var(--green);font-size:12px;font-weight:700;padding:6px 14px;border-radius:99px;margin-bottom:18px}
+.page-h1{font-family:var(--fh);font-size:clamp(30px,5vw,52px);font-weight:800;line-height:1.1;letter-spacing:-.5px;margin-bottom:16px}
 .page-h1 span{color:var(--orange)}
-.page-sub{font-size:18px;color:var(--muted);max-width:600px;margin:0 auto;line-height:1.6}
-.section{padding:64px 0}
-.section-h2{font-family:var(--fh);font-size:clamp(22px,3vw,32px);font-weight:800;margin-bottom:12px;letter-spacing:-.3px}
-.section-sub{font-size:15px;color:var(--muted);line-height:1.6;margin-bottom:32px}
-.card{background:var(--white);border-radius:var(--r2);padding:32px;box-shadow:var(--sh);border:1px solid var(--border)}
-.badge{display:inline-block;padding:4px 12px;border-radius:99px;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px}
-.badge-green{background:rgba(45,90,74,.1);color:var(--green)}
-.badge-orange{background:rgba(232,116,60,.12);color:var(--orange)}
-.btn-cta{display:inline-block;background:var(--orange);color:#fff;padding:16px 36px;border-radius:99px;font-family:var(--fh);font-size:16px;font-weight:700;text-decoration:none;box-shadow:rgba(232,116,60,.38) 0 6px 22px;transition:transform .15s,box-shadow .15s;border:none;cursor:pointer}
-.btn-cta:hover{transform:translateY(-1px)}
-.site-footer{background:#1a1a18;color:#fff;padding:64px 0 0}
+.page-sub{font-size:17px;color:var(--muted);max-width:600px;margin:0 auto;line-height:1.6}
+.page-meta{margin-top:18px;font-size:13px;color:var(--muted)}
+.page-meta strong{color:var(--green);font-weight:700}
+
+/* Legal cross-links */
+.legal-cross{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:28px auto 0;max-width:680px}
+.legal-cross a{font-size:13px;color:var(--muted);text-decoration:none;font-weight:600;padding:8px 16px;border-radius:99px;border:1px solid var(--border);background:var(--white);transition:color .15s,border-color .15s}
+.legal-cross a:hover{color:var(--green);border-color:rgba(45,90,74,.3)}
+.legal-cross a.active{color:var(--green);border-color:rgba(45,90,74,.45);background:var(--gp)}
+
+/* Legal content */
+.legal-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:48px 52px;margin:40px auto;max-width:820px;box-shadow:var(--sh)}
+@media(max-width:680px){.legal-card{padding:32px 24px}}
+.legal-card .toc{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:18px 22px;margin-bottom:32px}
+.legal-card .toc-title{font-family:var(--fh);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+.legal-card .toc ol{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;counter-reset:toc}
+@media(max-width:560px){.legal-card .toc ol{grid-template-columns:1fr}}
+.legal-card .toc li{counter-increment:toc;font-size:13px}
+.legal-card .toc a{color:var(--muted);text-decoration:none;font-weight:500;transition:color .15s}
+.legal-card .toc a::before{content:counter(toc) ". ";color:var(--green);font-weight:700}
+.legal-card .toc a:hover{color:var(--green)}
+.legal-card h2{font-family:var(--fh);font-size:18px;font-weight:800;margin:32px 0 12px;color:var(--text);scroll-margin-top:90px}
+.legal-card h2:first-of-type{margin-top:0}
+.legal-card p,.legal-card ul{font-size:15px;line-height:1.75;color:var(--text);margin-bottom:14px}
+.legal-card ul{padding-left:22px}
+.legal-card ul li{margin-bottom:8px}
+.legal-card a{color:var(--green);font-weight:600;text-decoration:underline;text-underline-offset:2px;text-decoration-color:rgba(45,90,74,.3);transition:text-decoration-color .15s}
+.legal-card a:hover{text-decoration-color:var(--green)}
+.legal-card em{color:var(--muted);font-style:italic}
+.legal-card strong{color:var(--text);font-weight:700}
+
+/* Final CTA */
+.final-cta{background:var(--green);border-radius:var(--r2);padding:48px 32px;text-align:center;color:#fff;margin:48px 0;position:relative;overflow:hidden}
+.final-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 100%,rgba(232,116,60,.18),transparent 50%)}
+.final-cta>*{position:relative;z-index:1}
+.final-cta h2{font-family:var(--fh);font-size:clamp(22px,3vw,32px);font-weight:800;margin-bottom:10px;line-height:1.2}
+.final-cta p{font-size:14px;color:rgba(255,255,255,.8);margin-bottom:22px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.6}
+.btn-cta{display:inline-block;background:var(--orange);color:#fff;padding:15px 32px;border-radius:99px;font-family:var(--fh);font-size:15px;font-weight:700;text-decoration:none;box-shadow:0 6px 22px rgba(232,116,60,.38);transition:transform .15s,box-shadow .15s;border:none;cursor:pointer}
+.btn-cta:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(232,116,60,.45)}
+
+/* Footer */
+.site-footer{background:#1a1a18;color:#fff;padding:64px 0 0;margin-top:24px}
 .footer-inner{max-width:980px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:48px}
 @media(max-width:900px){.footer-inner{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.footer-inner{grid-template-columns:1fr}}
 .footer-brand-logo{font-family:var(--fh);font-size:13px;font-weight:800;letter-spacing:.5px;color:#fff;margin-bottom:14px}
 .footer-tagline{font-size:13px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:20px}
 .footer-social{display:flex;gap:12px}
-.footer-social a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none}
+.footer-social a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;transition:background .15s}
+.footer-social a:hover{background:rgba(255,255,255,.2)}
 .footer-col h4{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px}
 .footer-col ul{list-style:none}
 .footer-col ul li{margin-bottom:10px}
@@ -57,56 +94,78 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
 <body>
 <div class="wrap">
 <nav class="site-nav">
-  <a href="index.html" class="site-logo">ð¾ THE DOG COACH</a>
+  <a href="index.html" class="site-logo"><img src="LOGOFULL.png" alt="The Dog Coach" style="height:32px;width:auto;vertical-align:middle;"></a>
   <div class="site-nav-links">
     <a href="how-it-works.html">How It Works</a>
     <a href="results-gallery.html">Results</a>
     <a href="pricing.html">Pricing</a>
   </div>
-  <a href="index.html#quiz" class="site-nav-cta">Start Free â</a>
+  <a href="index.html" class="site-nav-cta">Start Free →</a>
 </nav>
 </div>
-<style>
-.legal-content{max-width:720px;margin:0 auto;padding:48px 0 80px}
-.legal-content h1{font-family:var(--fh);font-size:clamp(24px,4vw,36px);font-weight:800;margin-bottom:8px}
-.legal-content .last-updated{font-size:13px;color:var(--muted);margin-bottom:48px}
-.legal-content h2{font-family:var(--fh);font-size:18px;font-weight:800;margin:36px 0 10px;color:var(--text)}
-.legal-content p,.legal-content ul{font-size:15px;line-height:1.8;color:var(--text);margin-bottom:16px}
-.legal-content ul{padding-left:20px}
-.legal-content ul li{margin-bottom:8px}
-</style>
+
 <main>
   <div class="wrap">
-    <div class="legal-content">
-      <h1>Terms of Service</h1>
-      <p class="last-updated">Last updated: May 2026 &middot; Governed by Australian Consumer Law</p>
+    <section class="page-hero">
+      <div class="hero-badge">📜 Legal · Terms of Service</div>
+      <h1 class="page-h1">The fine print, <span>kept simple</span></h1>
+      <p class="page-sub">Plain-language terms that govern your use of The Dog Coach. Your statutory consumer rights always apply.</p>
+      <p class="page-meta">Last updated: <strong>May 2026</strong> · Governed by Australian Consumer Law</p>
 
-      <h2>1. Acceptance of Terms</h2>
-      <p>By accessing or using The Dog Coach platform ("Service") operated by Discover Group S&agrave;rl ("Company", "we", "us"), you agree to be bound by these Terms of Service and all applicable Australian laws and regulations, including the <em>Australian Consumer Law</em> (ACL) as set out in Schedule 2 of the <em>Competition and Consumer Act 2010</em> (Cth). If you do not agree, please do not use our Service.</p>
+      <div class="legal-cross">
+        <a href="terms-of-service.html" class="active">Terms of Service</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="refund-policy.html">Refund Policy</a>
+      </div>
+    </section>
 
-      <h2>2. Description of Service</h2>
+    <article class="legal-card">
+      <nav class="toc" aria-label="Table of contents">
+        <div class="toc-title">On this page</div>
+        <ol>
+          <li><a href="#acceptance">Acceptance of Terms</a></li>
+          <li><a href="#service">Description of Service</a></li>
+          <li><a href="#guarantees">Consumer Law Guarantees</a></li>
+          <li><a href="#eligibility">Eligibility</a></li>
+          <li><a href="#payment">Subscription &amp; Payment</a></li>
+          <li><a href="#gst">GST Compliance</a></li>
+          <li><a href="#cancel">Cancellation &amp; Refunds</a></li>
+          <li><a href="#use">Acceptable Use</a></li>
+          <li><a href="#ip">Intellectual Property</a></li>
+          <li><a href="#liability">Limitation of Liability</a></li>
+          <li><a href="#dispute">Dispute Resolution</a></li>
+          <li><a href="#law">Governing Law</a></li>
+          <li><a href="#changes">Changes to Terms</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="acceptance">1. Acceptance of Terms</h2>
+      <p>By accessing or using The Dog Coach platform ("Service") operated by Discover Group Sàrl ("Company", "we", "us"), you agree to be bound by these Terms of Service and all applicable Australian laws and regulations, including the <em>Australian Consumer Law</em> (ACL) as set out in Schedule 2 of the <em>Competition and Consumer Act 2010</em> (Cth). If you do not agree, please do not use our Service.</p>
+
+      <h2 id="service">2. Description of Service</h2>
       <p>The Dog Coach provides an AI-powered dog behavior coaching platform that delivers personalised training plans, daily missions, behavioural analysis, and real-time chat support. The Service is for informational and training guidance purposes only and does not constitute professional veterinary or clinical animal behaviour advice.</p>
 
-      <h2>3. Australian Consumer Law Guarantees</h2>
+      <h2 id="guarantees">3. Australian Consumer Law Guarantees</h2>
       <p>Our Service comes with guarantees that cannot be excluded under the Australian Consumer Law. You are entitled to a replacement or refund for a major failure and compensation for any other reasonably foreseeable loss or damage. You are also entitled to have the Service repaired or replaced if the Service fails to be of acceptable quality and the failure does not amount to a major failure.</p>
       <p>Nothing in these Terms limits, excludes, or modifies any consumer guarantee, right, or remedy you have under the ACL that cannot lawfully be limited, excluded, or modified.</p>
 
-      <h2>4. Eligibility</h2>
+      <h2 id="eligibility">4. Eligibility</h2>
       <p>You must be at least 18 years of age to use this Service. By using the Service, you represent that you are 18 years or older. If you are under 18, please do not use our Service.</p>
 
-      <h2>5. Subscription and Payment</h2>
+      <h2 id="payment">5. Subscription and Payment</h2>
       <p>The Service is offered on subscription plans:</p>
       <ul>
-        <li><strong>Behavioral Reset:</strong> AUD equivalent of &euro;79 / 6 months</li>
-        <li><strong>Full Access Annual:</strong> AUD equivalent of &euro;149 / year</li>
+        <li><strong>Behavioral Reset:</strong> AUD equivalent of €79 / 6 months</li>
+        <li><strong>Full Access Annual:</strong> AUD equivalent of €149 / year</li>
       </ul>
       <p>Prices displayed are inclusive of GST (Goods and Services Tax) where applicable for Australian residents. All payments are processed securely through our payment provider. Subscriptions automatically renew unless cancelled before the renewal date.</p>
 
-      <h2>6. GST Compliance</h2>
+      <h2 id="gst">6. GST Compliance</h2>
       <p>The Dog Coach is registered for GST purposes where required under the <em>A New Tax System (Goods and Services Tax) Act 1999</em> (Cth). For Australian customers, GST is included in the displayed price. Tax invoices are available upon request.</p>
 
-      <h2>7. Cancellation and Refunds</h2>
-      <p>You may cancel your subscription at any time by contacting us at <a href="mailto:contact@thedogcoach.co" style="color:var(--green)">contact@thedogcoach.co</a>. Upon cancellation:</p>
+      <h2 id="cancel">7. Cancellation and Refunds</h2>
+      <p>You may cancel your subscription at any time by contacting us at <a href="mailto:contact@thedogcoach.co">contact@thedogcoach.co</a>. Upon cancellation:</p>
       <ul>
         <li>You will retain access to the Service until the end of your current billing period</li>
         <li>No further charges will apply after cancellation</li>
@@ -114,32 +173,41 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
         <li>Your rights under the Australian Consumer Law to a refund for a major failure are not limited by this policy</li>
       </ul>
 
-      <h2>8. Acceptable Use</h2>
+      <h2 id="use">8. Acceptable Use</h2>
       <p>You agree to use the Service only for lawful purposes and in accordance with these Terms. You must not: use the Service for any unlawful purpose or in a manner that violates any applicable law; share your account credentials; reverse engineer or copy any part of the Service; or use the Service to harm animals.</p>
 
-      <h2>9. Intellectual Property</h2>
+      <h2 id="ip">9. Intellectual Property</h2>
       <p>All content, training protocols, AI models, and materials provided through the Service are the intellectual property of The Dog Coach or its licensors. You are granted a limited, non-exclusive, non-transferable licence to access and use the Service for your personal, non-commercial use.</p>
 
-      <h2>10. Limitation of Liability</h2>
+      <h2 id="liability">10. Limitation of Liability</h2>
       <p>To the extent permitted by law (and subject to your rights under the ACL), our liability to you for any loss or damage of any kind arising out of or in connection with these Terms or the Service is limited to the amount you paid for the Service in the 12 months preceding the claim.</p>
       <p>We are not liable for any indirect, incidental, special, consequential, or punitive damages, except where such limitation is prohibited by the ACL.</p>
 
-      <h2>11. Dispute Resolution</h2>
-      <p>We are committed to resolving any disputes quickly and fairly. Please contact us first at <a href="mailto:contact@thedogcoach.co" style="color:var(--green)">contact@thedogcoach.co</a>. If we cannot resolve your complaint, you may contact the relevant consumer protection authority in your state or territory, or the <strong>Australian Competition and Consumer Commission (ACCC)</strong> at <a href="https://www.accc.gov.au" style="color:var(--green)" target="_blank">accc.gov.au</a>.</p>
+      <h2 id="dispute">11. Dispute Resolution</h2>
+      <p>We are committed to resolving any disputes quickly and fairly. Please contact us first at <a href="mailto:contact@thedogcoach.co">contact@thedogcoach.co</a>. If we cannot resolve your complaint, you may contact the relevant consumer protection authority in your state or territory, or the <strong>Australian Competition and Consumer Commission (ACCC)</strong> at <a href="https://www.accc.gov.au" target="_blank" rel="noopener">accc.gov.au</a>.</p>
 
-      <h2>12. Governing Law</h2>
+      <h2 id="law">12. Governing Law</h2>
       <p>These Terms of Service are governed by the laws of the Commonwealth of Australia and the relevant state or territory laws. Any disputes are subject to the exclusive jurisdiction of Australian courts.</p>
 
-      <h2>13. Changes to Terms</h2>
+      <h2 id="changes">13. Changes to Terms</h2>
       <p>We may update these Terms from time to time. We will notify you of material changes by email or through the Service. Your continued use after changes constitutes acceptance of the updated Terms.</p>
 
-      <h2>14. Contact</h2>
-      <p>For questions about these Terms, contact us at <a href="mailto:contact@thedogcoach.co" style="color:var(--green)">contact@thedogcoach.co</a>.</p>
-    </div></main>
+      <h2 id="contact">14. Contact</h2>
+      <p>For questions about these Terms, contact us at <a href="mailto:contact@thedogcoach.co">contact@thedogcoach.co</a>.</p>
+    </article>
+
+    <div class="final-cta">
+      <h2>Ready to start your dog's transformation?</h2>
+      <p>Take the 60-second quiz and we'll build a personalized 14-day roadmap before you finish your coffee.</p>
+      <a href="index.html" class="btn-cta">Start Free Analysis →</a>
+    </div>
+  </div>
+</main>
+
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-col">
-      <div class="footer-brand-logo">ð¾ THE DOG COACH</div>
+      <div class="footer-brand-logo"><img src="LOGOFULL.png" alt="The Dog Coach" style="height:36px;width:auto;vertical-align:middle;max-height:48px;"></div>
       <p class="footer-tagline">AI behavioral coaching that turns problem dogs into great companions. Built with certified canine behaviorists.</p>
       <div class="footer-social">
         <a href="https://www.facebook.com/thedogcoach.co" target="_blank" rel="noopener" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
@@ -164,10 +232,10 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
     </div>
     <div class="footer-col">
       <h4>Contact</h4>
-      <p>Discover Group SÃ rl<br><br><a href="mailto:contact@thedogcoach.co" class="footer-contact-email">contact@thedogcoach.co</a></p>
+      <p>Discover Group Sàrl<br><br><a href="mailto:contact@thedogcoach.co" class="footer-contact-email">contact@thedogcoach.co</a></p>
     </div>
   </div>
-  <div class="footer-bottom">Â© 2026 The Dog Coach. All rights reserved.</div>
+  <div class="footer-bottom">© 2026 The Dog Coach. All rights reserved.</div>
 </footer>
 </body>
 </html>
