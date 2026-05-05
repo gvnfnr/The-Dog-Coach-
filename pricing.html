@@ -44,16 +44,8 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
 .compare-arrow{color:var(--muted);font-weight:700}
 @media(max-width:560px){.compare-strip{flex-direction:column;border-radius:var(--r)}}
 
-/* Billing toggle */
-.billing-toggle-wrap{display:flex;justify-content:center;margin:48px auto 36px;position:relative}
-.billing-toggle{display:inline-flex;background:var(--white);border:2px solid var(--border);border-radius:99px;padding:5px;gap:4px;position:relative;box-shadow:var(--sh)}
-.btab{padding:11px 24px;border-radius:99px;border:none;background:transparent;font-family:var(--fh);font-size:14px;font-weight:700;cursor:pointer;color:var(--muted);transition:color .2s}
-.btab.btab-active{background:var(--green);color:#fff}
-.save-badge{position:absolute;top:-12px;right:-8px;background:var(--orange);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:99px;letter-spacing:.04em;animation:boing .9s ease infinite;white-space:nowrap}
-@keyframes boing{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
-
 /* Plans */
-.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:760px;margin:0 auto}
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:760px;margin:48px auto 0}
 @media(max-width:680px){.pricing-grid{grid-template-columns:1fr}}
 .pricing-card{background:var(--white);border-radius:var(--r2);padding:32px 28px;border:2px solid var(--border);position:relative;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
 .pricing-card:hover{transform:translateY(-3px);box-shadow:var(--shl)}
@@ -68,8 +60,6 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
 .featured .pricing-price{color:#fff}
 .pricing-per{font-size:13px;color:var(--muted)}
 .featured .pricing-per{color:rgba(255,255,255,.7)}
-.pricing-strike{font-size:14px;color:var(--muted);text-decoration:line-through;margin-left:6px}
-.featured .pricing-strike{color:rgba(255,255,255,.55)}
 .pricing-perday{font-size:12px;color:var(--green);font-weight:700;margin-bottom:22px}
 .featured .pricing-perday{color:rgba(255,255,255,.85)}
 .pricing-divider{height:1px;background:var(--border);margin-bottom:18px}
@@ -164,32 +154,25 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
         <div class="compare-item bad">
           <span class="ico">👨‍🏫</span>
           <span class="label">Human trainer:</span>
-          <span class="value">€1,200 / yr</span>
+          <span class="value">$1,200 / yr</span>
         </div>
         <span class="compare-arrow">→</span>
         <div class="compare-item good">
           <span class="ico">🐶</span>
           <span class="label">The Dog Coach:</span>
-          <span class="value">€149 / yr</span>
+          <span class="value">$149 / yr</span>
         </div>
       </div>
     </section>
 
     <section>
-      <div class="billing-toggle-wrap">
-        <div class="billing-toggle">
-          <button class="btab" id="btab-6mo" type="button" onclick="switchTab('6mo')">6 Months</button>
-          <button class="btab btab-active" id="btab-annual" type="button" onclick="switchTab('annual')">Annual<span class="save-badge" id="save-badge">Save 60%</span></button>
-        </div>
-      </div>
-
       <div class="pricing-grid">
         <article class="pricing-card">
           <div class="pricing-name">Behavioral Reset</div>
           <div class="pricing-tag">Permanent fix roadmap for your dog's #1 challenge.</div>
-          <div class="pricing-price-row"><div class="pricing-price">€79</div></div>
-          <div class="pricing-per" id="reset-per">/ 6 months</div>
-          <div class="pricing-perday">Just €0.44 / day</div>
+          <div class="pricing-price-row"><div class="pricing-price">$79</div></div>
+          <div class="pricing-per">/ 6 months</div>
+          <div class="pricing-perday">Just $0.44 / day</div>
           <div class="pricing-divider"></div>
           <ul class="pricing-features">
             <li>6 Months Full Access</li>
@@ -202,12 +185,12 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
         </article>
 
         <article class="pricing-card featured">
-          <div class="pricing-rib">MOST POPULAR</div>
+          <div class="pricing-rib">BEST VALUE</div>
           <div class="pricing-name">Full Access Annual</div>
           <div class="pricing-tag">Everything you need for a lifetime of great behavior.</div>
-          <div class="pricing-price-row"><div class="pricing-price" id="annual-price">€149</div><span class="pricing-strike" id="annual-strike">€372</span></div>
-          <div class="pricing-per" id="annual-per">/ year</div>
-          <div class="pricing-perday" id="annual-perday">Just €0.40 / day — billed annually</div>
+          <div class="pricing-price-row"><div class="pricing-price">$149</div></div>
+          <div class="pricing-per">/ year</div>
+          <div class="pricing-perday">Just $0.40 / day — billed annually</div>
           <div class="pricing-divider"></div>
           <ul class="pricing-features">
             <li>Everything in Behavioral Reset</li>
@@ -234,7 +217,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
 
     <div class="trust-band">
       <div class="trust-band-stars">★★★★★</div>
-      <p class="trust-band-quote">"Best €149 I've ever spent on my dog. Rocky used to pull so hard my shoulder hurt — now walks are finally peaceful."</p>
+      <p class="trust-band-quote">"Best $149 I've ever spent on my dog. Rocky used to pull so hard my shoulder hurt — now walks are finally peaceful."</p>
       <p class="trust-band-author">— David K. · Rocky, German Shepherd</p>
     </div>
 
@@ -246,7 +229,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
       <div class="faq-price">
         <details class="faq-item">
           <summary>When do I get charged?</summary>
-          <div class="faq-body">Your plan starts immediately upon purchase. The Behavioral Reset is billed as a one-time 6-month payment of €79. The Full Access Annual plan is billed once per year at €149. All payments are secure and encrypted.</div>
+          <div class="faq-body">Your plan starts immediately upon purchase. The Behavioral Reset is billed as a one-time 6-month payment of $79. The Full Access Annual plan is billed once per year at $149. All payments are secure and encrypted.</div>
         </details>
         <details class="faq-item">
           <summary>How do refunds work?</summary>
@@ -254,7 +237,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
         </details>
         <details class="faq-item">
           <summary>What's the difference between the two plans?</summary>
-          <div class="faq-body">The Behavioral Reset (€79) gives you 6 months of full access with a custom behavioral profile, AI chat support, and progress tracking — perfect for solving one specific issue. The Full Access Annual (€149) includes everything plus lifetime plan updates, priority AI chat, and exclusive masterclasses for ongoing excellence.</div>
+          <div class="faq-body">The Behavioral Reset ($79) gives you 6 months of full access with a custom behavioral profile, AI chat support, and progress tracking — perfect for solving one specific issue. The Full Access Annual ($149) includes everything plus lifetime plan updates, priority AI chat, and exclusive masterclasses for ongoing excellence.</div>
         </details>
         <details class="faq-item">
           <summary>Can I switch plans?</summary>
@@ -314,33 +297,5 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
   <div class="footer-bottom">© 2026 The Dog Coach. All rights reserved.</div>
 </footer>
 
-<script>
-function switchTab(tab){
-  var btn6=document.getElementById('btab-6mo');
-  var btnAn=document.getElementById('btab-annual');
-  var price=document.getElementById('annual-price');
-  var strike=document.getElementById('annual-strike');
-  var per=document.getElementById('annual-per');
-  var perday=document.getElementById('annual-perday');
-  var save=document.getElementById('save-badge');
-  if(tab==='6mo'){
-    btn6.classList.add('btab-active');
-    btnAn.classList.remove('btab-active');
-    price.textContent='€89';
-    strike.textContent='€186';
-    per.textContent='/ 6 months';
-    perday.textContent='Just €0.49 / day — billed every 6 months';
-    save.textContent='Save 52%';
-  }else{
-    btnAn.classList.add('btab-active');
-    btn6.classList.remove('btab-active');
-    price.textContent='€149';
-    strike.textContent='€372';
-    per.textContent='/ year';
-    perday.textContent='Just €0.40 / day — billed annually';
-    save.textContent='Save 60%';
-  }
-}
-</script>
 </body>
 </html>
