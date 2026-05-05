@@ -795,7 +795,7 @@ function dn(){return A.name||'your dog'}
 function tok(s){return s.replace(/\[N\]/g,dn())}
 function ge(id){return document.getElementById(id)}
 function isEmail(v){return v&&v.indexOf('@')>0&&v.lastIndexOf('.')>v.indexOf('@')}
-function show(id){['landing','quiz','pause','result'].forEach(function(s){ge(s).classList.remove('on')});ge(id).classList.add('on')}
+function show(id){['landing','quiz','pause','result'].forEach(function(s){ge(s).classList.remove('on')});ge(id).classList.add('on');var ls=ge('land-sticky');if(ls&&id!=='landing'){ls.style.display='none';}}
 
 /* ─────────────────────────────────────────
    LANDING
