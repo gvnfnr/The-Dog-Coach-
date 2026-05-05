@@ -454,6 +454,13 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
 .faq-item summary::after{content:'+';font-size:20px;font-weight:400;color:var(--muted);transition:transform .25s,color .15s;flex-shrink:0;margin-left:12px}
 .faq-item[open] summary::after{transform:rotate(45deg);color:var(--orange)}
 .faq-body{padding:0 24px 20px;font-size:14px;color:var(--muted);line-height:1.7}
+.sec-final-cta{background:var(--bg);padding:64px 0 24px}
+.final-cta-card{background:var(--green);border-radius:var(--r2);padding:56px 32px;text-align:center;box-shadow:0 14px 44px rgba(45,90,74,.22);max-width:880px;margin:0 auto}
+.final-cta-card h2{font-family:var(--fh);font-size:clamp(26px,3.5vw,38px);font-weight:800;color:#fff;margin:0 0 14px;letter-spacing:-.3px;line-height:1.2}
+.final-cta-card p{font-size:clamp(15px,2vw,17px);color:rgba(255,255,255,.88);max-width:520px;margin:0 auto 28px;line-height:1.55}
+.final-cta-card .btn{max-width:380px;margin:0 auto}
+.final-cta-card .final-cta-helper{margin-top:14px;font-size:13px;color:rgba(255,255,255,.72)}
+@media(max-width:560px){.final-cta-card{padding:44px 22px}}
 .site-footer{background:#1a1a18;color:#fff;padding:64px 0 0}
 .footer-inner{max-width:980px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:48px}
 @media(max-width:900px){.footer-inner{grid-template-columns:1fr 1fr}}
@@ -636,6 +643,18 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
     </div>
   </section>
 
+  <!-- ── FINAL CTA ── -->
+  <section class="sec-final-cta">
+    <div class="land-wrap">
+      <div class="final-cta-card">
+        <h2>Ready to start your dog's transformation?</h2>
+        <p>Take the 60-second quiz and get a personalized 14-day roadmap built for your dog.</p>
+        <button id="start-btn-final" class="btn btn-orange">Start Your Dog's Transformation →</button>
+        <p class="final-cta-helper">Free · 60 seconds · No credit card required</p>
+      </div>
+    </div>
+  </section>
+
   <section class="sec-faq" id="faq">
     <div class="land-wrap">
       <h2 class="sec-h2" style="text-align:center">Questions? We have answers.</h2>
@@ -809,6 +828,7 @@ function startQuiz(){
 ge('start-btn').addEventListener('click',startQuiz);
 ge('start-btn-2').addEventListener('click',startQuiz);
 ge('start-btn-sticky').addEventListener('click',startQuiz);
+ge('start-btn-final').addEventListener('click',startQuiz);
 
 // Show sticky CTA on landing after scroll
 window.addEventListener('scroll',function(){
