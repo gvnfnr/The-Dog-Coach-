@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="thedogcoach-favicon.png">
 <style>
 :root{--bg:#FAF7F2;--green:#2D5A4A;--gp:rgba(45,90,74,.09);--orange:#E8743C;--text:#1A1A1A;--muted:#6B7280;--border:#E5E0D8;--white:#fff;--sh:0 2px 12px rgba(0,0,0,.06);--shl:0 8px 32px rgba(0,0,0,.11);--fh:'Sora',system-ui,sans-serif;--fb:system-ui,-apple-system,'Segoe UI',sans-serif;--r:20px;--r2:28px}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -51,6 +52,16 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
 .footer-col p{font-size:13px;color:rgba(255,255,255,.7);line-height:1.6}
 .footer-contact-email{color:var(--orange)!important;font-weight:600}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:48px;padding:20px;text-align:center;font-size:12px;color:rgba(255,255,255,.3)}
+
+.billing-toggle{display:flex;align-items:center;justify-content:center;gap:0;margin:0 auto 36px;background:#fff;border-radius:99px;padding:6px;max-width:360px;border:2px solid var(--border);position:relative}
+.btab{flex:1;padding:12px 24px;border-radius:99px;border:none;background:transparent;font-family:var(--fh);font-size:15px;font-weight:700;cursor:pointer;color:var(--muted);transition:all .2s}
+.btab-active{background:var(--green);color:#fff}
+.save-badge{position:absolute;top:-16px;right:20px;background:var(--orange);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;letter-spacing:.3px}
+.payment-logos{display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.payment-logos span{background:rgba(255,255,255,.15);color:var(--green);border:1px solid rgba(45,90,74,.2);padding:4px 10px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:.5px}
+.featured .payment-logos span{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.2)}
+.pricing-btn-outline{display:block;text-align:center;padding:16px;border-radius:99px;font-family:var(--fh);font-size:16px;font-weight:700;text-decoration:none;transition:all .15s;border:2px solid var(--border);color:var(--muted);background:#fff;margin-top:24px}
+.pricing-btn-outline:hover{border-color:var(--green);color:var(--green)}
 </style>
 </head>
 <body>
@@ -94,77 +105,140 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
 <main>
   <div class="wrap">
     <div class="page-hero">
-      <h1 class="page-h1">One Dog. <span>One Coach.</span> One Price.</h1>
-      <p class="page-sub">Less than a single session with a traditional trainer.</p>
+      <h1 class="page-h1">Give Your Dog the <span>Gift of a Stress-Free Life</span></h1>
+      <p class="page-sub">Join 50,000+ dog parents who traded frustration for peace of mind.</p>
     </div>
 
     <section class="section" style="padding-top:0">
-      <div class="pricing-grid">
+      <!-- Billing Toggle -->
+      <div class="billing-toggle">
+        <button class="btab" id="btab-6mo" onclick="switchTab('6mo')">6 Months</button>
+        <button class="btab btab-active" id="btab-annual" onclick="switchTab('annual')">Annual</button>
+        <span class="save-badge">Save 60%</span>
+      </div>
+
+      <!-- 6 Months Plans -->
+      <div class="pricing-grid" id="plans-6mo" style="display:none">
         <div class="pricing-card">
-          <div class="pricing-name">Monthly Plan</div>
-          <div class="pricing-tag">Most flexible · Cancel anytime</div>
-          <div class="pricing-price">€29</div>
-          <div class="pricing-per">/month</div>
+          <div class="pricing-name">Behavioral Reset</div>
+          <div class="pricing-tag">Permanent fix roadmap &middot; &euro;0.44/day</div>
+          <div class="pricing-price">&euro;79</div>
+          <div class="pricing-per">/6 months</div>
           <ul class="pricing-features">
-            <li>Personalized 14-day roadmap</li>
-            <li>Daily AI-coached missions</li>
-            <li>Real-time behavioral chat</li>
-            <li>Progress analytics dashboard</li>
-            <li>Breed-specific protocols</li>
-            <li>Access to full video library</li>
-            <li>30-day money-back guarantee</li>
+            <li>6 Months Full Access</li>
+            <li>Custom Behavioral Profile</li>
+            <li>AI Chat Support</li>
+            <li>Progress Tracking</li>
           </ul>
-          <a href="index.html#quiz" class="pricing-btn pricing-btn-outline">Start 7-Day Free Trial →</a>
+          <a href="index.html#quiz" class="pricing-btn pricing-btn-outline" id="cta-6mo-reset">Start Your Reset &rarr;</a>
         </div>
         <div class="pricing-card featured">
           <div class="pricing-rib">MOST POPULAR</div>
-          <div class="pricing-name">Annual Plan</div>
-          <div class="pricing-tag">€12.40/month · Save 57%</div>
-          <div class="pricing-price">€149</div>
-          <div class="pricing-per">/year · Billed annually</div>
+          <div class="pricing-name">Full Access Annual</div>
+          <div class="pricing-tag">Only &euro;0.40/day &mdash; Billed annually</div>
+          <div class="pricing-price">&euro;149</div>
+          <div class="pricing-per">/year</div>
           <ul class="pricing-features">
-            <li>Personalized 14-day roadmap</li>
-            <li>Daily AI-coached missions</li>
-            <li>Real-time behavioral chat</li>
-            <li>Progress analytics dashboard</li>
-            <li>Breed-specific protocols</li>
-            <li>Access to full video library</li>
-            <li>30-day money-back guarantee</li>
-            <li><strong>Priority AI response</strong></li>
+            <li>Complete 14-Day Roadmap</li>
+            <li>Lifetime Plan Updates</li>
+            <li>Priority AI Chat</li>
+            <li>Exclusive Masterclasses</li>
           </ul>
-          <a href="index.html#quiz" class="pricing-btn pricing-btn-filled">Start 7-Day Free Trial →</a>
+          <a href="index.html#quiz" class="pricing-btn pricing-btn-filled">Start Your Plan &rarr;</a>
+          <div class="payment-logos">
+            <span>VISA</span><span>MC</span><span>AMEX</span><span>PAYPAL</span>
+          </div>
         </div>
       </div>
-      <p style="text-align:center;margin-top:16px;font-size:13px;color:var(--muted)">No credit card required for trial · Cancel anytime</p>
+
+      <!-- Annual Plans (default) -->
+      <div class="pricing-grid" id="plans-annual">
+        <div class="pricing-card">
+          <div class="pricing-name">Behavioral Reset</div>
+          <div class="pricing-tag">Permanent fix roadmap &middot; &euro;0.44/day</div>
+          <div class="pricing-price">&euro;79</div>
+          <div class="pricing-per">/6 months</div>
+          <ul class="pricing-features">
+            <li>6 Months Full Access</li>
+            <li>Custom Behavioral Profile</li>
+            <li>AI Chat Support</li>
+            <li>Progress Tracking</li>
+          </ul>
+          <a href="index.html#quiz" class="pricing-btn pricing-btn-outline" id="cta-annual-reset">Start Your Reset &rarr;</a>
+        </div>
+        <div class="pricing-card featured">
+          <div class="pricing-rib">MOST POPULAR</div>
+          <div class="pricing-name">Full Access Annual</div>
+          <div class="pricing-tag">Only &euro;0.40/day &mdash; Billed annually</div>
+          <div class="pricing-price">&euro;149</div>
+          <div class="pricing-per">/year</div>
+          <ul class="pricing-features">
+            <li>Complete 14-Day Roadmap</li>
+            <li>Lifetime Plan Updates</li>
+            <li>Priority AI Chat</li>
+            <li>Exclusive Masterclasses</li>
+          </ul>
+          <a href="index.html#quiz" class="pricing-btn pricing-btn-filled">Start Your Plan &rarr;</a>
+          <div class="payment-logos">
+            <span>VISA</span><span>MC</span><span>AMEX</span><span>PAYPAL</span>
+          </div>
+        </div>
+      </div>
+
+      <p style="text-align:center;margin-top:16px;font-size:13px;color:var(--muted)">14-Day Money-Back Guarantee &middot; Secure Payments &middot; Trackable Progress</p>
 
       <div style="max-width:760px;margin:64px auto 0">
         <h2 class="section-h2" style="text-align:center;margin-bottom:32px">Pricing FAQ</h2>
         <div class="faq-price">
           <details class="faq-item">
             <summary>When do I get charged?</summary>
-            <div class="faq-body">Your 7-day free trial starts immediately, no credit card required. You'll only be asked for payment information if you decide to continue after the trial. If you choose the annual plan, you're billed once per year. Monthly plans are billed on the same date each month.</div>
+            <div class="faq-body">Your plan starts immediately upon purchase. The Behavioral Reset is billed as a one-time 6-month payment of &euro;79. The Full Access Annual plan is billed once per year at &euro;149. All payments are secure and encrypted.</div>
           </details>
           <details class="faq-item">
             <summary>How do refunds work?</summary>
-            <div class="faq-body">All paid plans include a 30-day money-back guarantee. If you're not satisfied within 30 days of your first payment, email us at contact@thedogcoach.co with the subject "Refund Request" and we'll refund 100% — no questions asked. See our <a href="refund-policy.html" style="color:var(--green)">Refund Policy</a> for details.</div>
+            <div class="faq-body">All plans include a 14-day money-back guarantee. If you're not satisfied within 14 days of purchase, contact us at support@thedogcoach.co and we'll process your refund with no questions asked.</div>
           </details>
           <details class="faq-item">
-            <summary>Can I switch from monthly to annual?</summary>
-            <div class="faq-body">Yes. You can upgrade from monthly to annual at any time from your account dashboard. We'll credit your unused monthly days toward the annual plan, so you never pay twice for the same period.</div>
+            <summary>What's the difference between the two plans?</summary>
+            <div class="faq-body">The Behavioral Reset (&euro;79) gives you 6 months of full access with a custom behavioral profile, AI chat support, and progress tracking &mdash; perfect for solving specific issues. The Full Access Annual (&euro;149) includes everything plus lifetime plan updates, priority AI chat, and exclusive masterclasses for ongoing excellence.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Can I switch plans?</summary>
+            <div class="faq-body">Yes! You can upgrade from the Behavioral Reset to Full Access Annual at any time. Contact our support team and we'll apply a prorated credit toward your upgrade.</div>
           </details>
         </div>
       </div>
     </section>
   </div>
 </main>
+
+<script>
+function switchTab(tab) {
+  const plans6mo = document.getElementById('plans-6mo');
+  const plansAnnual = document.getElementById('plans-annual');
+  const btn6mo = document.getElementById('btab-6mo');
+  const btnAnnual = document.getElementById('btab-annual');
+  if (tab === '6mo') {
+    plans6mo.style.display = 'grid';
+    plansAnnual.style.display = 'none';
+    btn6mo.classList.add('btab-active');
+    btnAnnual.classList.remove('btab-active');
+  } else {
+    plans6mo.style.display = 'none';
+    plansAnnual.style.display = 'grid';
+    btnAnnual.classList.add('btab-active');
+    btn6mo.classList.remove('btab-active');
+  }
+}
+</script>
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-col">
       <div class="footer-brand-logo">🐾 THE DOG COACH</div>
       <p class="footer-tagline">AI behavioral coaching that turns problem dogs into great companions. Built with certified canine behaviorists.</p>
       <div class="footer-social">
-        <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-        <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.facebook.com/thedogcoach.co" target="_blank" rel="noopener" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://www.instagram.com/thedogcoach.co" target="_blank" rel="noopener" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
       </div>
     </div>
     <div class="footer-col">
