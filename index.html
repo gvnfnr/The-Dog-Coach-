@@ -85,10 +85,10 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
   overflow:hidden;
 }
 @media(min-width:768px){.dog-visual{margin:0 auto}}
-.dog-visual img{width:100%;height:100%;object-fit:contain;}
+.dog-visual img{width:100%;height:100%;object-fit:cover;object-position:center 20%;}
 .dog-visual::after{
   content:'';position:absolute;inset:-8px;border-radius:50%;
-  border:3px solid rgba(45,90,74,.12);
+  border:3px solid rgba(45,90,74,.5);
 }
 .pulse-ring{
   position:absolute;inset:-16px;border-radius:50%;
