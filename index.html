@@ -830,6 +830,12 @@ ge('start-btn-2').addEventListener('click',startQuiz);
 ge('start-btn-sticky').addEventListener('click',startQuiz);
 ge('start-btn-final').addEventListener('click',startQuiz);
 
+// Auto-start quiz when arriving via ?quiz=1 or #quiz-start
+(function(){
+  var shouldStart = /[?&]quiz=1\b/.test(window.location.search) || window.location.hash === '#quiz-start';
+  if(shouldStart){ startQuiz(); }
+})();
+
 // Show sticky CTA on landing after scroll
 window.addEventListener('scroll',function(){
   var ls=ge('land-sticky');
