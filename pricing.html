@@ -15,8 +15,6 @@
 html{scroll-behavior:smooth}
 body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 .wrap{max-width:980px;margin:0 auto;padding:0 24px}
-
-/* Nav */
 .site-nav{padding:18px 0;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:rgba(250,247,242,.92);backdrop-filter:saturate(140%) blur(8px);position:sticky;top:0;z-index:50}
 .site-logo{font-family:var(--fh);font-size:14px;font-weight:800;letter-spacing:.5px;color:var(--text);text-decoration:none;display:inline-flex;align-items:center}
 .site-nav-links{display:flex;align-items:center;gap:24px}
@@ -25,15 +23,11 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
 .site-nav-cta{background:var(--orange);color:#fff;border:none;border-radius:99px;padding:10px 22px;font-family:var(--fh);font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;box-shadow:0 4px 14px rgba(232,116,60,.32);transition:transform .15s}
 .site-nav-cta:hover{transform:translateY(-1px)}
 @media(max-width:680px){.site-nav-links{display:none}}
-
-/* Hero */
 .page-hero{padding:64px 0 32px;text-align:center}
 .hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--gp);border:1px solid rgba(45,90,74,.15);color:var(--green);font-size:12px;font-weight:700;padding:6px 14px;border-radius:99px;margin-bottom:18px}
 .page-h1{font-family:var(--fh);font-size:clamp(30px,5vw,52px);font-weight:800;line-height:1.1;letter-spacing:-.5px;margin-bottom:16px}
 .page-h1 span{color:var(--orange)}
 .page-sub{font-size:17px;color:var(--muted);max-width:600px;margin:0 auto;line-height:1.6}
-
-/* Comparison strip */
 .compare-strip{display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap;margin:28px auto 0;padding:18px 24px;background:var(--white);border:1px solid var(--border);border-radius:99px;box-shadow:var(--sh);max-width:680px}
 .compare-item{display:flex;align-items:center;gap:8px;font-size:13px}
 .compare-item .ico{font-size:18px}
@@ -43,8 +37,6 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
 .compare-item.good .value{color:var(--green)}
 .compare-arrow{color:var(--muted);font-weight:700}
 @media(max-width:560px){.compare-strip{flex-direction:column;border-radius:var(--r)}}
-
-/* Plans */
 .pricing-grid{display:grid;grid-template-columns:1fr;gap:20px;max-width:420px;margin:48px auto 0}
 .pricing-card{background:var(--white);border-radius:var(--r2);padding:32px 28px;border:2px solid var(--border);position:relative;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
 .pricing-card:hover{transform:translateY(-3px);box-shadow:var(--shl)}
@@ -75,18 +67,13 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
 .pricing-btn-filled:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(232,116,60,.45)}
 .payment-logos{display:flex;gap:6px;justify-content:center;margin-top:14px;flex-wrap:wrap}
 .payment-logos span{background:rgba(255,255,255,.15);color:rgba(255,255,255,.85);padding:4px 10px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:.05em}
-
 .guarantee-row{display:flex;align-items:center;justify-content:center;gap:24px;margin:28px auto 0;flex-wrap:wrap;max-width:680px}
 .guarantee-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
 .guarantee-item .ico{font-size:16px}
-
-/* Trust band */
 .trust-band{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:36px 32px;margin:64px 0;text-align:center;box-shadow:var(--sh)}
 .trust-band-stars{color:#F59E0B;font-size:18px;margin-bottom:10px}
 .trust-band-quote{font-family:var(--fh);font-size:18px;font-weight:700;line-height:1.5;max-width:640px;margin:0 auto 14px;color:var(--text)}
 .trust-band-author{font-size:13px;color:var(--muted)}
-
-/* FAQ */
 .section-eyebrow{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:10px;padding:5px 12px;background:rgba(232,116,60,.1);border-radius:99px}
 .section-h2{font-family:var(--fh);font-size:clamp(24px,3.4vw,36px);font-weight:800;margin-bottom:14px;letter-spacing:-.3px;line-height:1.2}
 .faq-price{max-width:680px;margin:32px auto 0;display:flex;flex-direction:column;gap:6px}
@@ -98,8 +85,6 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
 .faq-item summary::after{content:'+';font-size:20px;font-weight:400;color:var(--muted);transition:transform .25s,color .15s;margin-left:12px;flex-shrink:0}
 .faq-item[open] summary::after{transform:rotate(45deg);color:var(--orange)}
 .faq-body{padding:0 22px 18px;font-size:14px;color:var(--muted);line-height:1.7}
-
-/* Final CTA */
 .final-cta{background:var(--green);border-radius:var(--r2);padding:56px 32px;text-align:center;color:#fff;margin:48px 0;position:relative;overflow:hidden}
 .final-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 100%,rgba(232,116,60,.18),transparent 50%)}
 .final-cta>*{position:relative;z-index:1}
@@ -108,8 +93,6 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
 .btn-cta{display:inline-block;background:var(--orange);color:#fff;padding:16px 36px;border-radius:99px;font-family:var(--fh);font-size:16px;font-weight:700;text-decoration:none;box-shadow:0 6px 22px rgba(232,116,60,.38);transition:transform .15s,box-shadow .15s;border:none;cursor:pointer}
 .btn-cta:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(232,116,60,.45)}
 .cta-fineprint{margin-top:14px;font-size:13px;color:rgba(255,255,255,.6)}
-
-/* Footer */
 .site-footer{background:#1a1a18;color:#fff;padding:64px 0 0;margin-top:24px}
 .footer-inner{max-width:980px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:48px}
 @media(max-width:900px){.footer-inner{grid-template-columns:1fr 1fr}}
@@ -148,7 +131,6 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
       <div class="hero-badge">💰 Less than a single trainer session</div>
       <h1 class="page-h1">Give Your Dog the <span>Gift of a Stress-Free Life</span></h1>
       <p class="page-sub">Join 50,000+ dog parents who traded frustration for peace of mind. 14-day money-back guarantee.</p>
-
       <div class="compare-strip">
         <div class="compare-item bad">
           <span class="ico">👨‍🏫</span>
@@ -175,7 +157,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
           <div class="pricing-perday">Just $0.35 / day — billed annually</div>
           <div class="pricing-divider"></div>
           <ul class="pricing-features">
-            <li>Complete 14-Day Roadmap</li>
+            <li>Personalized Training Roadmap</li>
             <li>Custom Behavioral Profile</li>
             <li>Lifetime Plan Updates</li>
             <li>Priority AI Chat</li>
@@ -188,7 +170,6 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
           </div>
         </article>
       </div>
-
       <div class="guarantee-row">
         <div class="guarantee-item"><span class="ico">🔄</span> 14-day money-back</div>
         <div class="guarantee-item"><span class="ico">🔒</span> Secure payments</div>
@@ -215,11 +196,11 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
         </details>
         <details class="faq-item">
           <summary>How do refunds work?</summary>
-          <div class="faq-body">Every plan includes a 14-day money-back guarantee. If you're not satisfied within 14 days of purchase, contact us at <a href="mailto:contact@thedogcoach.co" style="color:var(--green);font-weight:600">contact@thedogcoach.co</a> and we'll process your refund — no questions asked.</div>
+          <div class="faq-body">Every plan includes a 14-day money-back guarantee. If you're not satisfied within 14 days of purchase, contact us at <a href="mailto:contact@thedogcoach.co" style="color:var(--green);font-weight:600">contact@thedogcoach.co</a> and we'll process your refund, no questions asked.</div>
         </details>
         <details class="faq-item">
           <summary>What's included in Full Access Annual?</summary>
-          <div class="faq-body">Full Access Annual ($129/year) includes the complete 14-day roadmap, a custom behavioral profile, priority AI chat, exclusive masterclasses, and lifetime plan updates — everything you need for a lifetime of great behavior.</div>
+          <div class="faq-body">Full Access Annual ($129/year) includes the complete 14-day roadmap, a custom behavioral profile, priority AI chat, exclusive masterclasses, and lifetime plan updates, everything you need for a lifetime of great behavior.</div>
         </details>
         <details class="faq-item">
           <summary>Will it work for my breed?</summary>
@@ -227,7 +208,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
         </details>
         <details class="faq-item">
           <summary>Can I cancel anytime?</summary>
-          <div class="faq-body">Absolutely. Cancel with one click from your dashboard — no phone calls, no emails required. Annual subscribers can cancel future renewals at any time, and the 14-day money-back guarantee always applies.</div>
+          <div class="faq-body">Absolutely. Cancel with one click from your dashboard. No phone calls or emails required. Annual subscribers can cancel future renewals at any time, and the 14-day money-back guarantee always applies.</div>
         </details>
       </div>
     </section>
@@ -274,6 +255,5 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
   </div>
   <div class="footer-bottom">© 2026 The Dog Coach. All rights reserved.</div>
 </footer>
-
 </body>
 </html>
