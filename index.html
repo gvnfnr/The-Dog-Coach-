@@ -979,7 +979,29 @@ function renderQ(idx){
     area.innerHTML=html;
     var einp=ge('ei');
     ctaBar.style.display='block';ctaBtn.disabled=!isEmail(ev);ctaBtn.textContent='Send My Roadmap →';
-    ctaFn=function(){var v=einp.value.trim();if(!isEmail(v))return;A.email=v;doAdv(idx);};
+    ctaFn=async function(){
+  var v=einp.value.trim();
+  if(!isEmail(v))return;
+  A.email=v;
+  
+  var supabaseClient=window.supabase.createClient(
+    'https://rdtejjxeldtnpvzofhsl.supabase.co',
+    'sb_publishable_2YEbGAtKAS0X-fyDcYqVkA_t6OW9tha'
+  );
+  
+  var sessionId=crypto.randomUUID();
+  
+  await supabaseClient.from('dog_profiles').insert({
+    session_id: sessionId,
+    breed: A.breed||'Unknown',
+    age: A.age||'Unknown',
+    problem: A.issue||'General behavior',
+    plan_day: 1
+  });
+  
+  localStorage.setItem('coaching_session_id', sessionId);
+  doAdv(idx);
+};
     einp.addEventListener('input',function(){ctaBtn.disabled=!isEmail(einp.value);});
     einp.addEventListener('keydown',function(e){if(e.key==='Enter'&&ctaFn)ctaFn();});
     setTimeout(function(){einp.focus();},80);
