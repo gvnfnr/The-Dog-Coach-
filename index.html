@@ -999,8 +999,8 @@ function renderQ(idx){
     plan_day: 1
   });
   
-  localStorage.setItem('coaching_session_id', sessionId);
-  doAdv(idx);
+ localStorage.setItem('coaching_session_id', sessionId);
+window.location.href = 'https://app.thedogcoach.co/dashboard/coach?session=' + sessionId;
 };
     einp.addEventListener('input',function(){ctaBtn.disabled=!isEmail(einp.value);});
     einp.addEventListener('keydown',function(e){if(e.key==='Enter'&&ctaFn)ctaFn();});
