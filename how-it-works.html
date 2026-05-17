@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>How It Works — The Dog Coach</title>
+<title>How It Works â The Dog Coach</title>
 <meta name="description" content="Learn how our 3-step AI coaching system transforms problem dogs into great companions in 14 days.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -120,6 +120,25 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
 .footer-col p{font-size:13px;color:rgba(255,255,255,.7);line-height:1.6}
 .footer-contact-email{color:var(--orange)!important;font-weight:600}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:48px;padding:20px;text-align:center;font-size:12px;color:rgba(255,255,255,.3)}
+
+/* Programs section */
+.programs-section{padding:56px 0}
+.programs-banner{background:linear-gradient(135deg,var(--green) 0%,#1d3d2f 100%);border-radius:var(--r2);padding:52px 48px;color:#fff;text-align:center;position:relative;overflow:hidden}
+.programs-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(232,116,60,.18),transparent 55%)}
+.programs-banner>*{position:relative;z-index:1}
+.programs-eyebrow{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(232,116,60,.95);margin-bottom:12px;padding:5px 14px;background:rgba(232,116,60,.15);border-radius:99px;border:1px solid rgba(232,116,60,.25)}
+.programs-h2{font-family:var(--fh);font-size:clamp(26px,4vw,42px);font-weight:800;margin-bottom:14px;line-height:1.15;letter-spacing:-.4px}
+.programs-h2 span{color:var(--orange)}
+.programs-sub{font-size:16px;color:rgba(255,255,255,.75);max-width:560px;margin:0 auto 36px;line-height:1.65}
+.programs-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:36px}
+@media(max-width:900px){.programs-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.programs-grid{grid-template-columns:repeat(2,1fr)}}
+.program-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:14px 10px;transition:background .2s,transform .2s}
+.program-pill:hover{background:rgba(255,255,255,.18);transform:translateY(-2px)}
+.program-pill-icon{font-size:22px;margin-bottom:8px}
+.program-pill-name{font-size:12px;font-weight:700;color:#fff;line-height:1.3}
+.programs-cta-row{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+.programs-count{font-size:13px;color:rgba(255,255,255,.6)}
 </style>
 </head>
 <body>
@@ -131,7 +150,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
     <a href="results-gallery.html">Results</a>
     <a href="pricing.html">Pricing</a>
   </div>
-  <a href="index.html?quiz=1" class="site-nav-cta">Start Free →</a>
+  <a href="index.html?quiz=1" class="site-nav-cta">Start Free â</a>
 </nav>
 </div>
 
@@ -139,13 +158,13 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
   <div class="wrap">
     <section class="page-hero">
       <div>
-        <div class="hero-badge"><span style="color:#F59E0B">★★★★★</span> Trusted by 50,000+ owners</div>
+        <div class="hero-badge"><span style="color:#F59E0B">âââââ</span> Trusted by 50,000+ owners</div>
         <h1 class="page-h1">From Problem Dog to <span>Proud Owner</span> in 14 Days</h1>
-        <p class="page-sub">A 3-step system built on behavioral science — not generic commands. Personalized for your dog's breed, age, and exact challenge.</p>
+        <p class="page-sub">A 3-step system built on behavioral science â not generic commands. Personalized for your dog's breed, age, and exact challenge.</p>
         <div class="hero-trust">
-          <span>✓ Free analysis</span>
-          <span>⏱ 60 seconds</span>
-          <span>🔒 No credit card</span>
+          <span>â Free analysis</span>
+          <span>â± 60 seconds</span>
+          <span>ð No credit card</span>
         </div>
       </div>
       <div class="hero-visual">
@@ -165,7 +184,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
       <div class="stat-div"></div>
       <div class="stat-item"><div class="stat-num">14 DAYS</div><div class="stat-lbl">AVG FIX TIME</div></div>
       <div class="stat-div"></div>
-      <div class="stat-item"><div class="stat-num">4.9★</div><div class="stat-lbl">APP RATING</div></div>
+      <div class="stat-item"><div class="stat-num">4.9â</div><div class="stat-lbl">APP RATING</div></div>
     </div>
   </div>
 
@@ -183,7 +202,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
           <div>
             <span class="step-badge">Step 1</span>
             <h3 class="step-title">60-Second Quiz</h3>
-            <p class="step-text">Tell us about your dog's breed, age, energy level, and the specific behaviors you want to fix. Our AI maps your unique challenge — including breed-specific tendencies, common triggers, and the root causes most likely behind the behavior. The same behavioral intake a certified trainer would use, in under a minute.</p>
+            <p class="step-text">Tell us about your dog's breed, age, energy level, and the specific behaviors you want to fix. Our AI maps your unique challenge â including breed-specific tendencies, common triggers, and the root causes most likely behind the behavior. The same behavioral intake a certified trainer would use, in under a minute.</p>
           </div>
           <div class="step-img"><img src="https://images.unsplash.com/photo-1561037404-61cd46aa615b?w=600&q=80" alt="Friendly Jack Russell Terrier" loading="lazy"></div>
         </article>
@@ -193,7 +212,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
           <div>
             <span class="step-badge">Step 2</span>
             <h3 class="step-title">Your Custom 14-Day Roadmap</h3>
-            <p class="step-text">You receive a personalized plan: daily missions, training sequences, and behavioral triggers explained in plain language. No generic "sit, stay, heel" — every mission is built around your dog's profile, your lifestyle, and the exact behavior you're trying to change. The roadmap adapts weekly based on progress.</p>
+            <p class="step-text">You receive a personalized plan: daily missions, training sequences, and behavioral triggers explained in plain language. No generic "sit, stay, heel" â every mission is built around your dog's profile, your lifestyle, and the exact behavior you're trying to change. The roadmap adapts weekly based on progress.</p>
           </div>
           <div class="step-img"><img src="bulldog-hoodie.jpg" alt="French bulldog ready for daily mission" loading="lazy"></div>
         </article>
@@ -202,11 +221,37 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
           <div class="step-num">03</div>
           <div>
             <span class="step-badge">Step 3</span>
-            <h3 class="step-title">Daily 5–15 Min Sessions</h3>
-            <p class="step-text">Follow bite-sized video missions designed for real life — no dog park, no equipment, no trainer required. The AI coach adjusts difficulty based on your dog's progress. Check in daily. See results weekly. Most owners report noticeable improvement within the first 5–7 days of consistent practice.</p>
+            <h3 class="step-title">Daily 5â15 Min Sessions</h3>
+            <p class="step-text">Follow bite-sized video missions designed for real life â no dog park, no equipment, no trainer required. The AI coach adjusts difficulty based on your dog's progress. Check in daily. See results weekly. Most owners report noticeable improvement within the first 5â7 days of consistent practice.</p>
           </div>
           <div class="step-img"><img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=80" alt="Happy dog completing a training session" loading="lazy"></div>
         </article>
+      </div>
+    </section>
+
+    <section class="programs-section">
+      <div class="wrap">
+        <div class="programs-banner">
+          <span class="programs-eyebrow">What's Inside</span>
+          <h2 class="programs-h2">One membership. <span>10+ specialized programs.</span></h2>
+          <p class="programs-sub">Every plan is built for your dog's exact problem — from leash pulling to separation anxiety. You get instant access to the full library the moment you start.</p>
+          <div class="programs-grid">
+            <div class="program-pill"><div class="program-pill-icon">🐾</div><div class="program-pill-name">Leash Pulling</div></div>
+            <div class="program-pill"><div class="program-pill-icon">😰</div><div class="program-pill-name">Separation Anxiety</div></div>
+            <div class="program-pill"><div class="program-pill-icon">🔊</div><div class="program-pill-name">Excessive Barking</div></div>
+            <div class="program-pill"><div class="program-pill-icon">🦮</div><div class="program-pill-name">Recall & Off-Leash</div></div>
+            <div class="program-pill"><div class="program-pill-icon">🐕</div><div class="program-pill-name">Dog Reactivity</div></div>
+            <div class="program-pill"><div class="program-pill-icon">🏠</div><div class="program-pill-name">House Training</div></div>
+            <div class="program-pill"><div class="program-pill-icon">😬</div><div class="program-pill-name">Fear & Aggression</div></div>
+            <div class="program-pill"><div class="program-pill-icon">🧠</div><div class="program-pill-name">Focus & Impulse</div></div>
+            <div class="program-pill"><div class="program-pill-icon">🤝</div><div class="program-pill-name">Socialization</div></div>
+            <div class="program-pill"><div class="program-pill-icon">✨</div><div class="program-pill-name">+ More Programs</div></div>
+          </div>
+          <div class="programs-cta-row">
+            <a href="index.html?quiz=1" class="btn-cta">Find My Program →</a>
+            <span class="programs-count">All 10+ programs included. No upsells.</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -218,9 +263,9 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
         <div class="science-text">
           <span class="section-eyebrow">The Method</span>
           <h2 class="section-h2" style="margin-bottom:18px">The Science Behind It</h2>
-          <p>The Dog Coach is built on the gold standard of modern canine behavioral science: positive reinforcement combined with systematic desensitization. Unlike traditional obedience training that focuses on commands, we address the root cause of problem behaviors — almost always rooted in anxiety, unmet needs, or miscommunication.</p>
-          <p>Our protocols are developed with certified canine behaviorists and reviewed against peer-reviewed research in applied animal behavior. Every training sequence is force-free — we never recommend punishment, corrections, or aversive tools.</p>
-          <p>The AI layer personalizes at a scale no single trainer could match. By analyzing patterns across 50,000+ successful cases, the model predicts which intervention works best for your specific dog — and adjusts in real time based on your daily check-ins.</p>
+          <p>The Dog Coach is built on the gold standard of modern canine behavioral science: positive reinforcement combined with systematic desensitization. Unlike traditional obedience training that focuses on commands, we address the root cause of problem behaviors â almost always rooted in anxiety, unmet needs, or miscommunication.</p>
+          <p>Our protocols are developed with certified canine behaviorists and reviewed against peer-reviewed research in applied animal behavior. Every training sequence is force-free â we never recommend punishment, corrections, or aversive tools.</p>
+          <p>The AI layer personalizes at a scale no single trainer could match. By analyzing patterns across 50,000+ successful cases, the model predicts which intervention works best for your specific dog â and adjusts in real time based on your daily check-ins.</p>
         </div>
       </div>
 
@@ -230,19 +275,19 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
       </div>
       <div class="pillar-grid">
         <div class="pillar">
-          <div class="pillar-ico">🧠</div>
+          <div class="pillar-ico">ð§ </div>
           <div class="pillar-title">AI-Personalized</div>
-          <div class="pillar-text">Trained on 50,000+ cases across 150+ breeds — your plan is tailored, not templated.</div>
+          <div class="pillar-text">Trained on 50,000+ cases across 150+ breeds â your plan is tailored, not templated.</div>
         </div>
         <div class="pillar">
-          <div class="pillar-ico">🛡️</div>
+          <div class="pillar-ico">ð¡ï¸</div>
           <div class="pillar-title">Force-Free Methods</div>
           <div class="pillar-text">Vet-endorsed positive reinforcement and desensitization. No shock, no choke, no fear.</div>
         </div>
         <div class="pillar">
-          <div class="pillar-ico">⏱️</div>
+          <div class="pillar-ico">â±ï¸</div>
           <div class="pillar-title">Built for Real Life</div>
-          <div class="pillar-text">5–15 minutes a day. No dog park, no equipment, no time off work required.</div>
+          <div class="pillar-text">5â15 minutes a day. No dog park, no equipment, no time off work required.</div>
         </div>
       </div>
     </section>
@@ -250,8 +295,8 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
     <div class="final-cta">
       <h2>Ready to start your dog's transformation?</h2>
       <p>Take the 60-second quiz and get a personalized 14-day roadmap built for your dog.</p>
-      <a href="index.html?quiz=1" class="btn-cta">Start Your Dog's Transformation →</a>
-      <p class="cta-fineprint">Free · 60 seconds · No credit card required</p>
+      <a href="index.html?quiz=1" class="btn-cta">Start Your Dog's Transformation â</a>
+      <p class="cta-fineprint">Free Â· 60 seconds Â· No credit card required</p>
     </div>
   </div>
 </main>
@@ -284,10 +329,10 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
     </div>
     <div class="footer-col">
       <h4>Contact</h4>
-      <p>Discover Group Sàrl<br><br><a href="mailto:contact@thedogcoach.co" class="footer-contact-email">contact@thedogcoach.co</a></p>
+      <p>Discover Group SÃ rl<br><br><a href="mailto:contact@thedogcoach.co" class="footer-contact-email">contact@thedogcoach.co</a></p>
     </div>
   </div>
-  <div class="footer-bottom">© 2026 The Dog Coach. All rights reserved.</div>
+  <div class="footer-bottom">Â© 2026 The Dog Coach. All rights reserved.</div>
 </footer>
 </body>
 </html>
