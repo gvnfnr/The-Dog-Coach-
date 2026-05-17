@@ -151,12 +151,12 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
 
   <div class="wrap">
     <div class="filter-row" role="tablist" aria-label="Filter results by issue">
-      <button class="filter-chip active" type="button">All Stories</button>
-      <button class="filter-chip" type="button">Barking</button>
-      <button class="filter-chip" type="button">Anxiety</button>
-      <button class="filter-chip" type="button">Reactivity</button>
-      <button class="filter-chip" type="button">Recall</button>
-      <button class="filter-chip" type="button">Jumping</button>
+      <button class="filter-chip active" type="button" data-filter="all">All Stories</button>
+      <button class="filter-chip" type="button" data-filter="barking">Barking</button>
+      <button class="filter-chip" type="button" data-filter="anxiety">Anxiety</button>
+      <button class="filter-chip" type="button" data-filter="reactivity">Reactivity</button>
+      <button class="filter-chip" type="button" data-filter="recall">Recall</button>
+      <button class="filter-chip" type="button" data-filter="jumping">Jumping</button>
     </div>
 
     <section>
@@ -164,7 +164,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
         <article class="story-card">
           <div class="story-img">
             <img src="https://images.unsplash.com/photo-1561037404-61cd46aa615b?w=600&q=80" alt="Max the Border Collie" loading="lazy">
-            <span class="story-tag">HUMPING ELIMINATED</span>
+            <span class="story-tag" data-category="humping">HUMPING ELIMINATED</span>
           </div>
           <div class="story-body">
             <h3 class="story-name">Max</h3>
@@ -180,7 +180,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
         <article class="story-card">
           <div class="story-img">
             <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=80" alt="Luna the Dachshund" loading="lazy">
-            <span class="story-tag">REACTIVITY GONE</span>
+            <span class="story-tag" data-category="reactivity">REACTIVITY GONE</span>
           </div>
           <div class="story-body">
             <h3 class="story-name">Luna</h3>
@@ -196,7 +196,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
         <article class="story-card">
           <div class="story-img">
             <img src="https://images.unsplash.com/photo-1544568100-847a948585b9?w=600&q=80" alt="Charlie the Golden Retriever" loading="lazy">
-            <span class="story-tag">RECALL ACHIEVED</span>
+            <span class="story-tag" data-category="recall">RECALL ACHIEVED</span>
           </div>
           <div class="story-body">
             <h3 class="story-name">Charlie</h3>
@@ -212,7 +212,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
         <article class="story-card">
           <div class="story-img">
             <img src="huncher.jpg" alt="Bella the German Shepherd" loading="lazy">
-            <span class="story-tag">ANXIETY RESOLVED</span>
+            <span class="story-tag" data-category="anxiety">ANXIETY RESOLVED</span>
           </div>
           <div class="story-body">
             <h3 class="story-name">Bella</h3>
@@ -228,7 +228,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
         <article class="story-card">
           <div class="story-img">
             <img src="bulldog-hoodie.jpg" alt="Milo the French Bulldog" loading="lazy">
-            <span class="story-tag">BARKING STOPPED</span>
+            <span class="story-tag" data-category="barking">BARKING STOPPED</span>
           </div>
           <div class="story-body">
             <h3 class="story-name">Milo</h3>
@@ -244,7 +244,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
         <article class="story-card">
           <div class="story-img">
             <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=600&q=80" alt="Daisy the Labrador" loading="lazy">
-            <span class="story-tag">JUMPING FIXED</span>
+            <span class="story-tag" data-category="jumping">JUMPING FIXED</span>
           </div>
           <div class="story-body">
             <h3 class="story-name">Daisy</h3>
@@ -338,10 +338,16 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
 
 <script>
 document.querySelectorAll('.filter-chip').forEach(function(chip){
-  chip.addEventListener('click',function(){
-    document.querySelectorAll('.filter-chip').forEach(function(c){c.classList.remove('active');});
-    chip.classList.add('active');
-  });
+    chip.addEventListener('click',function(){
+          document.querySelectorAll('.filter-chip').forEach(function(c){c.classList.remove('active');});
+          chip.classList.add('active');
+          var filter=chip.getAttribute('data-filter');
+          document.querySelectorAll('.story-card').forEach(function(card){
+                  var tag=card.querySelector('.story-tag');
+                  var cat=tag?tag.getAttribute('data-category'):'';
+                  card.style.display=(filter==='all'||cat===filter)?'':'none';
+          });
+    });
 });
 </script>
 </body>
