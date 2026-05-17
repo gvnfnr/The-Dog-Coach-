@@ -488,7 +488,10 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
   <div class="land-wrap">
     <nav class="land-nav">
       <div class="land-logo"><img src="LOGOFULL.png" alt="The Dog Coach" style="height:32px;width:auto;vertical-align:middle;"></div>
-      <div class="land-nav-trust"><span style="color:#F59E0B">★★★★★</span> 50,000+ owners</div>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <div class="land-nav-trust"><span style="color:#F59E0B">★★★★★</span> 50,000+ owners</div>
+        <a href="https://app.thedogcoach.co/login" style="background:#2D5016;color:white;padding:10px 20px;border-radius:25px;font-size:14px;font-weight:700;text-decoration:none;white-space:nowrap;">My Account →</a>
+      </div>
     </nav>
   </div>
 
@@ -1000,6 +1003,8 @@ function renderQ(idx){
     breed: A.breed||'Unknown',
     age: A.age||'Unknown',
     problem: A.issue||'General behavior',
+    dog_name: A.name||'',
+    email: A.email||'',
     plan_day: 1
   });
   
