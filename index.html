@@ -998,18 +998,20 @@ function renderQ(idx){
   
   var sessionId=crypto.randomUUID();
   
+  // Save dog_name + email locally as fallback (Supabase columns don't exist yet)
+  if (A.name) localStorage.setItem('thedogcoach_dog_name', A.name);
+  if (A.email) localStorage.setItem('thedogcoach_email', A.email);
+
   await supabaseClient.from('dog_profiles').insert({
     session_id: sessionId,
     breed: A.breed||'Unknown',
     age: A.age||'Unknown',
     problem: A.issue||'General behavior',
-    dog_name: A.name||'',
-    email: A.email||'',
     plan_day: 1
   });
-  
+
  localStorage.setItem('coaching_session_id', sessionId);
-window.location.href = 'https://app.thedogcoach.co/result?session=' + sessionId;
+window.location.href = 'https://app.thedogcoach.co/result?session=' + sessionId + '&name=' + encodeURIComponent(A.name||'');
 };
     einp.addEventListener('input',function(){ctaBtn.disabled=!isEmail(einp.value);});
     einp.addEventListener('keydown',function(e){if(e.key==='Enter'&&ctaFn)ctaFn();});
