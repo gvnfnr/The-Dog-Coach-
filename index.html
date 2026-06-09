@@ -824,9 +824,15 @@ function pushLeadToKlaviyo(a){
     headers:{'revision':'2024-10-15','content-type':'application/json'},
     body:JSON.stringify({data:{type:'subscription',attributes:{custom_source:'Quiz Funnel',profile:{data:{type:'profile',attributes:{email:a.email,properties:{'Dog Name':a.name||null,'Breed':a.breed||null,'Age':a.age||null,'Problem':a.issue||null,'Lead Source':'Quiz Funnel'}}}}},relationships:{list:{data:{type:'list',id:'TM23fR'}}}}})
   }).catch(function(){});
+  // Event "Completed Quiz" via Events API (keepalive) — le push onsite ne survit pas à la redirection
+  fetch('https://a.klaviyo.com/client/events/?company_id=WC5KaP',{
+    method:'POST',
+    keepalive:true,
+    headers:{'revision':'2024-10-15','content-type':'application/json'},
+    body:JSON.stringify({data:{type:'event',attributes:{metric:{data:{type:'metric',attributes:{name:'Completed Quiz'}}},profile:{data:{type:'profile',attributes:{email:a.email}}},properties:{'Dog Name':a.name||null,'Breed':a.breed||null,'Age':a.age||null,'Problem':a.issue||null}}}})
+  }).catch(function(){});
   window.klaviyo=window.klaviyo||[];
   window.klaviyo.push(['identify',{'$email':a.email}]);
-  window.klaviyo.push(['track','Completed Quiz',{'Dog Name':a.name||null,'Breed':a.breed||null,'Age':a.age||null,'Problem':a.issue||null}]);
 }
 function show(id){['landing','quiz','pause','result'].forEach(function(s){ge(s).classList.remove('on')});ge(id).classList.add('on');var ls=ge('land-sticky');if(ls&&id!=='landing'){ls.style.display='none';}}
 
