@@ -814,6 +814,20 @@ function dn(){return A.name||'your dog'}
 function tok(s){return s.replace(/\[N\]/g,dn())}
 function ge(id){return document.getElementById(id)}
 function isEmail(v){return v&&v.indexOf('@')>0&&v.lastIndexOf('.')>v.indexOf('@')}
+/* Pousse le lead vers Klaviyo : crée le profil + abonne à l'Email List (V4eDj9) + pose le consentement.
+   Clé PUBLIQUE XjQNRC (site ID) — aucun secret exposé. keepalive:true => la requête survit à la redirection vers /result. */
+function pushLeadToKlaviyo(a){
+  if(!a||!isEmail(a.email))return;
+  fetch('https://a.klaviyo.com/client/subscriptions/?company_id=XjQNRC',{
+    method:'POST',
+    keepalive:true,
+    headers:{'revision':'2024-10-15','content-type':'application/json'},
+    body:JSON.stringify({data:{type:'subscription',attributes:{custom_source:'Quiz Funnel',profile:{data:{type:'profile',attributes:{email:a.email,properties:{'Dog Name':a.name||null,'Breed':a.breed||null,'Age':a.age||null,'Problem':a.issue||null,'Lead Source':'Quiz Funnel'}}}}},relationships:{list:{data:{type:'list',id:'V4eDj9'}}}}})
+  }).catch(function(){});
+  window.klaviyo=window.klaviyo||[];
+  window.klaviyo.push(['identify',{'$email':a.email}]);
+  window.klaviyo.push(['track','Completed Quiz',{'Dog Name':a.name||null,'Breed':a.breed||null,'Age':a.age||null,'Problem':a.issue||null}]);
+}
 function show(id){['landing','quiz','pause','result'].forEach(function(s){ge(s).classList.remove('on')});ge(id).classList.add('on');var ls=ge('land-sticky');if(ls&&id!=='landing'){ls.style.display='none';}}
 
 /* ─────────────────────────────────────────
@@ -997,10 +1011,13 @@ function renderQ(idx){
   );
   
   var sessionId=crypto.randomUUID();
-  
+
   // Save dog_name + email locally as fallback (Supabase columns don't exist yet)
   if (A.name) localStorage.setItem('thedogcoach_dog_name', A.name);
   if (A.email) localStorage.setItem('thedogcoach_email', A.email);
+
+  // Lead -> Klaviyo (profil + Email List + event "Completed Quiz")
+  pushLeadToKlaviyo(A);
 
   await supabaseClient.from('dog_profiles').insert({
     session_id: sessionId,
@@ -1173,5 +1190,5 @@ function startTimer(s){
 }
 
 </script>
-<script async type='text/javascript' src='https://static.klaviyo.com/onsite/js/WC5KaP/klaviyo.js?company_id=WC5KaP'></script><script type="text/javascript">!function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}();</script></body>
+<script async type='text/javascript' src='https://static.klaviyo.com/onsite/js/XjQNRC/klaviyo.js?company_id=XjQNRC'></script><script type="text/javascript">!function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}();</script></body>
 </html>
