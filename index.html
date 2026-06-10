@@ -822,7 +822,7 @@ function pushLeadToKlaviyo(a){
     method:'POST',
     keepalive:true,
     headers:{'revision':'2024-10-15','content-type':'application/json'},
-    body:JSON.stringify({data:{type:'subscription',attributes:{custom_source:'Quiz Funnel',profile:{data:{type:'profile',attributes:{email:a.email,properties:{'Dog Name':a.name||null,'Breed':a.breed||null,'Age':a.age||null,'Problem':a.issue||null,'Lead Source':'Quiz Funnel'}}}}},relationships:{list:{data:{type:'list',id:'TM23fR'}}}}})
+    body:JSON.stringify({data:{type:'subscription',attributes:{custom_source:'Quiz Funnel',profile:{data:{type:'profile',attributes:{email:a.email,properties:{'Dog Name':a.name||null,'Breed':a.breed||null,'Age':a.age||null,'Problem':a.issue||null,'Lead Source':'Quiz Funnel','dog_name':a.name||null,'dog_breed':a.breed||null,'dog_age':a.age||null,'primary_behavior_issue':a.issue||null,'email_consent':true}}}}},relationships:{list:{data:{type:'list',id:'TM23fR'}}}}})
   }).catch(function(){});
   // Event "Completed Quiz" via Events API (keepalive) — le push onsite ne survit pas à la redirection
   fetch('https://a.klaviyo.com/client/events/?company_id=WC5KaP',{
@@ -831,6 +831,7 @@ function pushLeadToKlaviyo(a){
     headers:{'revision':'2024-10-15','content-type':'application/json'},
     body:JSON.stringify({data:{type:'event',attributes:{metric:{data:{type:'metric',attributes:{name:'Completed Quiz'}}},profile:{data:{type:'profile',attributes:{email:a.email}}},properties:{'Dog Name':a.name||null,'Breed':a.breed||null,'Age':a.age||null,'Problem':a.issue||null}}}})
   }).catch(function(){});
+  fetch('https://a.klaviyo.com/client/events/?company_id=WC5KaP',{method:'POST',keepalive:true,headers:{'revision':'2024-10-15','content-type':'application/json'},body:JSON.stringify({data:{type:'event',attributes:{metric:{data:{type:'metric',attributes:{name:'Quiz Email Captured'}}},profile:{data:{type:'profile',attributes:{email:a.email}}},properties:{'Dog Name':a.name||null,'Breed':a.breed||null,'Age':a.age||null,'Problem':a.issue||null}}}})}).catch(function(){});
   window.klaviyo=window.klaviyo||[];
   window.klaviyo.push(['identify',{'$email':a.email}]);
 }
