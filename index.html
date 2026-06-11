@@ -1035,7 +1035,19 @@ function renderQ(idx){
   });
 
  localStorage.setItem('coaching_session_id', sessionId);
-window.location.href = 'https://app.thedogcoach.co/result?session=' + sessionId + '&name=' + encodeURIComponent(A.name||'');
+
+  /* Dual-market US/AU: forward an explicit AU market (?market=au from pricing.html, or persisted) to the app's
+     result page so the AUD Stripe price is used. 'us' is never forwarded — it may just be the persisted default,
+     and the app's own server-side geo resolution must stay authoritative for everyone else. */
+  var mkt=null;
+  try{
+    var mp=new URLSearchParams(location.search).get('market');
+    if(mp==='us'||mp==='au'){mkt=mp;}
+    if(!mkt){var ms=localStorage.getItem('market');if(ms==='us'||ms==='au'){mkt=ms;}}
+    if(mkt)localStorage.setItem('market',mkt);
+  }catch(e){}
+
+window.location.href = 'https://app.thedogcoach.co/result?session=' + sessionId + '&name=' + encodeURIComponent(A.name||'') + (mkt==='au'?'&market=au':'');
 };
     einp.addEventListener('input',function(){ctaBtn.disabled=!isEmail(einp.value);});
     einp.addEventListener('keydown',function(e){if(e.key==='Enter'&&ctaFn)ctaFn();});
