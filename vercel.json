@@ -12,9 +12,17 @@
     {
       "src": "*.png",
       "use": "@vercel/static"
+    },
+    {
+      "src": "api/*.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
+    {
+      "src": "/api/geo",
+      "dest": "/api/geo.js"
+    },
     {
       "src": "/how-it-works",
       "dest": "/how-it-works.html"
