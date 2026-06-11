@@ -259,36 +259,41 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
 /* Dual-market US/AU pricing.
    PRICING values are duplicated from src/lib/pricing.ts in the Next.js app repo — if one changes, the other must change too.
    The static markup IS the US rendering; this script only mutates the DOM when the resolved market is 'au'.
-   Market resolution: ?market= URL param ('us'/'au' only) > localStorage('market') > default 'us'. No server geo on a static page:
-   an AU visitor arriving with neither ?market=au nor localStorage will see US pricing (known, accepted limitation). */
+   Market resolution: ?market= URL param ('us'/'au' only) > localStorage('market') > /api/geo (x-vercel-ip-country) > default 'us'.
+   The geo fallback is async: the page renders US first and is patched to AU once /api/geo answers. */
 (function(){
   var PRICING={
     us:{code:'USD',symbol:'$',amount:129,monthly:'$10.75',taxNote:''},
     au:{code:'AUD',symbol:'A$',amount:185,monthly:'A$15.42',taxNote:'incl. GST'}
   };
+  function apply(market,skipPersist){
+    if(!skipPersist){try{localStorage.setItem('market',market);}catch(e){}}
+    if(market==='us')return;
+    var P=PRICING[market];
+    var yearly=P.symbol+P.amount;
+    function setText(sel,txt){var el=document.querySelector(sel);if(el)el.textContent=txt;}
+    setText('.compare-item.good .value',yearly+' / yr');
+    setText('.pricing-price',yearly);
+    setText('.pricing-per','/ year'+(P.taxNote?' · '+P.taxNote:''));
+    setText('.pricing-perday','Just '+P.monthly+' / month — billed annually');
+    document.querySelectorAll('.faq-body').forEach(function(el){
+      if(el.innerHTML.indexOf('$129')>=0){el.innerHTML=el.innerHTML.split('$129').join(yearly);}
+    });
+    /* Carry the market through the quiz funnel (index.html) so it reaches the app's result page / Stripe checkout. */
+    document.querySelectorAll('a[href="index.html?quiz=1"]').forEach(function(a){
+      a.href='index.html?quiz=1&market='+market;
+    });
+  }
   var market=null;
   try{
     var p=new URLSearchParams(location.search).get('market');
     if(p==='us'||p==='au'){market=p;}
     if(!market){var s=localStorage.getItem('market');if(s==='us'||s==='au'){market=s;}}
   }catch(e){}
-  market=market||'us';
-  try{localStorage.setItem('market',market);}catch(e){}
-  if(market==='us')return;
-  var P=PRICING[market];
-  var yearly=P.symbol+P.amount;
-  function setText(sel,txt){var el=document.querySelector(sel);if(el)el.textContent=txt;}
-  setText('.compare-item.good .value',yearly+' / yr');
-  setText('.pricing-price',yearly);
-  setText('.pricing-per','/ year'+(P.taxNote?' · '+P.taxNote:''));
-  setText('.pricing-perday','Just '+P.monthly+' / month — billed annually');
-  document.querySelectorAll('.faq-body').forEach(function(el){
-    if(el.innerHTML.indexOf('$129')>=0){el.innerHTML=el.innerHTML.split('$129').join(yearly);}
-  });
-  /* Carry the market through the quiz funnel (index.html) so it reaches the app's result page / Stripe checkout. */
-  document.querySelectorAll('a[href="index.html?quiz=1"]').forEach(function(a){
-    a.href='index.html?quiz=1&market='+market;
-  });
+  if(market){apply(market);return;}
+  fetch('/api/geo').then(function(r){return r.json();}).then(function(d){
+    apply(d&&d.market==='au'?'au':'us');
+  }).catch(function(){apply('us',true);});
 })();
 </script>
 <script async type='text/javascript' src='https://static.klaviyo.com/onsite/js/WC5KaP/klaviyo.js?company_id=WC5KaP'></script><script type="text/javascript">!function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}();</script></body>
