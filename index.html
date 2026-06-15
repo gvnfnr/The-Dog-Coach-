@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1634671590955248');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1634671590955248&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -892,6 +908,7 @@ function show(id){['landing','quiz','pause','result'].forEach(function(s){ge(s).
 ───────────────────────────────────────── */
 function startQuiz(){
   A={};cur=0;ms={};
+  if(window.fbq)fbq('trackCustom','StartQuiz');
   show('quiz');
   renderQ(0);
 }
@@ -1077,6 +1094,8 @@ function renderQ(idx){
 
   // Lead -> Klaviyo (profil + Email List + event "Completed Quiz")
   pushLeadToKlaviyo(A);
+  // Lead -> Meta Pixel (conversion: email captured at end of quiz)
+  if(window.fbq)fbq('track','Lead');
 
   await supabaseClient.from('dog_profiles').insert({
     session_id: sessionId,
