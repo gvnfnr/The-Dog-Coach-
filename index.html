@@ -863,8 +863,6 @@ var QS=[
 ];
 
 var PAUSES={
-  5: {title:"Comparing [N]'s profile to 50,000+ successful cases…",      steps:['Analyzing breed characteristics','Mapping behavioral patterns','Identifying root causes'],           dur:3500},
-  9: {title:"Analyzing breed-specific neuro-patterns and habit triggers…", steps:['Processing energy signature','Cross-referencing behavior triggers','Building custom protocol'],        dur:4000},
   15:{title:"[N]'s Behavioral Analysis is Ready.",                          steps:['Finalizing your 14-day roadmap','Preparing behavior protocols','Generating your personalized profile'],dur:5000}
 };
 
@@ -1097,15 +1095,7 @@ function renderQ(idx){
   // Lead -> Meta Pixel (conversion: email captured at end of quiz)
   if(window.fbq)fbq('track','Lead');
 
-  await supabaseClient.from('dog_profiles').insert({
-    session_id: sessionId,
-    breed: A.breed||'Unknown',
-    age: A.age||'Unknown',
-    problem: A.issue||'General behavior',
-    plan_day: 1
-  });
-
- localStorage.setItem('coaching_session_id', sessionId);
+  localStorage.setItem('coaching_session_id', sessionId);
 
   /* Dual-market US/AU: forward an explicit AU market (?market=au from pricing.html, or persisted) to the app's
      result page so the AUD Stripe price is used. 'us' is never forwarded — it may just be the persisted default,
@@ -1118,7 +1108,19 @@ function renderQ(idx){
     if(mkt)localStorage.setItem('market',mkt);
   }catch(e){}
 
-window.location.href = 'https://app.thedogcoach.co/result?session=' + sessionId + '&name=' + encodeURIComponent(A.name||'') + (mkt==='au'?'&market=au':'');
+  var dest='https://app.thedogcoach.co/result?session=' + sessionId + '&name=' + encodeURIComponent(A.name||'') + (mkt==='au'?'&market=au':'');
+
+  // Persist the profile in the background while the single end-of-quiz scan plays.
+  supabaseClient.from('dog_profiles').insert({
+    session_id: sessionId,
+    breed: A.breed||'Unknown',
+    age: A.age||'Unknown',
+    problem: A.issue||'General behavior',
+    plan_day: 1
+  }).then(function(){},function(){});
+
+  // One analysis scan at the end of the quiz, then off to the result page.
+  playPause(15,false,function(){window.location.href=dest;});
 };
     einp.addEventListener('input',function(){ctaBtn.disabled=!isEmail(einp.value);});
     einp.addEventListener('keydown',function(e){if(e.key==='Enter'&&ctaFn)ctaFn();});
@@ -1147,7 +1149,7 @@ function doAdv(from){
   else{renderQ(next);}
 }
 
-function playPause(afterQ,isLast){
+function playPause(afterQ,isLast,done){
   var p=PAUSES[afterQ];
   show('pause');
   ge('p-tit').textContent=tok(p.title);
@@ -1158,7 +1160,7 @@ function playPause(afterQ,isLast){
     bar.style.transition='width '+p.dur+'ms linear';bar.style.width='100%';
   });});
   p.steps.forEach(function(_,i){setTimeout(function(){var el=ge('ps'+i);if(el)el.classList.add('on');},(p.dur/(p.steps.length+1))*(i+1));});
-  setTimeout(function(){if(isLast){buildAndShowResult();}else{show('quiz');renderQ(afterQ);}},p.dur+150);
+  setTimeout(function(){if(done){done();}else if(isLast){buildAndShowResult();}else{show('quiz');renderQ(afterQ);}},p.dur+150);
 }
 
 /* ─────────────────────────────────────────
