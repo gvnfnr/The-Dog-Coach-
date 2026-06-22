@@ -846,25 +846,17 @@ var EMOJIS={'Labrador Retriever':'🦮','French Bulldog':'🐾','Golden Retrieve
 
 var QS=[
   {id:'name',    type:'text',   label:'First things first 🐶',title:"What's your dog's name?",            ph:'e.g. Buddy'},
-  {id:'gender',  type:'select', label:'About your dog',        title:"What's [N]'s gender?",              opts:[{l:'Boy',i:'♂️',d:'Male dog'},{l:'Girl',i:'♀️',d:'Female dog'}]},
   {id:'breed',   type:'breed',  label:'About your dog',        title:"What's [N]'s breed?",               sub:'Search or pick a popular breed'},
   {id:'age',     type:'select', label:'About your dog',        title:'How old is [N]?',                   opts:[{l:'Puppy',i:'🐣',d:'0–6 months'},{l:'Junior',i:'🐾',d:'6–18 months'},{l:'Adult',i:'🐶',d:'2–7 years'},{l:'Senior',i:'🦮',d:'8+ years'}]},
-  {id:'env',     type:'select', label:'Living situation',      title:'Where do you live with [N]?',       opts:[{l:'Apartment',i:'🏢',d:'Urban'},{l:'Small yard',i:'🏡',d:'Suburban'},{l:'Big yard',i:'🌳',d:'Spacious'},{l:'Farm / Rural',i:'🌾',d:'Open spaces'}]},
   {id:'issue',   type:'grid',   label:'Main challenge 🎯',    title:"What's the #1 behavior to fix?",    opts:[{l:'Barking',i:'📢'},{l:'Leash Pulling',i:'🦮'},{l:'Separation Anxiety',i:'😰'},{l:'Aggression',i:'⚡'},{l:'Recall',i:'📣'},{l:'Potty Training',i:'🚿'},{l:'Destruction',i:'💥'},{l:'Jumping',i:'🦘'},{l:'Fear / Anxiety',i:'😨'},{l:'Resource Guarding',i:'🦴'}]},
   {id:'serious', type:'select', label:'Severity',              title:"How serious is [N]'s behavior?",    opts:[{l:'Mild',i:'😤',d:'Annoying but manageable'},{l:'Moderate',i:'😟',d:'Disrupting daily life'},{l:'Severe',i:'🚨',d:'Dangerous or very stressful'}]},
-  {id:'duration',type:'select', label:'Timeline',              title:'How long has this been happening?', opts:[{l:'Less than a month',i:'📅',d:'Just started'},{l:'1–6 months',i:'🗓',d:'A few months'},{l:'6–12 months',i:'⏳',d:'About a year'},{l:'Years',i:'📆',d:'Long-standing'}]},
-  {id:'energy',  type:'select', label:'Energy profile',        title:"[N]'s energy level?",               opts:[{l:'Low',i:'😴',d:'Loves napping'},{l:'Medium',i:'🐕',d:'Balanced'},{l:'High',i:'🏃',d:'Always active'},{l:'Extreme',i:'🚀',d:'Never tires'}]},
   {id:'tried',   type:'multi',  label:"What you've tried",     title:"What have you tried with [N]?",     sub:'Select all that apply', opts:[{l:'Group classes',i:'👥'},{l:'Private trainer',i:'🎓'},{l:'YouTube tutorials',i:'📺'},{l:'Books / Guides',i:'📚'},{l:'Nothing yet',i:'🤷'}]},
-  {id:'exp',     type:'select', label:'Your experience',       title:'How experienced are you with dogs?', opts:[{l:'First-time owner',i:'🌱',d:'New to this'},{l:'Had 1–2 dogs',i:'🐾',d:'Some experience'},{l:'Experienced owner',i:'⭐',d:'3+ dogs'},{l:'Expert / Pro',i:'🏆',d:'I train others'}]},
-  {id:'commit',  type:'select', label:'Daily time',            title:'How much time can you commit daily?', opts:[{l:'5–10 min',i:'⚡',d:'Quick & efficient'},{l:'15–30 min',i:'⏱',d:'Sweet spot'},{l:'1 hour+',i:'🕐',d:'All in'},{l:'Whatever it takes',i:'💪',d:'No limit'}]},
   {id:'outcome', type:'grid',   label:'Your goal 🏆',         title:"#1 outcome you want with [N]?",     opts:[{l:'Peaceful Walks',i:'🚶'},{l:'Off-Leash Freedom',i:'🏞'},{l:'Quiet Home',i:'🏠'},{l:'Guest Friendly',i:'🤝'},{l:'Stress-Free Travel',i:'✈️'},{l:'Safe Socializing',i:'🐕‍🦺'}]},
   {id:'vision',  type:'select', label:'Your vision',           title:"How would life change if [N]'s problem was solved?", opts:[{l:'More confident',i:'💪',d:'Proud every day'},{l:'More adventures',i:'🏕',d:'Explore together'},{l:'Less stress',i:'🏡',d:'Peace & harmony'},{l:'Proud in public',i:'🌟',d:'Impress everyone'}]},
   {id:'email',   type:'email',  label:'Your plan is ready ✅', title:"[N]'s Behavioral Profile is Ready.", sub:"Where should we send [N]'s custom 14-day transformation roadmap?"}
 ];
 
 var PAUSES={
-  5: {title:"Comparing [N]'s profile to 50,000+ successful cases…",      steps:['Analyzing breed characteristics','Mapping behavioral patterns','Identifying root causes'],           dur:3500},
-  9: {title:"Analyzing breed-specific neuro-patterns and habit triggers…", steps:['Processing energy signature','Cross-referencing behavior triggers','Building custom protocol'],        dur:4000},
   15:{title:"[N]'s Behavioral Analysis is Ready.",                          steps:['Finalizing your 14-day roadmap','Preparing behavior protocols','Generating your personalized profile'],dur:5000}
 };
 
@@ -1097,15 +1089,7 @@ function renderQ(idx){
   // Lead -> Meta Pixel (conversion: email captured at end of quiz)
   if(window.fbq)fbq('track','Lead');
 
-  await supabaseClient.from('dog_profiles').insert({
-    session_id: sessionId,
-    breed: A.breed||'Unknown',
-    age: A.age||'Unknown',
-    problem: A.issue||'General behavior',
-    plan_day: 1
-  });
-
- localStorage.setItem('coaching_session_id', sessionId);
+  localStorage.setItem('coaching_session_id', sessionId);
 
   /* Dual-market US/AU: forward an explicit AU market (?market=au from pricing.html, or persisted) to the app's
      result page so the AUD Stripe price is used. 'us' is never forwarded — it may just be the persisted default,
@@ -1118,7 +1102,19 @@ function renderQ(idx){
     if(mkt)localStorage.setItem('market',mkt);
   }catch(e){}
 
-window.location.href = 'https://app.thedogcoach.co/result?session=' + sessionId + '&name=' + encodeURIComponent(A.name||'') + (mkt==='au'?'&market=au':'');
+  var dest='https://app.thedogcoach.co/result?session=' + sessionId + '&name=' + encodeURIComponent(A.name||'') + (mkt==='au'?'&market=au':'');
+
+  // Persist the profile in the background while the single end-of-quiz scan plays.
+  supabaseClient.from('dog_profiles').insert({
+    session_id: sessionId,
+    breed: A.breed||'Unknown',
+    age: A.age||'Unknown',
+    problem: A.issue||'General behavior',
+    plan_day: 1
+  }).then(function(){},function(){});
+
+  // One analysis scan at the end of the quiz, then off to the result page.
+  playPause(15,false,function(){window.location.href=dest;});
 };
     einp.addEventListener('input',function(){ctaBtn.disabled=!isEmail(einp.value);});
     einp.addEventListener('keydown',function(e){if(e.key==='Enter'&&ctaFn)ctaFn();});
@@ -1147,7 +1143,7 @@ function doAdv(from){
   else{renderQ(next);}
 }
 
-function playPause(afterQ,isLast){
+function playPause(afterQ,isLast,done){
   var p=PAUSES[afterQ];
   show('pause');
   ge('p-tit').textContent=tok(p.title);
@@ -1158,7 +1154,7 @@ function playPause(afterQ,isLast){
     bar.style.transition='width '+p.dur+'ms linear';bar.style.width='100%';
   });});
   p.steps.forEach(function(_,i){setTimeout(function(){var el=ge('ps'+i);if(el)el.classList.add('on');},(p.dur/(p.steps.length+1))*(i+1));});
-  setTimeout(function(){if(isLast){buildAndShowResult();}else{show('quiz');renderQ(afterQ);}},p.dur+150);
+  setTimeout(function(){if(done){done();}else if(isLast){buildAndShowResult();}else{show('quiz');renderQ(afterQ);}},p.dur+150);
 }
 
 /* ─────────────────────────────────────────
