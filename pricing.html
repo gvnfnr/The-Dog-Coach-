@@ -157,7 +157,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
         <div class="compare-item good">
           <span class="ico">🐶</span>
           <span class="label">The Dog Coach:</span>
-          <span class="value">$129 / yr</span>
+          <span class="value"><span data-price-yearly>$129</span> / yr</span>
         </div>
       </div>
     </section>
@@ -168,9 +168,9 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
           <div class="pricing-rib">BEST VALUE</div>
           <div class="pricing-name">Full Access Annual</div>
           <div class="pricing-tag">Everything you need for a lifetime of great behavior.</div>
-          <div class="pricing-price-row"><div class="pricing-price">$129</div></div>
-          <div class="pricing-per">/ year</div>
-          <div class="pricing-perday">Just $0.35 / day — billed annually</div>
+          <div class="pricing-price-row"><div class="pricing-price" data-price-yearly>$129</div></div>
+          <div class="pricing-per">/ year<span data-tax-note></span></div>
+          <div class="pricing-perday" data-price-breakdown>Just $0.35 / day — billed annually</div>
           <div class="pricing-divider"></div>
           <ul class="pricing-features">
             <li>Personalized Training Roadmap</li>
@@ -208,7 +208,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
       <div class="faq-price">
         <details class="faq-item">
           <summary>When do I get charged?</summary>
-          <div class="faq-body">Your plan starts immediately upon purchase. The Full Access Annual plan is billed once per year at $129. All payments are secure and encrypted.</div>
+          <div class="faq-body">Your plan starts immediately upon purchase. The Full Access Annual plan is billed once per year at <span data-price-yearly>$129</span>. All payments are secure and encrypted.</div>
         </details>
         <details class="faq-item">
           <summary>How do refunds work?</summary>
@@ -216,7 +216,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
         </details>
         <details class="faq-item">
           <summary>What's included in Full Access Annual?</summary>
-          <div class="faq-body">Full Access Annual ($129/year) includes the complete 14-day roadmap, a custom behavioral profile, priority AI chat, exclusive masterclasses, and lifetime plan updates, everything you need for a lifetime of great behavior.</div>
+          <div class="faq-body">Full Access Annual (<span data-price-yearly>$129</span>/year) includes the complete 14-day roadmap, a custom behavioral profile, priority AI chat, exclusive masterclasses, and lifetime plan updates, everything you need for a lifetime of great behavior.</div>
         </details>
         <details class="faq-item">
           <summary>Will it work for my breed?</summary>
@@ -274,42 +274,40 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
 <script>
 /* Dual-market US/AU pricing.
    PRICING values are duplicated from src/lib/pricing.ts in the Next.js app repo — if one changes, the other must change too.
-   The static markup IS the US rendering; this script only mutates the DOM when the resolved market is 'au'.
-   Market resolution: ?market= URL param ('us'/'au' only) > localStorage('market') > /api/geo (x-vercel-ip-country) > default 'us'.
-   The geo fallback is async: the page renders US first and is patched to AU once /api/geo answers. */
+   The static markup IS the US rendering; this script only mutates [data-price-yearly]/[data-tax-note]/[data-price-breakdown]
+   hooks when the resolved market is 'au', so copy edits can't silently break the patch.
+   Market resolution: ?market= URL param ('us'/'au' only) > /api/geo (x-vercel-ip-country) > default 'us'.
+   localStorage('market') is ONLY a cache of the latest geo answer (read by index.html to tag the checkout
+   redirect); a URL param is never persisted, and geo is re-checked on every visit, so a shared ?market= link
+   or a one-off wrong geo answer can never lock a visitor into the wrong currency. */
 (function(){
   var PRICING={
     us:{code:'USD',symbol:'$',amount:129,monthly:'$10.75',taxNote:''},
     au:{code:'AUD',symbol:'A$',amount:185,monthly:'A$15.42',taxNote:'incl. GST'}
   };
-  function apply(market,skipPersist){
-    if(!skipPersist){try{localStorage.setItem('market',market);}catch(e){}}
-    if(market==='us')return;
-    var P=PRICING[market];
+  function applyAU(){
+    var P=PRICING.au;
     var yearly=P.symbol+P.amount;
-    function setText(sel,txt){var el=document.querySelector(sel);if(el)el.textContent=txt;}
-    setText('.compare-item.good .value',yearly+' / yr');
-    setText('.pricing-price',yearly);
-    setText('.pricing-per','/ year'+(P.taxNote?' · '+P.taxNote:''));
-    setText('.pricing-perday','Just '+P.monthly+' / month — billed annually');
-    document.querySelectorAll('.faq-body').forEach(function(el){
-      if(el.innerHTML.indexOf('$129')>=0){el.innerHTML=el.innerHTML.split('$129').join(yearly);}
-    });
+    document.querySelectorAll('[data-price-yearly]').forEach(function(el){el.textContent=yearly;});
+    document.querySelectorAll('[data-tax-note]').forEach(function(el){el.textContent=P.taxNote?' · '+P.taxNote:'';});
+    document.querySelectorAll('[data-price-breakdown]').forEach(function(el){el.textContent='Just '+P.monthly+' / month — billed annually';});
     /* Carry the market through the quiz funnel (index.html) so it reaches the app's result page / Stripe checkout. */
     document.querySelectorAll('a[href="index.html?quiz=1"]').forEach(function(a){
-      a.href='index.html?quiz=1&market='+market;
+      a.href='index.html?quiz=1&market=au';
     });
   }
-  var market=null;
+  var param=null;
   try{
     var p=new URLSearchParams(location.search).get('market');
-    if(p==='us'||p==='au'){market=p;}
-    if(!market){var s=localStorage.getItem('market');if(s==='us'||s==='au'){market=s;}}
+    if(p==='us'||p==='au'){param=p;}
   }catch(e){}
-  if(market){apply(market);return;}
+  if(param==='au'){applyAU();}
+  if(param){return;} /* explicit tag wins for this view; never persisted */
   fetch('/api/geo').then(function(r){return r.json();}).then(function(d){
-    apply(d&&d.market==='au'?'au':'us');
-  }).catch(function(){apply('us',true);});
+    var g=(d&&d.market==='au')?'au':'us';
+    try{localStorage.setItem('market',g);}catch(e){}
+    if(g==='au'){applyAU();}
+  }).catch(function(){});
 })();
 </script>
 <script async type='text/javascript' src='https://static.klaviyo.com/onsite/js/WC5KaP/klaviyo.js?company_id=WC5KaP'></script><script type="text/javascript">!function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}();</script></body>
