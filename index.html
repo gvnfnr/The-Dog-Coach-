@@ -925,8 +925,15 @@ function renderQ(idx){
 
   // Lead -> Klaviyo (profil + Email List + event "Completed Quiz")
   try{pushLeadToKlaviyo(A);}catch(e){}
-  // Lead -> Meta Pixel (conversion: email captured at end of quiz)
-  try{if(window.fbq)fbq('track','Lead');}catch(e){}
+  /* Lead -> Meta Pixel with Advanced Matching. Re-init with the identifiers we now have (email + external_id)
+     so the Pixel hashes them client-side and the Lead matches a real person; external_id = sessionId is the
+     same value forwarded to the app, so its server-side Purchase stitches back to this Lead. */
+  try{
+    if(window.fbq){
+      fbq('init','1634671590955248',{em:v.toLowerCase(),external_id:sessionId});
+      fbq('track','Lead');
+    }
+  }catch(e){}
 
   /* Dual-market US/AU: forward an explicit AU market (?market=au from pricing.html, or the geo cache
      pricing.html maintains) to the app's result page so the AUD Stripe price is used. 'us' is never
@@ -939,7 +946,19 @@ function renderQ(idx){
     if(!mkt){var ms=localStorage.getItem('market');if(ms==='us'||ms==='au'){mkt=ms;}}
   }catch(e){}
 
-  var dest='https://app.thedogcoach.co/result?session=' + sessionId + '&name=' + encodeURIComponent(A.name||'') + (mkt==='au'?'&market=au':'');
+  /* Hand the Meta click identifiers to the app so its server-side Conversions API can attach them to the
+     Purchase event (same fbp/fbc/external_id → high match quality + browser↔server dedup). fbc is derived
+     from the ad-click fbclid, which only exists on this landing URL, so the app cannot recover it alone. */
+  var fbp='',fbc='';
+  try{
+    var ck=document.cookie||'';
+    var cp=ck.match(/(?:^|; )_fbp=([^;]+)/); if(cp){fbp=decodeURIComponent(cp[1]);}
+    var cc=ck.match(/(?:^|; )_fbc=([^;]+)/); if(cc){fbc=decodeURIComponent(cc[1]);}
+    if(!fbc){var fbclid=new URLSearchParams(location.search).get('fbclid'); if(fbclid){fbc='fb.1.'+Date.now()+'.'+fbclid;}}
+  }catch(e){}
+
+  var dest='https://app.thedogcoach.co/result?session=' + sessionId + '&name=' + encodeURIComponent(A.name||'') + (mkt==='au'?'&market=au':'')
+    + (fbp?'&fbp='+encodeURIComponent(fbp):'') + (fbc?'&fbc='+encodeURIComponent(fbc):'');
 
   /* Persist the profile via the Supabase REST endpoint directly (public anon key). keepalive lets the
      request survive the upcoming navigation; no SDK means no CDN dependency on the critical path. */
