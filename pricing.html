@@ -291,9 +291,10 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
     document.querySelectorAll('[data-price-yearly]').forEach(function(el){el.textContent=yearly;});
     document.querySelectorAll('[data-tax-note]').forEach(function(el){el.textContent=P.taxNote?' · '+P.taxNote:'';});
     document.querySelectorAll('[data-price-breakdown]').forEach(function(el){el.textContent='Just '+P.monthly+' / month — billed annually';});
-    /* Carry the market through the quiz funnel (index.html) so it reaches the app's result page / Stripe checkout. */
-    document.querySelectorAll('a[href="index.html?quiz=1"]').forEach(function(a){
-      a.href='index.html?quiz=1&market=au';
+    /* Carry the market through the quiz funnel (index.html) so it reaches the app's result page / Stripe checkout.
+       Append (don't replace) so this composes with the fbclid forwarding below regardless of run order. */
+    document.querySelectorAll('a[href*="quiz=1"]').forEach(function(a){
+      if(a.href.indexOf('market=')<0){a.href+='&market=au';}
     });
   }
   var param=null;
@@ -309,6 +310,19 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
     if(g==='au'){applyAU();}
   }).catch(function(){});
 })();
+</script>
+<script>
+/* Forward the Meta ad-click id (fbclid) to the quiz page: on ad landings where an adblocker stops
+   fbevents.js the _fbc cookie is never written, so this URL param is the only surviving copy — without
+   forwarding it, the fbc sent to the app's Conversions API is lost for exactly the adblocked visitors
+   the server-side channel exists for. */
+(function(){try{
+  var fbclid=new URLSearchParams(location.search).get('fbclid');
+  if(!fbclid)return;
+  document.querySelectorAll('a[href*="quiz=1"]').forEach(function(a){
+    if(a.href.indexOf('fbclid=')<0){a.href+='&fbclid='+encodeURIComponent(fbclid);}
+  });
+}catch(e){}})();
 </script>
 <script async type='text/javascript' src='https://static.klaviyo.com/onsite/js/WC5KaP/klaviyo.js?company_id=WC5KaP'></script><script type="text/javascript">!function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}();</script></body>
 </html>
