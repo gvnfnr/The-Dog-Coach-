@@ -974,7 +974,7 @@ function renderQ(idx){
         'Content-Type':'application/json',
         'Prefer':'return=minimal'
       },
-      body:JSON.stringify({session_id:sessionId,breed:A.breed||'Unknown',age:A.age||'Unknown',problem:A.issue||'General behavior',plan_day:1})
+      body:JSON.stringify({session_id:sessionId,breed:A.breed||'Unknown',age:A.age||'Unknown',problem:A.issue||'General behavior',plan_day:1,fbp:fbp||null,fbc:fbc||null})
     }).catch(function(){});
   }catch(e){}
 
