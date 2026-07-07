@@ -931,7 +931,9 @@ function renderQ(idx){
   try{
     if(window.fbq){
       fbq('init','1634671590955248',{em:v.toLowerCase(),external_id:sessionId});
-      fbq('track','Lead');
+      /* eventID = sessionId: if a server-side Lead is ever added via the Conversions API, sending the same
+         event_id there makes Meta deduplicate instead of double-counting. */
+      fbq('track','Lead',{},{eventID:sessionId});
     }
   }catch(e){}
 
@@ -972,7 +974,7 @@ function renderQ(idx){
         'Content-Type':'application/json',
         'Prefer':'return=minimal'
       },
-      body:JSON.stringify({session_id:sessionId,breed:A.breed||'Unknown',age:A.age||'Unknown',problem:A.issue||'General behavior',plan_day:1})
+      body:JSON.stringify({session_id:sessionId,breed:A.breed||'Unknown',age:A.age||'Unknown',problem:A.issue||'General behavior',plan_day:1,fbp:fbp||null,fbc:fbc||null})
     }).catch(function(){});
   }catch(e){}
 
