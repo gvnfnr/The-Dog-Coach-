@@ -69,6 +69,8 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
 .land-nav{padding:18px 0;display:flex;align-items:center;justify-content:space-between}
 .land-logo{font-family:var(--fh);font-size:15px;font-weight:800;color:var(--green);display:flex;align-items:center;gap:6px}
 .land-nav-trust{font-size:12px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:4px}
+.land-nav-pricing{font-size:13px;font-weight:600;color:var(--muted);text-decoration:none;flex-shrink:0}
+.land-nav-pricing:hover{color:var(--green)}
 .land-account-btn{background:#2D5016;color:#fff;padding:10px 20px;border-radius:25px;font-size:14px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0}
 @media(max-width:767px){
   .land-nav-trust{display:none}
@@ -397,6 +399,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hid
       <div class="land-logo"><img src="LOGOFULL.png" alt="The Dog Coach" style="height:32px;width:auto;vertical-align:middle;"></div>
       <div style="display:flex;align-items:center;gap:16px;">
         <div class="land-nav-trust"><span style="color:#F59E0B">★★★★★</span> 50,000+ owners</div>
+        <a href="pricing.html" class="land-nav-pricing">Pricing</a>
         <a href="https://app.thedogcoach.co/login" class="land-account-btn">My Account →</a>
       </div>
     </nav>
@@ -691,11 +694,11 @@ var QS=[
   {id:'tried',   type:'multi',  label:"What you've tried",     title:"What have you tried with [N]?",     sub:'Select all that apply', opts:[{l:'Group classes',i:'👥'},{l:'Private trainer',i:'🎓'},{l:'YouTube tutorials',i:'📺'},{l:'Books / Guides',i:'📚'},{l:'Nothing yet',i:'🤷'}]},
   {id:'outcome', type:'grid',   label:'Your goal 🏆',         title:"#1 outcome you want with [N]?",     opts:[{l:'Peaceful Walks',i:'🚶'},{l:'Off-Leash Freedom',i:'🏞'},{l:'Quiet Home',i:'🏠'},{l:'Guest Friendly',i:'🤝'},{l:'Stress-Free Travel',i:'✈️'},{l:'Safe Socializing',i:'🐕‍🦺'}]},
   {id:'vision',  type:'select', label:'Your vision',           title:"How would life change if [N]'s problem was solved?", opts:[{l:'More confident',i:'💪',d:'Proud every day'},{l:'More adventures',i:'🏕',d:'Explore together'},{l:'Less stress',i:'🏡',d:'Peace & harmony'},{l:'Proud in public',i:'🌟',d:'Impress everyone'}]},
-  {id:'email',   type:'email',  label:'Your plan is ready ✅', title:"[N]'s Behavioral Profile is Ready.", sub:"Where should we send [N]'s custom 14-day transformation roadmap?"}
+  {id:'email',   type:'email',  label:'Your plan is ready ✅', title:"[N]'s Behavioral Profile is Ready.", sub:"Enter your email to save [N]'s profile and see the full 14-day plan."}
 ];
 
 /* The single analysis scan shown after the email step, before redirecting to the app's result page. */
-var FINAL_SCAN={title:"[N]'s Behavioral Analysis is Ready.",steps:['Finalizing your 14-day roadmap','Preparing behavior protocols','Generating your personalized profile'],dur:5000};
+var FINAL_SCAN={title:"Analyzing [N]'s answers…",steps:['Finalizing your 14-day roadmap','Preparing behavior protocols','Generating your personalized profile'],dur:5000};
 
 /* ─────────────────────────────────────────
    STATE
@@ -737,10 +740,16 @@ function show(id){['landing','quiz','pause'].forEach(function(s){ge(s).classList
    LANDING
 ───────────────────────────────────────── */
 function startQuiz(){
-  A={};cur=0;ms={};
+  /* Resume an interrupted quiz (tab reloaded by iOS/Android, accidental refresh) instead of wiping it.
+     sessionStorage on purpose: same-tab only, so a fresh visit days later starts clean. */
+  var saved=null;
+  try{saved=JSON.parse(sessionStorage.getItem('tdc_quiz')||'null');}catch(e){}
+  if(saved&&saved.A&&saved.idx>0&&saved.idx<QS.length){A=saved.A;ms={};}
+  else{A={};ms={};saved=null;}
+  cur=saved?saved.idx:0;
   if(window.fbq)fbq('trackCustom','StartQuiz');
   show('quiz');
-  renderQ(0);
+  renderQ(cur);
 }
 
 ge('start-btn').addEventListener('click',startQuiz);
@@ -779,6 +788,7 @@ ge('cta-btn').addEventListener('click',function(){if(ctaFn)ctaFn();});
 ───────────────────────────────────────── */
 function renderQ(idx){
   cur=idx;
+  try{sessionStorage.setItem('tdc_quiz',JSON.stringify({A:A,idx:idx}));}catch(e){}
   var q=QS[idx];
   var pct=((idx+1)/QS.length)*100;
   ge('prog-fill').style.width=pct+'%';
@@ -862,14 +872,17 @@ function renderQ(idx){
     });
     html+='</div></div></div>';
     area.innerHTML=html;
-    ctaBar.style.display='block';ctaBtn.disabled=ms[q.id].length===0;ctaBtn.textContent='Continue →';
+    /* Every other question auto-advances on tap; multi can't, so the button itself must show that
+       selecting worked and a tap on Continue is expected. */
+    function multiLabel(){var n=ms[q.id].length;ctaBtn.disabled=n===0;ctaBtn.textContent=n?'Continue ('+n+' selected) →':'Continue →';}
+    ctaBar.style.display='block';multiLabel();
     ctaFn=function(){if(!ms[q.id].length)return;A[q.id]=ms[q.id].slice();doAdv(idx);};
     area.querySelectorAll('.sel-card').forEach(function(c){
       c.addEventListener('click',function(){
         var v=c.getAttribute('data-val'),pos=ms[q.id].indexOf(v);
         if(pos>=0){ms[q.id].splice(pos,1);c.classList.remove('picked');c.querySelector('.s-chk').textContent='';}
         else{ms[q.id].push(v);c.classList.add('picked');c.querySelector('.s-chk').textContent='✓';}
-        ctaBtn.disabled=ms[q.id].length===0;
+        multiLabel();
       });
     });
   }
@@ -878,7 +891,7 @@ function renderQ(idx){
   else if(q.type==='breed'){
     html+='<input class="srch-box" id="bs" type="text" placeholder="Search breed…" autocomplete="off">';
     html+='<div class="pop-sec" id="pop-sec"><div class="pop-lbl">Most Common</div><div class="chips">';
-    ['Labrador Retriever','French Bulldog','Golden Retriever','Mixed Breed'].forEach(function(b){
+    ['Labrador Retriever','French Bulldog','Golden Retriever','German Shepherd','Siberian Husky','Mixed Breed'].forEach(function(b){
       html+='<div class="chip'+(A.breed===b?' picked':'')+'" data-breed="'+b+'">'+b+'</div>';
     });
     html+='</div></div><div class="breed-scroll" id="bl">'+buildBL(BREEDS,'')+'</div>';
@@ -898,6 +911,7 @@ function renderQ(idx){
   else if(q.type==='email'){
     var ev=A.email||'';
     html+='<input class="email-box" id="ei" type="email" placeholder="your@email.com" value="'+ev.replace(/"/g,'&quot;')+'" autocomplete="email">';
+    html+='<p id="ei-err" style="display:none;font-size:12.5px;color:#C0392B;text-align:center;margin:-8px 0 12px">Please enter a valid email address</p>';
     html+='<div style="text-align:center;margin-bottom:12px"><span class="lock-pill">🔒 GDPR Compliant & Private</span></div>';
     html+='<p style="font-size:11px;color:var(--muted);text-align:center;margin-bottom:14px">We\'ll never share '+dn()+'\'s profile. Unsubscribe in 1 click.</p>';
     html+='<div class="soc-strip"><div class="avs"><div class="av">🧑</div><div class="av">👩</div><div class="av">🧔</div></div>';
@@ -905,11 +919,12 @@ function renderQ(idx){
     html+='</div></div>';
     area.innerHTML=html;
     var einp=ge('ei');
-    ctaBar.style.display='block';ctaBtn.disabled=!isEmail(ev);ctaBtn.textContent='Send My Roadmap →';
+    ctaBar.style.display='block';ctaBtn.disabled=!isEmail(ev);ctaBtn.textContent='See '+dn()+'\'s Results →';
     ctaFn=function(){
   var v=einp.value.trim();
   if(!isEmail(v))return;
   A.email=v;
+  try{sessionStorage.removeItem('tdc_quiz');}catch(e){} // quiz completed — a later visit starts fresh
 
   /* crypto.randomUUID is missing on old Safari/Chrome and non-secure contexts — never let it kill the funnel. */
   var sessionId;
@@ -981,7 +996,8 @@ function renderQ(idx){
   // One analysis scan at the end of the quiz, then off to the result page.
   playScan(function(){window.location.href=dest;});
 };
-    einp.addEventListener('input',function(){ctaBtn.disabled=!isEmail(einp.value);});
+    einp.addEventListener('input',function(){ctaBtn.disabled=!isEmail(einp.value);if(isEmail(einp.value)){ge('ei-err').style.display='none';}});
+    einp.addEventListener('blur',function(){ge('ei-err').style.display=(einp.value.trim()&&!isEmail(einp.value))?'block':'none';});
     einp.addEventListener('keydown',function(e){if(e.key==='Enter'&&ctaFn)ctaFn();});
     setTimeout(function(){einp.focus();},80);
   }
